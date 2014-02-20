@@ -24,9 +24,9 @@ namespace TrafficSimulator
             // Feel free to modify to match your needs.
             // Hint: You should find a way to let cars / pedestrians travel
             //       from one intersection to the other....
-            RoadUser blueCar = new BlueCar(new Point(60,216), 2);
+            RoadUser blueCar = new BlueCar(new Point(30,216), 2);
             roadUsers.Add(blueCar);
-            RoadUser greenSportsCar = new GreenSportsCar(new Point(155, 253), 0);
+            RoadUser greenSportsCar = new GreenSportsCar(new Point(155, 260), 0);
             roadUsers.Add(greenSportsCar);
             greenSportsCar.FaceTo(new Point(160, 260));
             intersectionControl1.AddRoadUser(roadUsers[0]);
@@ -45,6 +45,16 @@ namespace TrafficSimulator
             foreach (RoadUser roadUser in roadUsers)
             {
                 roadUser.Move();
+
+                if (roadUser.Location.X == 400)
+                {
+                    intersectionControl1.RemoveRoadUser(roadUser);
+                    intersectionControl2.AddRoadUser(roadUser);
+                    
+                    Point P = roadUser.Location;
+                    P.X = 0;
+                    roadUser.Location = P;
+                }
             }
 
             // redraw all intersections
