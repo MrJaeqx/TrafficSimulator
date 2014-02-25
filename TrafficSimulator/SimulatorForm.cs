@@ -26,9 +26,9 @@ namespace TrafficSimulator
             //       from one intersection to the other....
             RoadUser blueCar = new BlueCar(new Point(30,216), 2);
             roadUsers.Add(blueCar);
-            RoadUser greenSportsCar = new GreenSportsCar(new Point(155, 260), 0);
+            RoadUser greenSportsCar = new GreenSportsCar(new Point(30, 246), 0);
             roadUsers.Add(greenSportsCar);
-            greenSportsCar.FaceTo(new Point(160, 260));
+            //greenSportsCar.FaceTo(new Point(160, 260));
             intersectionControl1.AddRoadUser(roadUsers[0]);
             intersectionControl1.AddRoadUser(roadUsers[1]);
 
