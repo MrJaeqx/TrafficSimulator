@@ -35,25 +35,29 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.labelTitle = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButtonOverview = new System.Windows.Forms.RadioButton();
-            this.radioButtonSpeedings = new System.Windows.Forms.RadioButton();
-            this.radioButtonRedlight = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonAccident = new System.Windows.Forms.Button();
+            this.buttonRedlight = new System.Windows.Forms.Button();
+            this.buttonSpeedings = new System.Windows.Forms.Button();
+            this.buttonOverview = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.buttonRefresh = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonPrint = new System.Windows.Forms.Button();
+            this.buttonSettings = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.buttonRemoveAll = new System.Windows.Forms.Button();
+            this.buttonRemove = new System.Windows.Forms.Button();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -62,18 +66,18 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tableLayoutPanel1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(716, 413);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(984, 661);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(716, 413);
+            this.toolStripContainer1.Size = new System.Drawing.Size(984, 661);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.listView1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
@@ -82,15 +86,15 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(716, 413);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // listView1
             // 
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(203, 3);
+            this.listView1.Location = new System.Drawing.Point(303, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(510, 407);
+            this.listView1.Size = new System.Drawing.Size(678, 655);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -99,48 +103,127 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 407);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(294, 655);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.labelTitle);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(188, 351);
+            this.panel1.Size = new System.Drawing.Size(288, 549);
             this.panel1.TabIndex = 0;
             // 
-            // labelTitle
+            // panel3
             // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.Location = new System.Drawing.Point(-3, 0);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(305, 29);
-            this.labelTitle.TabIndex = 0;
-            this.labelTitle.Text = "Politie Stoplicht Interface";
+            this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.buttonRemoveAll);
+            this.panel3.Controls.Add(this.buttonRemove);
+            this.panel3.Controls.Add(this.buttonSettings);
+            this.panel3.Controls.Add(this.buttonPrint);
+            this.panel3.Controls.Add(this.buttonSave);
+            this.panel3.Controls.Add(this.buttonRefresh);
+            this.panel3.Location = new System.Drawing.Point(3, 191);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.panel3.Size = new System.Drawing.Size(282, 156);
+            this.panel3.TabIndex = 2;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 360);
+            this.panel2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel2.Controls.Add(this.buttonAccident);
+            this.panel2.Controls.Add(this.buttonRedlight);
+            this.panel2.Controls.Add(this.buttonSpeedings);
+            this.panel2.Controls.Add(this.buttonOverview);
+            this.panel2.Location = new System.Drawing.Point(3, 46);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(188, 44);
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.panel2.Size = new System.Drawing.Size(282, 139);
             this.panel2.TabIndex = 1;
+            // 
+            // buttonAccident
+            // 
+            this.buttonAccident.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonAccident.FlatAppearance.BorderSize = 0;
+            this.buttonAccident.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAccident.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAccident.Location = new System.Drawing.Point(10, 100);
+            this.buttonAccident.Name = "buttonAccident";
+            this.buttonAccident.Size = new System.Drawing.Size(260, 23);
+            this.buttonAccident.TabIndex = 3;
+            this.buttonAccident.Text = "Ongevallen";
+            this.buttonAccident.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonAccident.UseVisualStyleBackColor = false;
+            this.buttonAccident.Click += new System.EventHandler(this.toggleViewButtonEvent);
+            // 
+            // buttonRedlight
+            // 
+            this.buttonRedlight.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonRedlight.FlatAppearance.BorderSize = 0;
+            this.buttonRedlight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRedlight.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRedlight.Location = new System.Drawing.Point(10, 71);
+            this.buttonRedlight.Name = "buttonRedlight";
+            this.buttonRedlight.Size = new System.Drawing.Size(260, 23);
+            this.buttonRedlight.TabIndex = 2;
+            this.buttonRedlight.Text = "Rood licht overtredingen";
+            this.buttonRedlight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonRedlight.UseVisualStyleBackColor = false;
+            this.buttonRedlight.Click += new System.EventHandler(this.toggleViewButtonEvent);
+            // 
+            // buttonSpeedings
+            // 
+            this.buttonSpeedings.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonSpeedings.FlatAppearance.BorderSize = 0;
+            this.buttonSpeedings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSpeedings.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSpeedings.Location = new System.Drawing.Point(10, 42);
+            this.buttonSpeedings.Name = "buttonSpeedings";
+            this.buttonSpeedings.Size = new System.Drawing.Size(260, 23);
+            this.buttonSpeedings.TabIndex = 1;
+            this.buttonSpeedings.Text = "Snelheidsovertredingen";
+            this.buttonSpeedings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSpeedings.UseVisualStyleBackColor = false;
+            this.buttonSpeedings.Click += new System.EventHandler(this.toggleViewButtonEvent);
+            // 
+            // buttonOverview
+            // 
+            this.buttonOverview.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonOverview.FlatAppearance.BorderSize = 0;
+            this.buttonOverview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOverview.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOverview.Location = new System.Drawing.Point(10, 13);
+            this.buttonOverview.Name = "buttonOverview";
+            this.buttonOverview.Size = new System.Drawing.Size(260, 23);
+            this.buttonOverview.TabIndex = 0;
+            this.buttonOverview.Text = "Overzicht";
+            this.buttonOverview.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonOverview.UseVisualStyleBackColor = false;
+            this.buttonOverview.Click += new System.EventHandler(this.toggleViewButtonEvent);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(141, 40);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Politie UI";
             // 
             // notifyIcon1
             // 
@@ -148,106 +231,106 @@
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             // 
-            // groupBox1
+            // buttonRefresh
             // 
-            this.groupBox1.Controls.Add(this.radioButton4);
-            this.groupBox1.Controls.Add(this.radioButtonRedlight);
-            this.groupBox1.Controls.Add(this.radioButtonSpeedings);
-            this.groupBox1.Controls.Add(this.radioButtonOverview);
-            this.groupBox1.Location = new System.Drawing.Point(0, 32);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(188, 129);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Weergave";
+            this.buttonRefresh.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonRefresh.FlatAppearance.BorderSize = 0;
+            this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRefresh.Image = global::TrafficMessageReceiver.Properties.Resources.reload;
+            this.buttonRefresh.Location = new System.Drawing.Point(10, 13);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(60, 60);
+            this.buttonRefresh.TabIndex = 0;
+            this.buttonRefresh.UseVisualStyleBackColor = false;
             // 
-            // radioButtonOverview
+            // buttonSave
             // 
-            this.radioButtonOverview.AutoSize = true;
-            this.radioButtonOverview.Checked = true;
-            this.radioButtonOverview.Location = new System.Drawing.Point(6, 19);
-            this.radioButtonOverview.Name = "radioButtonOverview";
-            this.radioButtonOverview.Size = new System.Drawing.Size(70, 17);
-            this.radioButtonOverview.TabIndex = 0;
-            this.radioButtonOverview.TabStop = true;
-            this.radioButtonOverview.Text = "Overzicht";
-            this.radioButtonOverview.UseVisualStyleBackColor = true;
+            this.buttonSave.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonSave.FlatAppearance.BorderSize = 0;
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSave.Image = global::TrafficMessageReceiver.Properties.Resources.save;
+            this.buttonSave.Location = new System.Drawing.Point(76, 13);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(60, 60);
+            this.buttonSave.TabIndex = 1;
+            this.buttonSave.UseVisualStyleBackColor = false;
             // 
-            // radioButtonSpeedings
+            // buttonPrint
             // 
-            this.radioButtonSpeedings.AutoSize = true;
-            this.radioButtonSpeedings.Location = new System.Drawing.Point(6, 42);
-            this.radioButtonSpeedings.Name = "radioButtonSpeedings";
-            this.radioButtonSpeedings.Size = new System.Drawing.Size(136, 17);
-            this.radioButtonSpeedings.TabIndex = 1;
-            this.radioButtonSpeedings.Text = "Snelheidsovertredingen";
-            this.radioButtonSpeedings.UseVisualStyleBackColor = true;
+            this.buttonPrint.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonPrint.FlatAppearance.BorderSize = 0;
+            this.buttonPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPrint.Image = global::TrafficMessageReceiver.Properties.Resources.print;
+            this.buttonPrint.Location = new System.Drawing.Point(142, 13);
+            this.buttonPrint.Name = "buttonPrint";
+            this.buttonPrint.Size = new System.Drawing.Size(60, 60);
+            this.buttonPrint.TabIndex = 2;
+            this.buttonPrint.UseVisualStyleBackColor = false;
             // 
-            // radioButtonRedlight
+            // buttonSettings
             // 
-            this.radioButtonRedlight.AutoSize = true;
-            this.radioButtonRedlight.Location = new System.Drawing.Point(6, 65);
-            this.radioButtonRedlight.Name = "radioButtonRedlight";
-            this.radioButtonRedlight.Size = new System.Drawing.Size(141, 17);
-            this.radioButtonRedlight.TabIndex = 2;
-            this.radioButtonRedlight.Text = "Rood licht overtredingen";
-            this.radioButtonRedlight.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Location = new System.Drawing.Point(0, 176);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(188, 94);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(6, 88);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(83, 17);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Ongelukken";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.buttonSettings.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonSettings.FlatAppearance.BorderSize = 0;
+            this.buttonSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSettings.Image = global::TrafficMessageReceiver.Properties.Resources.settings;
+            this.buttonSettings.Location = new System.Drawing.Point(208, 13);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.Size = new System.Drawing.Size(60, 60);
+            this.buttonSettings.TabIndex = 3;
+            this.buttonSettings.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
-            this.button1.Image = global::TrafficMessageReceiver.Properties.Resources.Connect;
-            this.button1.Location = new System.Drawing.Point(0, 6);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(208, 79);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(38, 38);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Size = new System.Drawing.Size(60, 60);
+            this.button1.TabIndex = 7;
+            this.button1.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // button2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(142, 79);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(60, 60);
+            this.button2.TabIndex = 6;
+            this.button2.UseVisualStyleBackColor = false;
             // 
-            // label2
+            // buttonRemoveAll
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "label2";
+            this.buttonRemoveAll.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonRemoveAll.FlatAppearance.BorderSize = 0;
+            this.buttonRemoveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRemoveAll.Location = new System.Drawing.Point(76, 79);
+            this.buttonRemoveAll.Name = "buttonRemoveAll";
+            this.buttonRemoveAll.Size = new System.Drawing.Size(60, 60);
+            this.buttonRemoveAll.TabIndex = 5;
+            this.buttonRemoveAll.UseVisualStyleBackColor = false;
+            // 
+            // buttonRemove
+            // 
+            this.buttonRemove.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonRemove.FlatAppearance.BorderSize = 0;
+            this.buttonRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRemove.Location = new System.Drawing.Point(10, 79);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(60, 60);
+            this.buttonRemove.TabIndex = 4;
+            this.buttonRemove.UseVisualStyleBackColor = false;
             // 
             // PoliceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(716, 413);
+            this.ClientSize = new System.Drawing.Size(984, 661);
             this.Controls.Add(this.toolStripContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PoliceForm";
             this.Text = "Politie Stoplicht Interface";
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
@@ -257,10 +340,8 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -270,20 +351,24 @@
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButtonRedlight;
-        private System.Windows.Forms.RadioButton radioButtonSpeedings;
-        private System.Windows.Forms.RadioButton radioButtonOverview;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonOverview;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button buttonAccident;
+        private System.Windows.Forms.Button buttonRedlight;
+        private System.Windows.Forms.Button buttonSpeedings;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonRemoveAll;
+        private System.Windows.Forms.Button buttonRemove;
+        private System.Windows.Forms.Button buttonSettings;
+        private System.Windows.Forms.Button buttonPrint;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonRefresh;
 
     }
 }
