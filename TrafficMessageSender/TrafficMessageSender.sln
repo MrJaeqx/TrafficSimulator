@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficMessageSender", "TrafficMessageSender\TrafficMessageSender.csproj", "{B443949E-451C-4FD9-8135-825DAF4A2CB7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B443949E-451C-4FD9-8135-825DAF4A2CB7}.Debug|x86.ActiveCfg = Debug|x86
+		{B443949E-451C-4FD9-8135-825DAF4A2CB7}.Debug|x86.Build.0 = Debug|x86
+		{B443949E-451C-4FD9-8135-825DAF4A2CB7}.Release|x86.ActiveCfg = Release|x86
+		{B443949E-451C-4FD9-8135-825DAF4A2CB7}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

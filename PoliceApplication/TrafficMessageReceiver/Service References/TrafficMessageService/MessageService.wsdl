@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="MessageService" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="MessageService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="MessageService/Imports">
+      <xsd:import namespace="MessageService" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITrafficMessage_GetServerName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerName" />
+  </wsdl:message>
+  <wsdl:message name="ITrafficMessage_GetServerName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrafficMessage_SendRedLight_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendRedLight" />
+  </wsdl:message>
+  <wsdl:message name="ITrafficMessage_SendRedLight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendRedLightResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrafficMessage_SendAccident_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAccident" />
+  </wsdl:message>
+  <wsdl:message name="ITrafficMessage_SendAccident_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAccidentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrafficMessage_SendSpeeding_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendSpeeding" />
+  </wsdl:message>
+  <wsdl:message name="ITrafficMessage_SendSpeeding_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendSpeedingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrafficMessage_RetrieveMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveMessage" />
+  </wsdl:message>
+  <wsdl:message name="ITrafficMessage_RetrieveMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITrafficMessage_RetrieveXML_InputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveXML" />
+  </wsdl:message>
+  <wsdl:message name="ITrafficMessage_RetrieveXML_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RetrieveXMLResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITrafficMessage">
+    <wsdl:operation name="GetServerName">
+      <wsdl:input wsaw:Action="MessageService/ITrafficMessage/GetServerName" message="tns:ITrafficMessage_GetServerName_InputMessage" />
+      <wsdl:output wsaw:Action="MessageService/ITrafficMessage/GetServerNameResponse" message="tns:ITrafficMessage_GetServerName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendRedLight">
+      <wsdl:input wsaw:Action="MessageService/ITrafficMessage/SendRedLight" message="tns:ITrafficMessage_SendRedLight_InputMessage" />
+      <wsdl:output wsaw:Action="MessageService/ITrafficMessage/SendRedLightResponse" message="tns:ITrafficMessage_SendRedLight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendAccident">
+      <wsdl:input wsaw:Action="MessageService/ITrafficMessage/SendAccident" message="tns:ITrafficMessage_SendAccident_InputMessage" />
+      <wsdl:output wsaw:Action="MessageService/ITrafficMessage/SendAccidentResponse" message="tns:ITrafficMessage_SendAccident_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSpeeding">
+      <wsdl:input wsaw:Action="MessageService/ITrafficMessage/SendSpeeding" message="tns:ITrafficMessage_SendSpeeding_InputMessage" />
+      <wsdl:output wsaw:Action="MessageService/ITrafficMessage/SendSpeedingResponse" message="tns:ITrafficMessage_SendSpeeding_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMessage">
+      <wsdl:input wsaw:Action="MessageService/ITrafficMessage/RetrieveMessage" message="tns:ITrafficMessage_RetrieveMessage_InputMessage" />
+      <wsdl:output wsaw:Action="MessageService/ITrafficMessage/RetrieveMessageResponse" message="tns:ITrafficMessage_RetrieveMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveXML">
+      <wsdl:input wsaw:Action="MessageService/ITrafficMessage/RetrieveXML" message="tns:ITrafficMessage_RetrieveXML_InputMessage" />
+      <wsdl:output wsaw:Action="MessageService/ITrafficMessage/RetrieveXMLResponse" message="tns:ITrafficMessage_RetrieveXML_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
