@@ -12,20 +12,22 @@ namespace TrafficMessageReceiver
 {
     public partial class PoliceForm : Form
     {
+
+        private int currentMode = 0;
         
         public PoliceForm()
         {
             InitializeComponent();
-            toggleViewButtonEvent(buttonOverview, null);
+            toggleViewEvent(buttonOverview, null);
         }
 
-        private void updateList(int mode)
+        private void updateList()
         {
             listView1.Clear();
             
         }
 
-        private void toggleViewButtonEvent(object sender, EventArgs e)
+        private void toggleViewEvent(object sender, EventArgs e)
         {
             Button button = (Button) sender;
             if (button.Name == buttonOverview.Name)
@@ -34,7 +36,7 @@ namespace TrafficMessageReceiver
                 buttonSpeedings.BackColor = SystemColors.ButtonFace;
                 buttonRedlight.BackColor = SystemColors.ButtonFace;
                 buttonAccident.BackColor = SystemColors.ButtonFace;
-                updateList(0);
+                updateList();
             }
             else if (button.Name == buttonSpeedings.Name)
             {
@@ -42,7 +44,7 @@ namespace TrafficMessageReceiver
                 buttonSpeedings.BackColor = SystemColors.ButtonHighlight;
                 buttonRedlight.BackColor = SystemColors.ButtonFace;
                 buttonAccident.BackColor = SystemColors.ButtonFace;
-                updateList(1);
+                updateList();
             }
             else if (button.Name == buttonRedlight.Name)
             {
@@ -50,7 +52,7 @@ namespace TrafficMessageReceiver
                 buttonSpeedings.BackColor = SystemColors.ButtonFace;
                 buttonRedlight.BackColor = SystemColors.ButtonHighlight;
                 buttonAccident.BackColor = SystemColors.ButtonFace;
-                updateList(2);
+                updateList();
             }
             else if (button.Name == buttonAccident.Name)
             {
@@ -58,8 +60,33 @@ namespace TrafficMessageReceiver
                 buttonSpeedings.BackColor = SystemColors.ButtonFace;
                 buttonRedlight.BackColor = SystemColors.ButtonFace;
                 buttonAccident.BackColor = SystemColors.ButtonHighlight;
-                updateList(3);
+                updateList();
             }
+        }
+
+        private void refreshEvent(object sender, EventArgs e)
+        {
+            updateList();
+        }
+
+        private void saveXmlDataEvent(object sender, EventArgs e)
+        {
+
+        }
+
+        private void printListDataEvent(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openSettingsEvent(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
