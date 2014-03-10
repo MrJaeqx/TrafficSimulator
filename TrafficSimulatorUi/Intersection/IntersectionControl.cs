@@ -58,7 +58,7 @@ namespace TrafficSimulatorUi
         /// List of road users present on the intersection.
         /// The road users will be drawn to the control when the control is invalidated.
         /// </summary>
-        private List<RoadUser> roadUsers;
+        protected List<RoadUser> roadUsers;
 
         /// <summary>
         /// Create a default intersection control
@@ -90,6 +90,14 @@ namespace TrafficSimulatorUi
                 intersectionType = value;
                 ConfigureIntersection(IntersectionConfigurations.GetConfig(intersectionType));
                 Invalidate();
+            }
+        }
+
+        public List<RoadUser> RoadUsers
+        {
+            get
+            {
+                return roadUsers;
             }
         }
 
@@ -187,6 +195,100 @@ namespace TrafficSimulatorUi
             }
 
             roadUsers.Remove(roadUser);
+        }
+
+        public void RemoveEndOfLaneRoadUser()
+        {
+            if (roadUsers.Count > 0)
+            {
+                foreach (RoadUser roadUser in roadUsers)
+                {
+                    Point P = roadUser.Location;
+
+                    if (P.X >= 400 || P.X <= -32)
+                    {
+                        RemoveRoadUser(roadUser);
+                        break;
+                    }
+                    else if (P.Y >= 400 || P.Y <= -32)
+                    {
+                        RemoveRoadUser(roadUser);
+                        break;
+                    }
+                }
+            }
+        }
+
+        public virtual void MakeTurn()
+        {
+            switch (this.intersectionType)
+            {
+                case IntersectionType.TYPE_1:
+                    break;
+                    TurnIntersectionType1();
+                case IntersectionType.TYPE_2:
+                    TurnIntersectionType2();
+                    break;
+                case IntersectionType.TYPE_3:
+                    break;
+                case IntersectionType.TYPE_4:
+                    break;
+                case IntersectionType.TYPE_5:
+                    break;
+                case IntersectionType.TYPE_RAILWAY:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void TurnIntersectionType1()
+        {
+            foreach (RoadUser roadUser in roadUsers)
+            {
+
+            }
+        }
+        
+        public void TurnIntersectionType2()
+        {
+            foreach (RoadUser roadUser in roadUsers)
+            {
+                Point P = roadUser.Location;
+                Random random = new Random();
+                int shouldTurn = 0;
+
+                //west inbound left lane
+                if (P.Y == 216 && P.X == 216)
+                {
+                    shouldTurn = random.Next(0, 2);
+                    if (shouldTurn == 1)
+                    {
+                        roadUser.FaceTo(new Point(216, 0));
+                    }
+                }
+                else if (P.Y == 216 && P.X == 244)
+                {
+                    roadUser.FaceTo(new Point(244, 0));
+                }
+
+                //west inbound right lane
+                if (P.Y == 244 && P.X == 156)
+                {
+                    shouldTurn = random.Next(0, 3);
+                    if (shouldTurn == 1)
+                    {
+                        roadUser.FaceTo(new Point(156, 400));
+                    }
+                }
+                else if (P.Y == 244 && P.X == 182)
+                {
+                    if (shouldTurn == 2)
+                    {
+                        roadUser.FaceTo(new Point(182, 400));
+                    }
+                }
+            }
         }
 
         /// <summary>

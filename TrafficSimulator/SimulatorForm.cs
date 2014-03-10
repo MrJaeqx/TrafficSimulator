@@ -14,23 +14,18 @@ namespace TrafficSimulator
         /// You can put roadusers on intersections to make them appear there.
         /// </summary>
         private List<RoadUser> roadUsers;
+        private List<IntersectionControl> ICs;
 
         public SimulatorForm()
         {
             InitializeComponent();
             roadUsers = new List<RoadUser>();
+            ICs = new List<IntersectionControl>();
 
-            // Just some code to show cars on the intersection
-            // Feel free to modify to match your needs.
-            // Hint: You should find a way to let cars / pedestrians travel
-            //       from one intersection to the other....
-            RoadUser blueCar = new BlueCar(new Point(30,216), 2);
-            roadUsers.Add(blueCar);
-            RoadUser greenSportsCar = new GreenSportsCar(new Point(155, 260), 0);
-            roadUsers.Add(greenSportsCar);
-            greenSportsCar.FaceTo(new Point(160, 260));
-            intersectionControl1.AddRoadUser(roadUsers[0]);
-            intersectionControl1.AddRoadUser(roadUsers[1]);
+            ICs.Add(intersectionControl1);
+            ICs.Add(intersectionControl2);
+            ICs.Add(intersectionControl3);
+            ICs.Add(intersectionControl4);
 
             progressTimer.Start();
         }
@@ -38,6 +33,18 @@ namespace TrafficSimulator
         private void progressTimer_Tick(object sender, EventArgs e)
         {
             UpdateWorld();
+
+            //this is for testing
+            if(intersectionControl1.RoadUsers.Count == 0)
+            {
+                RoadUser TestCar1 = new BlueCar(new Point(-32, 216), 2);
+                RoadUser TestCar2 = new GreenSportsCar(new Point(-32, 244), 2);
+                roadUsers.Clear();
+                roadUsers.Add(TestCar1);
+                roadUsers.Add(TestCar2);
+                intersectionControl1.AddRoadUser(TestCar1);
+                intersectionControl1.AddRoadUser(TestCar2);
+            }
         }
 
         private void UpdateWorld()
@@ -45,23 +52,14 @@ namespace TrafficSimulator
             foreach (RoadUser roadUser in roadUsers)
             {
                 roadUser.Move();
-
-                if (roadUser.Location.X == 400)
-                {
-                    intersectionControl1.RemoveRoadUser(roadUser);
-                    intersectionControl2.AddRoadUser(roadUser);
-                    
-                    Point P = roadUser.Location;
-                    P.X = 0;
-                    roadUser.Location = P;
-                }
             }
 
-            // redraw all intersections
-            intersectionControl1.Invalidate();
-            intersectionControl2.Invalidate();
-            intersectionControl3.Invalidate();
-            intersectionControl4.Invalidate();
+            foreach (IntersectionControl IC in ICs)
+            {
+                IC.MakeTurn();
+                IC.RemoveEndOfLaneRoadUser();
+                IC.Invalidate();
+            }
         }
 
         private void intersectionControl_TrafficLightClick(object sender, TrafficLightClickEventArgs e)
