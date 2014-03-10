@@ -4,7 +4,6 @@
     <xsd:schema targetNamespace="MessageService/Imports">
       <xsd:import namespace="MessageService" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ITrafficMessage_GetServerName_InputMessage">
@@ -37,12 +36,6 @@
   <wsdl:message name="ITrafficMessage_RetrieveMessage_OutputMessage">
     <wsdl:part name="parameters" element="tns:RetrieveMessageResponse" />
   </wsdl:message>
-  <wsdl:message name="ITrafficMessage_RetrieveXML_InputMessage">
-    <wsdl:part name="parameters" element="tns:RetrieveXML" />
-  </wsdl:message>
-  <wsdl:message name="ITrafficMessage_RetrieveXML_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RetrieveXMLResponse" />
-  </wsdl:message>
   <wsdl:portType name="ITrafficMessage">
     <wsdl:operation name="GetServerName">
       <wsdl:input wsaw:Action="MessageService/ITrafficMessage/GetServerName" message="tns:ITrafficMessage_GetServerName_InputMessage" />
@@ -63,10 +56,6 @@
     <wsdl:operation name="RetrieveMessage">
       <wsdl:input wsaw:Action="MessageService/ITrafficMessage/RetrieveMessage" message="tns:ITrafficMessage_RetrieveMessage_InputMessage" />
       <wsdl:output wsaw:Action="MessageService/ITrafficMessage/RetrieveMessageResponse" message="tns:ITrafficMessage_RetrieveMessage_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="RetrieveXML">
-      <wsdl:input wsaw:Action="MessageService/ITrafficMessage/RetrieveXML" message="tns:ITrafficMessage_RetrieveXML_InputMessage" />
-      <wsdl:output wsaw:Action="MessageService/ITrafficMessage/RetrieveXMLResponse" message="tns:ITrafficMessage_RetrieveXML_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

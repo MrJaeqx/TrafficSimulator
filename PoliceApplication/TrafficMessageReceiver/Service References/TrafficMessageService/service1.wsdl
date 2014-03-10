@@ -49,19 +49,10 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RetrieveXML">
-      <soap:operation soapAction="MessageService/ITrafficMessage/RetrieveXML" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CTrafficMessage">
     <wsdl:port name="BasicHttpBinding_ITrafficMessage" binding="tns:BasicHttpBinding_ITrafficMessage">
-      <soap:address location="http://192.168.0.32:8000/MessageService" />
+      <soap:address location="http://10.10.10.1:8000/MessageService" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

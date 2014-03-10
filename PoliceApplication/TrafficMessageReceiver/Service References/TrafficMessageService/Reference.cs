@@ -29,10 +29,6 @@ namespace TrafficMessageReceiver.TrafficMessageService {
         
         [System.ServiceModel.OperationContractAttribute(Action="MessageService/ITrafficMessage/RetrieveMessage", ReplyAction="MessageService/ITrafficMessage/RetrieveMessageResponse")]
         string RetrieveMessage();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="MessageService/ITrafficMessage/RetrieveXML", ReplyAction="MessageService/ITrafficMessage/RetrieveXMLResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        object[] RetrieveXML();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -80,10 +76,6 @@ namespace TrafficMessageReceiver.TrafficMessageService {
         
         public string RetrieveMessage() {
             return base.Channel.RetrieveMessage();
-        }
-        
-        public object[] RetrieveXML() {
-            return base.Channel.RetrieveXML();
         }
     }
 }
