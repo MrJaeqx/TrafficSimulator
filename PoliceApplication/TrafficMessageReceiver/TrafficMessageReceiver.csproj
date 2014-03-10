@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accident.cs" />
+    <Compile Include="Data.cs" />
     <Compile Include="PoliceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,11 +63,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedLight.cs" />
     <Compile Include="Service References\TrafficMessageService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Speeding.cs" />
     <EmbeddedResource Include="PoliceForm.resx">
       <DependentUpon>PoliceForm.cs</DependentUpon>
     </EmbeddedResource>
