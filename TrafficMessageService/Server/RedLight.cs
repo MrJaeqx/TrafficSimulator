@@ -23,7 +23,7 @@ namespace Server
         // maakt een leesbare string van de tijd
         public string timeToString()
         {
-            return time.ToString("dd-mm-yyyy HH:mm:ss");
+            return time.ToString("dd-MM-yyyy HH:mm:ss");
         }
 
         // maakt een leesbare string van alle data
