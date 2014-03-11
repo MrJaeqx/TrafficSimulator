@@ -95,8 +95,12 @@ namespace TrafficMessageReceiver
                 int carID = Convert.ToInt32(RedLight.GetElementsByTagName("car_id")[0].InnerText);
                 int trafficlightID = Convert.ToInt32(RedLight.GetElementsByTagName("trafficlight_id")[0].InnerText);
 
-                string[] timeComponents = RedLight.GetElementsByTagName("time")[0].InnerText.Split();
-                //DateTime time = new DateTime(Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
+                string[] dateTime = RedLight.GetElementsByTagName("time")[0].InnerText.Split(new Char[] { ' ' });
+                string dateString = dateTime[0];
+                string timeString = dateTime[1];
+                string[] dateComponents = dateString.Split(new Char [] {'-'});
+                string[] timeComponents = timeString.Split(new Char [] {':'});
+                DateTime time = new DateTime(Convert.ToInt32(dateComponents[2]), Convert.ToInt32(dateComponents[1]), Convert.ToInt32(dateComponents[0]));
 
                 redLightList.Add(new RedLight(carID, trafficlightID, new DateTime().AddHours(1)));
             }
@@ -108,7 +112,7 @@ namespace TrafficMessageReceiver
             {
                 int junctionID = Convert.ToInt32(Accident.GetElementsByTagName("junction_id")[0].InnerText);
 
-                string[] timeComponents = Accident.GetElementsByTagName("time")[0].InnerText.Split();
+                string[] timeComponents = Accident.GetElementsByTagName("time")[0].InnerText.Split(new Char[] { ':' });
                 //DateTime time = new DateTime(Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
 
                 accidentList.Add(new Accident(junctionID, new DateTime().AddHours(1)));
@@ -122,7 +126,7 @@ namespace TrafficMessageReceiver
                 int carID = Convert.ToInt32(Speeding.GetElementsByTagName("car_id")[0].InnerText);
                 int trafficlightID = Convert.ToInt32(Speeding.GetElementsByTagName("speed")[0].InnerText);
 
-                string[] timeComponents = Speeding.GetElementsByTagName("time")[0].InnerText.Split();
+                string[] timeComponents = Speeding.GetElementsByTagName("time")[0].InnerText.Split(new Char[] { ':' });
                 //DateTime time = new DateTime(Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
 
                 redLightList.Add(new RedLight(carID, trafficlightID, new DateTime().AddHours(1)));
