@@ -124,6 +124,7 @@
             this.buttonSettings.Size = new System.Drawing.Size(60, 60);
             this.buttonSettings.TabIndex = 3;
             this.buttonSettings.UseVisualStyleBackColor = false;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
             // buttonPrint
             // 

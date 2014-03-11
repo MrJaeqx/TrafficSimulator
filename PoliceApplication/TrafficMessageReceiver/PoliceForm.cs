@@ -14,14 +14,14 @@ namespace TrafficMessageReceiver
     {
 
         private int currentMode = 0;
-        private string serverUrl = "10.0.2.15";
-        private string serverPort = "8000";
+        private string servername = "10.0.2.15";
+        private string serverport = "8000";
         private PoliceData data;
 
         public PoliceForm()
         {
             InitializeComponent();
-            //data = new PoliceData(serverUrl, serverPort);
+            //data = new PoliceData(servername, serverport);
             toggleViewEvent(buttonOverview, null);
         }
 
@@ -61,6 +61,18 @@ namespace TrafficMessageReceiver
         private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
         {
                    }
+
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm(servername, serverport);
+            settingsForm.ShowDialog();
+            if (settingsForm.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                servername = settingsForm.ServerName;
+                serverport = settingsForm.ServerPort;
+            }
+
+        }
 
     }
 }

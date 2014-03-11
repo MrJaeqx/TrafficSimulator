@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace TrafficMessageReceiver
+{
+    public partial class SettingsForm : Form
+    {
+
+        public string ServerName { get; private set; }
+        public string ServerPort { get; private set; }
+
+        public SettingsForm(string servername, string serverport)
+        {
+            InitializeComponent();
+            this.ServerName = servername;
+            this.ServerPort = serverport;
+            textBoxServer.Text = servername;
+            textBoxPort.Text = serverport;
+        }
+
+        private void textChanged(object sender, EventArgs e)
+        {
+            ServerName = textBoxServer.Text;
+            ServerPort = textBoxPort.Text;
+        }
+    }
+}
