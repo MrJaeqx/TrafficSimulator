@@ -36,10 +36,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.buttonRemoveAll = new System.Windows.Forms.Button();
-            this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
             this.buttonPrint = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
@@ -67,7 +63,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tableLayoutPanel1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(984, 636);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(984, 661);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -87,7 +83,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 636);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // listView1
@@ -96,7 +92,7 @@
             this.listView1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.Location = new System.Drawing.Point(303, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(678, 630);
+            this.listView1.Size = new System.Drawing.Size(678, 655);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -110,7 +106,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.labelStatus, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 28);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -132,10 +128,6 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.buttonRemoveAll);
-            this.panel3.Controls.Add(this.buttonRemove);
             this.panel3.Controls.Add(this.buttonSettings);
             this.panel3.Controls.Add(this.buttonPrint);
             this.panel3.Controls.Add(this.buttonSave);
@@ -143,52 +135,8 @@
             this.panel3.Location = new System.Drawing.Point(3, 191);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.panel3.Size = new System.Drawing.Size(282, 156);
+            this.panel3.Size = new System.Drawing.Size(282, 88);
             this.panel3.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(208, 79);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(60, 60);
-            this.button1.TabIndex = 7;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(142, 79);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(60, 60);
-            this.button2.TabIndex = 6;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // buttonRemoveAll
-            // 
-            this.buttonRemoveAll.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.buttonRemoveAll.FlatAppearance.BorderSize = 0;
-            this.buttonRemoveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRemoveAll.Location = new System.Drawing.Point(76, 79);
-            this.buttonRemoveAll.Name = "buttonRemoveAll";
-            this.buttonRemoveAll.Size = new System.Drawing.Size(60, 60);
-            this.buttonRemoveAll.TabIndex = 5;
-            this.buttonRemoveAll.UseVisualStyleBackColor = false;
-            // 
-            // buttonRemove
-            // 
-            this.buttonRemove.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.buttonRemove.FlatAppearance.BorderSize = 0;
-            this.buttonRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRemove.Location = new System.Drawing.Point(10, 79);
-            this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(60, 60);
-            this.buttonRemove.TabIndex = 4;
-            this.buttonRemove.UseVisualStyleBackColor = false;
             // 
             // buttonSettings
             // 
@@ -350,6 +298,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(984, 661);
             this.Controls.Add(this.toolStripContainer1);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1000, 700);
             this.Name = "PoliceForm";
@@ -383,10 +332,6 @@
         private System.Windows.Forms.Button buttonAccident;
         private System.Windows.Forms.Button buttonRedlight;
         private System.Windows.Forms.Button buttonSpeedings;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button buttonRemoveAll;
-        private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Button buttonSettings;
         private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Button buttonSave;

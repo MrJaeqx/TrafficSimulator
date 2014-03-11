@@ -9,7 +9,7 @@ namespace TrafficMessageReceiver
     /// <summary>
     /// Deze class haalt alle data van de server.
     /// </summary>
-    class Data
+    class PoliceData
     {
         /// <summary>Proxy om de TrafficMessageService te gebruiken.</summary>
         private TrafficMessageService.TrafficMessageClient myTrafficMessageProxy;
@@ -27,11 +27,11 @@ namespace TrafficMessageReceiver
         /// <summary>Constructor</summary>
         /// <param name="serverIP">Een string die het ip van de server bevat</param>
         /// <param name="serverPort">Een string die de poort van de server bevat</param>
-        public Data(string serverIP, string serverPort)
+        public PoliceData(string serverIP, string serverPort)
         {
             // maak de connectie met de server
             myTrafficMessageProxy = new TrafficMessageReceiver.TrafficMessageService.TrafficMessageClient();
-            myTrafficMessageProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress("http://" + serverIP + ":" + serverPort + "/MEX");
+            //myTrafficMessageProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress("http://" + serverIP + ":" + serverPort + "/MEX");
 
             // initaliseer de lists
             accidentList = new List<Accident>();
