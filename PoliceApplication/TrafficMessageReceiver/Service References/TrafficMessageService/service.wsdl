@@ -52,7 +52,7 @@
   </wsdl:binding>
   <wsdl:service name="CTrafficMessage">
     <wsdl:port name="BasicHttpBinding_ITrafficMessage" binding="tns:BasicHttpBinding_ITrafficMessage">
-      <soap:address location="http://10.10.10.1:8000/MessageService" />
+      <soap:address location="http://10.0.2.15:8000/MessageService" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

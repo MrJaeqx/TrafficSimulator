@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\main.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,7 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accident.cs" />
-    <Compile Include="Data.cs" />
+    <Compile Include="PoliceData.cs" />
+    <Compile Include="ListViewColumns.cs" />
     <Compile Include="PoliceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,11 +94,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\TrafficMessageService\MessageService1.xsd">
+    <None Include="Service References\TrafficMessageService\MessageService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TrafficMessageService\service1.wsdl" />
-    <None Include="Service References\TrafficMessageService\service1.xsd">
+    <None Include="Service References\TrafficMessageService\service.wsdl" />
+    <None Include="Service References\TrafficMessageService\service.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -114,11 +118,32 @@
     <None Include="Service References\TrafficMessageService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\TrafficMessageService\MessageService1.wsdl" />
+    <None Include="Service References\TrafficMessageService\MessageService.wsdl" />
     <None Include="Service References\TrafficMessageService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
