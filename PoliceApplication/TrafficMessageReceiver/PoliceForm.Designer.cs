@@ -30,9 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PoliceForm));
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -46,10 +45,7 @@
             this.buttonSpeedings = new System.Windows.Forms.Button();
             this.buttonOverview = new System.Windows.Forms.Button();
             this.labelTitle = new System.Windows.Forms.Label();
-            this.labelStatus = new System.Windows.Forms.Label();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.toolStripContainer1.ContentPanel.SuspendLayout();
-            this.toolStripContainer1.SuspendLayout();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -57,62 +53,41 @@
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStripContainer1
+            // notifyIcon1
             // 
-            // 
-            // toolStripContainer1.ContentPanel
-            // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.tableLayoutPanel1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(984, 661);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(984, 661);
-            this.toolStripContainer1.TabIndex = 1;
-            this.toolStripContainer1.Text = "toolStripContainer1";
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.listView1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.listView1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // listView1
-            // 
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.Location = new System.Drawing.Point(303, 3);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(678, 655);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
-            // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.labelStatus, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 28);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(294, 630);
-            this.tableLayoutPanel2.TabIndex = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(294, 655);
+            this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel1
             // 
@@ -122,8 +97,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(288, 524);
-            this.panel1.TabIndex = 0;
+            this.panel1.Size = new System.Drawing.Size(288, 599);
+            this.panel1.TabIndex = 1;
             // 
             // panel3
             // 
@@ -149,7 +124,6 @@
             this.buttonSettings.Size = new System.Drawing.Size(60, 60);
             this.buttonSettings.TabIndex = 3;
             this.buttonSettings.UseVisualStyleBackColor = false;
-            this.buttonSettings.Click += new System.EventHandler(this.openSettingsEvent);
             // 
             // buttonPrint
             // 
@@ -162,7 +136,6 @@
             this.buttonPrint.Size = new System.Drawing.Size(60, 60);
             this.buttonPrint.TabIndex = 2;
             this.buttonPrint.UseVisualStyleBackColor = false;
-            this.buttonPrint.Click += new System.EventHandler(this.printListDataEvent);
             // 
             // buttonSave
             // 
@@ -175,7 +148,6 @@
             this.buttonSave.Size = new System.Drawing.Size(60, 60);
             this.buttonSave.TabIndex = 1;
             this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.saveXmlDataEvent);
             // 
             // buttonRefresh
             // 
@@ -188,7 +160,6 @@
             this.buttonRefresh.Size = new System.Drawing.Size(60, 60);
             this.buttonRefresh.TabIndex = 0;
             this.buttonRefresh.UseVisualStyleBackColor = false;
-            this.buttonRefresh.Click += new System.EventHandler(this.refreshEvent);
             // 
             // panel2
             // 
@@ -216,7 +187,6 @@
             this.buttonAccident.Text = "Ongevallen";
             this.buttonAccident.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonAccident.UseVisualStyleBackColor = false;
-            this.buttonAccident.Click += new System.EventHandler(this.toggleViewEvent);
             // 
             // buttonRedlight
             // 
@@ -231,7 +201,6 @@
             this.buttonRedlight.Text = "Rood licht overtredingen";
             this.buttonRedlight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonRedlight.UseVisualStyleBackColor = false;
-            this.buttonRedlight.Click += new System.EventHandler(this.toggleViewEvent);
             // 
             // buttonSpeedings
             // 
@@ -246,7 +215,6 @@
             this.buttonSpeedings.Text = "Snelheidsovertredingen";
             this.buttonSpeedings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonSpeedings.UseVisualStyleBackColor = false;
-            this.buttonSpeedings.Click += new System.EventHandler(this.toggleViewEvent);
             // 
             // buttonOverview
             // 
@@ -261,7 +229,6 @@
             this.buttonOverview.Text = "Overzicht";
             this.buttonOverview.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonOverview.UseVisualStyleBackColor = false;
-            this.buttonOverview.Click += new System.EventHandler(this.toggleViewEvent);
             // 
             // labelTitle
             // 
@@ -273,23 +240,14 @@
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Politie UI";
             // 
-            // labelStatus
+            // listView1
             // 
-            this.labelStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelStatus.AutoSize = true;
-            this.labelStatus.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatus.Location = new System.Drawing.Point(6, 611);
-            this.labelStatus.Margin = new System.Windows.Forms.Padding(6);
-            this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(87, 13);
-            this.labelStatus.TabIndex = 1;
-            this.labelStatus.Text = "Niet verbonden";
-            // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.Location = new System.Drawing.Point(303, 3);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(678, 655);
+            this.listView1.TabIndex = 1;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // PoliceForm
             // 
@@ -297,18 +255,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(984, 661);
-            this.Controls.Add(this.toolStripContainer1);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1000, 700);
             this.Name = "PoliceForm";
             this.Text = "Politie Stoplicht Interface";
-            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer1.ResumeLayout(false);
-            this.toolStripContainer1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -319,24 +273,22 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label labelTitle;
-        private System.Windows.Forms.Button buttonOverview;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button buttonAccident;
-        private System.Windows.Forms.Button buttonRedlight;
-        private System.Windows.Forms.Button buttonSpeedings;
         private System.Windows.Forms.Button buttonSettings;
         private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonRefresh;
-        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button buttonAccident;
+        private System.Windows.Forms.Button buttonRedlight;
+        private System.Windows.Forms.Button buttonSpeedings;
+        private System.Windows.Forms.Button buttonOverview;
+        private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.ListView listView1;
 
     }
 }
