@@ -94,15 +94,9 @@ namespace TrafficMessageReceiver
             {
                 int carID = Convert.ToInt32(RedLight.GetElementsByTagName("car_id")[0].InnerText);
                 int trafficlightID = Convert.ToInt32(RedLight.GetElementsByTagName("trafficlight_id")[0].InnerText);
+                DateTime time = ConvertDateTime(RedLight.GetElementsByTagName("time")[0].InnerText);
 
-                string[] dateTime = RedLight.GetElementsByTagName("time")[0].InnerText.Split(new Char[] { ' ' });
-                string dateString = dateTime[0];
-                string timeString = dateTime[1];
-                string[] dateComponents = dateString.Split(new Char [] {'-'});
-                string[] timeComponents = timeString.Split(new Char [] {':'});
-                DateTime time = new DateTime(Convert.ToInt32(dateComponents[2]), Convert.ToInt32(dateComponents[1]), Convert.ToInt32(dateComponents[0]));
-
-                redLightList.Add(new RedLight(carID, trafficlightID, new DateTime().AddHours(1)));
+                redLightList.Add(new RedLight(carID, trafficlightID, time));
             }
 
             // Haal alle ongelukken uit de xml
@@ -111,11 +105,9 @@ namespace TrafficMessageReceiver
             foreach (XmlElement Accident in Accidents)
             {
                 int junctionID = Convert.ToInt32(Accident.GetElementsByTagName("junction_id")[0].InnerText);
+                DateTime time = ConvertDateTime(Accident.GetElementsByTagName("time")[0].InnerText);
 
-                string[] timeComponents = Accident.GetElementsByTagName("time")[0].InnerText.Split(new Char[] { ':' });
-                //DateTime time = new DateTime(Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
-
-                accidentList.Add(new Accident(junctionID, new DateTime().AddHours(1)));
+                accidentList.Add(new Accident(junctionID, time));
             }
 
             // Haal alle snelheidsovertredingen uit de xml
@@ -125,12 +117,24 @@ namespace TrafficMessageReceiver
             {
                 int carID = Convert.ToInt32(Speeding.GetElementsByTagName("car_id")[0].InnerText);
                 int trafficlightID = Convert.ToInt32(Speeding.GetElementsByTagName("speed")[0].InnerText);
+                DateTime time = ConvertDateTime(Speeding.GetElementsByTagName("time")[0].InnerText);
 
-                string[] timeComponents = Speeding.GetElementsByTagName("time")[0].InnerText.Split(new Char[] { ':' });
-                //DateTime time = new DateTime(Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
-
-                redLightList.Add(new RedLight(carID, trafficlightID, new DateTime().AddHours(1)));
+                redLightList.Add(new RedLight(carID, trafficlightID, time));
             }
+        }
+
+        /// <summary>Converteer de tijd als string (dd-mm-yyyy uu:mm:ss) naar DateTime</summary>
+        /// <param name="dateTimeString">Een string die de tijd (dd-mm-yyyy uu:mm:ss) bevat</param>
+        /// <returns>Returnt een DateTime</returns>
+        private DateTime ConvertDateTime(string dateTimeString)
+        {
+            string[] dateTime = dateTimeString.Split(new Char[] { ' ' });
+            string dateString = dateTime[0];
+            string timeString = dateTime[1];
+            string[] dateComponents = dateString.Split(new Char[] { '-' });
+            string[] timeComponents = timeString.Split(new Char[] { ':' });
+            DateTime time = new DateTime(Convert.ToInt32(dateComponents[2]), Convert.ToInt32(dateComponents[1]), Convert.ToInt32(dateComponents[0]), Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
+            return time;
         }
     }
 }
