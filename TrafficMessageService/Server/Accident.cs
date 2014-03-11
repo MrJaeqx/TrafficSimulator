@@ -20,7 +20,7 @@ namespace Server
         // maakt een leesbare string van de tijd
         public string timeToString()
         {
-            return time.ToLongTimeString();
+            return time.ToString("dd-mm-yyyy HH:mm:ss");
         }
         // maakt een leesbare string van alle data
         override
