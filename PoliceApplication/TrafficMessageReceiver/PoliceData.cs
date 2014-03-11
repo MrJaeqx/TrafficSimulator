@@ -31,7 +31,8 @@ namespace TrafficMessageReceiver
         {
             // maak de connectie met de server
             myTrafficMessageProxy = new TrafficMessageReceiver.TrafficMessageService.TrafficMessageClient();
-            //myTrafficMessageProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress("http://" + serverIP + ":" + serverPort + "/MEX");
+            /*myTrafficMessageProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress("http://" + serverIP + ":" + serverPort + "/MEX");
+            myTrafficMessageProxy.Endpoint.Binding = new System.ServiceModel.BasicHttpBinding();*/
 
             // initaliseer de lists
             accidentList = new List<Accident>();
@@ -87,45 +88,44 @@ namespace TrafficMessageReceiver
             XmlData.LoadXml(XmlString);
 
             // Haal alle rood lichten uit de xml
-            XmlNodeList RedLights = XmlData.GetElementsByTagName("redlights");
+            XmlNodeList RedLights = XmlData.GetElementsByTagName("redlight");
 
-            foreach (XmlNodeList RedLight in RedLights)
+            foreach (XmlElement RedLight in RedLights)
             {
-                int carID = Convert.ToInt32(RedLight[0].InnerText);
-                int trafficlightID = Convert.ToInt32(RedLight[1].InnerText);
+                int carID = Convert.ToInt32(RedLight.GetElementsByTagName("car_id")[0].InnerText);
+                int trafficlightID = Convert.ToInt32(RedLight.GetElementsByTagName("trafficlight_id")[0].InnerText);
 
-                string[] timeComponents = RedLight[2].InnerText.Split();
-                DateTime time = new DateTime(Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
+                string[] timeComponents = RedLight.GetElementsByTagName("time")[0].InnerText.Split();
+                //DateTime time = new DateTime(Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
 
-                redLightList.Add(new RedLight(carID, trafficlightID, time));
+                redLightList.Add(new RedLight(carID, trafficlightID, new DateTime().AddHours(1)));
             }
 
             // Haal alle ongelukken uit de xml
-            XmlNodeList Accidents = XmlData.GetElementsByTagName("accidents");
+            XmlNodeList Accidents = XmlData.GetElementsByTagName("accident");
 
-            foreach (XmlNodeList Accident in Accidents)
+            foreach (XmlElement Accident in Accidents)
             {
-                int carID = Convert.ToInt32(Accident[0].InnerText);
-                int trafficlightID = Convert.ToInt32(Accident[1].InnerText);
+                int junctionID = Convert.ToInt32(Accident.GetElementsByTagName("junction_id")[0].InnerText);
 
-                string[] timeComponents = Accident[2].InnerText.Split();
-                DateTime time = new DateTime(Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
+                string[] timeComponents = Accident.GetElementsByTagName("time")[0].InnerText.Split();
+                //DateTime time = new DateTime(Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
 
-                redLightList.Add(new RedLight(carID, trafficlightID, time));
+                accidentList.Add(new Accident(junctionID, new DateTime().AddHours(1)));
             }
 
             // Haal alle snelheidsovertredingen uit de xml
-            XmlNodeList Speedings = XmlData.GetElementsByTagName("speedings");
+            XmlNodeList Speedings = XmlData.GetElementsByTagName("speeding");
 
-            foreach (XmlNodeList Speeding in Speedings)
+            foreach (XmlElement Speeding in Speedings)
             {
-                int carID = Convert.ToInt32(Speeding[0].InnerText);
-                int trafficlightID = Convert.ToInt32(Speeding[1].InnerText);
+                int carID = Convert.ToInt32(Speeding.GetElementsByTagName("car_id")[0].InnerText);
+                int trafficlightID = Convert.ToInt32(Speeding.GetElementsByTagName("speed")[0].InnerText);
 
-                string[] timeComponents = Speeding[2].InnerText.Split();
-                DateTime time = new DateTime(Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
+                string[] timeComponents = Speeding.GetElementsByTagName("time")[0].InnerText.Split();
+                //DateTime time = new DateTime(Convert.ToInt32(timeComponents[0]), Convert.ToInt32(timeComponents[1]), Convert.ToInt32(timeComponents[2]));
 
-                redLightList.Add(new RedLight(carID, trafficlightID, time));
+                redLightList.Add(new RedLight(carID, trafficlightID, new DateTime().AddHours(1)));
             }
         }
     }

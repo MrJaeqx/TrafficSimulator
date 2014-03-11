@@ -14,7 +14,7 @@ namespace TrafficMessageReceiver
     {
 
         private int currentMode = 0;
-        private string serverUrl = "10.0.2.15";
+        private string serverUrl = "192.168.222.33";
         private string serverPort = "8000";
         private PoliceData data;
 
