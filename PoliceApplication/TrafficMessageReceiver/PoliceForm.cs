@@ -14,7 +14,7 @@ namespace TrafficMessageReceiver
     {
 
         private int currentMode = 0;
-        private string servername = "10.0.2.15";
+        private string servername = "localhost";
         private string serverport = "8000";
         private PoliceData data;
 

@@ -12,7 +12,7 @@ namespace TrafficMessageReceiver
     class PoliceData
     {
         /// <summary>Proxy om de TrafficMessageService te gebruiken.</summary>
-        private TrafficMessageService.TrafficMessageClient myTrafficMessageProxy;
+        private PoliceService.TrafficMessageClient myTrafficMessageProxy;
 
         /// <summary>Lists met de ongelukken</summary>
         private List<Accident> accidentList;
@@ -30,9 +30,10 @@ namespace TrafficMessageReceiver
         public PoliceData(string serverIP, string serverPort)
         {
             // maak de connectie met de server
-            myTrafficMessageProxy = new TrafficMessageReceiver.TrafficMessageService.TrafficMessageClient();
-            /*myTrafficMessageProxy.Endpoint.Address = new System.ServiceModel.EndpointAddress("http://" + serverIP + ":" + serverPort + "/MEX");
-            myTrafficMessageProxy.Endpoint.Binding = new System.ServiceModel.BasicHttpBinding();*/
+            System.ServiceModel.EndpointAddress endpointAddress = new System.ServiceModel.EndpointAddress("http://" + serverIP + ":" + serverPort + "/MEX");
+            System.ServiceModel.Channels.Binding endpointBinding = new System.ServiceModel.WSHttpBinding();
+
+            myTrafficMessageProxy = new TrafficMessageReceiver.PoliceService.TrafficMessageClient();
 
             // initaliseer de lists
             accidentList = new List<Accident>();
