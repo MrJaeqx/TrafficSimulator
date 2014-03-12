@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using System.ServiceModel;
 
 
 namespace TrafficMessageReceiver
@@ -136,7 +137,15 @@ namespace TrafficMessageReceiver
         private void backgroundServerConnection_DoWork(object sender, DoWorkEventArgs e)
         {
             listItems = new List<ListViewItem>();
-            data = new PoliceData(servername, serverport);
+            try
+            {
+                data = new PoliceData(servername, serverport);
+            }
+            catch (EndpointNotFoundException exc)
+            {
+                MessageBox.Show(exc.ToString(), "Kon geen verbinding maken met de server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             switch (currentMode)
             {
                 case 0:

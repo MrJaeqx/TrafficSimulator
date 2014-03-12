@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.ServiceModel;
 
 namespace TrafficMessageReceiver
 {
@@ -41,7 +42,14 @@ namespace TrafficMessageReceiver
             speedingList = new List<Speeding>();
 
             // set de servername property
-            ServerName = myTrafficMessageProxy.GetServerName();
+            try
+            {
+                ServerName = myTrafficMessageProxy.GetServerName();
+            }
+            catch (EndpointNotFoundException exc)
+            {
+                throw exc;
+            }
         }
 
         /// <summary>Update de list en return de ongelukken</summary>
