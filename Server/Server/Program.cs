@@ -7,6 +7,7 @@ using System.ServiceModel.Description;
 using MessageService;
 using System.Net;
 using System.Net.Sockets;
+using System.ServiceModel.Configuration;
 
 namespace Server
 {
@@ -27,7 +28,8 @@ namespace Server
 
                 // creeer een zgn. end-point voor de service
                 Type contract = typeof(ITrafficMessage);
-                BasicHttpBinding binding = new BasicHttpBinding();
+                WSHttpBinding binding = new WSHttpBinding();
+                //BasicHttpBinding binding = new BasicHttpBinding();
                 string baseAddress = "http://" + localIP + ":8000";
                 Uri address = new Uri(baseAddress + "/MessageService");
                 host.AddServiceEndpoint(contract, binding, address);

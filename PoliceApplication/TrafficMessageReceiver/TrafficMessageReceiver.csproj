@@ -65,7 +65,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedLight.cs" />
-    <Compile Include="Service References\TrafficMessageService\Reference.cs">
+    <Compile Include="Service References\PoliceService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -103,11 +103,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\TrafficMessageService\MessageService1.xsd">
+    <None Include="Service References\PoliceService\MessageService.wsdl" />
+    <None Include="Service References\PoliceService\MessageService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\TrafficMessageService\service1.wsdl" />
-    <None Include="Service References\TrafficMessageService\service1.xsd">
+    <None Include="Service References\PoliceService\service.wsdl" />
+    <None Include="Service References\PoliceService\service.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -118,20 +119,7 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\TrafficMessageService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TrafficMessageService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TrafficMessageService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\TrafficMessageService\MessageService1.wsdl" />
-    <None Include="Service References\TrafficMessageService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <WCFMetadataStorage Include="Service References\PoliceService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\main.ico" />
@@ -153,6 +141,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PoliceService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PoliceService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PoliceService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
