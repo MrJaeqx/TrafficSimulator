@@ -21,14 +21,14 @@ namespace TrafficMessageReceiver
         public PoliceForm()
         {
             InitializeComponent();
-            //data = new PoliceData(servername, serverport);
+            data = new PoliceData(servername, serverport);
             toggleViewEvent(buttonOverview, null);
         }
 
         private void updateList()
         {
             listView1.Clear();
-            //data.GetAccidents();
+            data.GetAccidents();
             switch (currentMode)
             {
                 case 0:
@@ -36,13 +36,30 @@ namespace TrafficMessageReceiver
                     break;
                 case 1:
                     listView1.Columns.AddRange(ListViewColumns.Speedings);
-                    
+                    List<Speeding> speedings = data.GetSpeedings();
+                    foreach (Speeding speeding in speedings)
+                    {
+                        ListViewItem item = new ListViewItem(new[] {"0", "00-00-000", speeding.timeToString(), speeding.carID.ToString(), speeding.carSpeed.ToString()});
+                        listView1.Items.Add(item);
+                    }
                     break;
                 case 2:
                     listView1.Columns.AddRange(ListViewColumns.RedLight);
+                    List<RedLight> redlights = data.GetRedLights();
+                    foreach (RedLight redlight in redlights)
+                    {
+                        ListViewItem item = new ListViewItem(new[] {"0", "00-00-000", redlight.timeToString(), redlight.carID.ToString(), redlight.trafficLightID.ToString()});
+                        listView1.Items.Add(item);
+                    }
                     break;
                 case 3:
                     listView1.Columns.AddRange(ListViewColumns.Accident);
+                    List<Accident> accidents = data.GetAccidents();
+                    foreach (Accident accident in accidents)
+                    {
+                        ListViewItem item = new ListViewItem(new[] { "0", "00-00-000", accident.timeToString(), accident.junctionID.ToString() });
+                        listView1.Items.Add(item);
+                    }
                     break;
             }
             
