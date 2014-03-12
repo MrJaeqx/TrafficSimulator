@@ -46,11 +46,16 @@
             this.buttonOverview = new System.Windows.Forms.Button();
             this.labelTitle = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.backgroundServerConnection = new System.ComponentModel.BackgroundWorker();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -80,6 +85,7 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel4, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -188,6 +194,7 @@
             this.buttonAccident.Text = "Ongevallen";
             this.buttonAccident.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonAccident.UseVisualStyleBackColor = false;
+            this.buttonAccident.Click += new System.EventHandler(this.toggleViewEvent);
             // 
             // buttonRedlight
             // 
@@ -202,6 +209,7 @@
             this.buttonRedlight.Text = "Rood licht overtredingen";
             this.buttonRedlight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonRedlight.UseVisualStyleBackColor = false;
+            this.buttonRedlight.Click += new System.EventHandler(this.toggleViewEvent);
             // 
             // buttonSpeedings
             // 
@@ -216,6 +224,7 @@
             this.buttonSpeedings.Text = "Snelheidsovertredingen";
             this.buttonSpeedings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonSpeedings.UseVisualStyleBackColor = false;
+            this.buttonSpeedings.Click += new System.EventHandler(this.toggleViewEvent);
             // 
             // buttonOverview
             // 
@@ -230,6 +239,7 @@
             this.buttonOverview.Text = "Overzicht";
             this.buttonOverview.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonOverview.UseVisualStyleBackColor = false;
+            this.buttonOverview.Click += new System.EventHandler(this.toggleViewEvent);
             // 
             // labelTitle
             // 
@@ -249,6 +259,39 @@
             this.listView1.Size = new System.Drawing.Size(678, 655);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // backgroundServerConnection
+            // 
+            this.backgroundServerConnection.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundServerConnection_DoWork);
+            this.backgroundServerConnection.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundServerConnection_RunWorkerCompleted);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.progressBar);
+            this.panel4.Controls.Add(this.labelStatus);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 608);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(288, 44);
+            this.panel4.TabIndex = 2;
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(0, 0);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(0, 13);
+            this.labelStatus.TabIndex = 0;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(0, 21);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(288, 23);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 1;
+            this.progressBar.Visible = false;
             // 
             // PoliceForm
             // 
@@ -268,6 +311,8 @@
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -290,6 +335,10 @@
         private System.Windows.Forms.Button buttonOverview;
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.ListView listView1;
+        private System.ComponentModel.BackgroundWorker backgroundServerConnection;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label labelStatus;
 
     }
 }
