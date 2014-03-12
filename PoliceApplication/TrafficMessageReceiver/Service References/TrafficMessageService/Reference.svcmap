@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.0.2.15:8000/MEX" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://192.168.222.33:8000/MEX" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MessageService.wsdl" MetadataType="Wsdl" ID="ae57a735-28cb-4b63-b66c-a118ef2742fd" SourceId="1" SourceUrl="http://10.0.2.15:8000/MEX" />
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="4baeaf00-69e8-4914-97dd-ceaef8906de8" SourceId="1" SourceUrl="http://10.0.2.15:8000/MEX" />
-    <MetadataFile FileName="MessageService.xsd" MetadataType="Schema" ID="8c654cf3-f306-4190-a532-251b8b9968ea" SourceId="1" SourceUrl="http://10.0.2.15:8000/MEX" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="f8768777-3c21-47d4-bb2d-ae840bf8947f" SourceId="1" SourceUrl="http://10.0.2.15:8000/MEX" />
+    <MetadataFile FileName="MessageService1.wsdl" MetadataType="Wsdl" ID="869bbc89-ebda-4a34-8c85-be7a60d19e4e" SourceId="1" SourceUrl="http://192.168.222.33:8000/MEX" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="4b7e1738-d437-415f-a3b4-31c0806bb4b8" SourceId="1" SourceUrl="http://192.168.222.33:8000/MEX" />
+    <MetadataFile FileName="MessageService1.xsd" MetadataType="Schema" ID="2dc746d0-f439-4dc3-b3ce-5107a01582c6" SourceId="1" SourceUrl="http://192.168.222.33:8000/MEX" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="7d0b0c89-9946-40ec-afaa-33aee31e277d" SourceId="1" SourceUrl="http://192.168.222.33:8000/MEX" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

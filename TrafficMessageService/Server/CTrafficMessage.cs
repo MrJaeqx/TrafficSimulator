@@ -140,7 +140,7 @@ namespace Server
 
                 XmlElement  SpeedingDataCar         = XmlData.CreateElement("", "car_id", "");
                 XmlText     SpeedingDataCarText     = XmlData.CreateTextNode(Convert.ToString(item.carID));
-                XmlElement  SpeedingDataSpeed       = XmlData.CreateElement("", "trafficlight_id", "");
+                XmlElement  SpeedingDataSpeed       = XmlData.CreateElement("", "speed", "");
                 XmlText     SpeedingDataSpeedText   = XmlData.CreateTextNode(Convert.ToString(item.carSpeed));
                 XmlElement  SpeedingDataTime        = XmlData.CreateElement("", "time", "");
                 XmlText     SpeedingDataTimeText    = XmlData.CreateTextNode(item.timeToString());
