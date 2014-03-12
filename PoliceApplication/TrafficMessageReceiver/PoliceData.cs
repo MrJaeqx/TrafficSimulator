@@ -77,7 +77,14 @@ namespace TrafficMessageReceiver
             XmlDocument XmlData = new XmlDocument();
 
             // sla de xml op 
-            XmlData.Save(filePath);
+            try
+            {
+                XmlData.Save(filePath);
+            }
+            catch (XmlException exc)
+            {
+                throw exc;
+            }
         }
 
         /// <summary>Haal de data van de server en update de lists</summary>

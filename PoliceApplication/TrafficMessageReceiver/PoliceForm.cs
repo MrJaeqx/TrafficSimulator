@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 
 namespace TrafficMessageReceiver
@@ -14,6 +15,7 @@ namespace TrafficMessageReceiver
     {
 
         private int currentMode = 0;
+        private int lastMode = 0;
         private string servername = "localhost";
         private string serverport = "8000";
         private PoliceData data;
@@ -96,10 +98,6 @@ namespace TrafficMessageReceiver
             updateList();
         }
 
-        private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
-        {
-                   }
-
         private void buttonSettings_Click(object sender, EventArgs e)
         {
             SettingsForm settingsForm = new SettingsForm(servername, serverport);
@@ -110,6 +108,21 @@ namespace TrafficMessageReceiver
                 serverport = settingsForm.ServerPort;
             }
 
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                lastMode = currentMode;
+                currentMode = 4;
+                startBackgroundServerConenction();
+            }
+        }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void startBackgroundServerConenction()
@@ -150,6 +163,17 @@ namespace TrafficMessageReceiver
                     {
                         ListViewItem item = new ListViewItem(new[] { "0", "00-00-000", accident.timeToString(), accident.junctionID.ToString() });
                         listItems.Add(item);
+                    }
+                    break;
+                case 4:
+                    currentMode = lastMode;
+                    try
+                    {
+                        data.SaveXML(saveFileDialog.FileName);
+                    }
+                    catch (XmlException exc)
+                    {
+                        MessageBox.Show(exc.ToString(), "Fout bij het opslaan van het XML bestand", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
             }

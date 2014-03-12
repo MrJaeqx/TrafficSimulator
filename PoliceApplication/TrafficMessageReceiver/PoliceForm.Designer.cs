@@ -54,6 +54,7 @@
             this.labelStatus = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.backgroundServerConnection = new System.ComponentModel.BackgroundWorker();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -179,6 +180,7 @@
             this.buttonPrint.Size = new System.Drawing.Size(60, 60);
             this.buttonPrint.TabIndex = 2;
             this.buttonPrint.UseVisualStyleBackColor = false;
+            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
             // buttonSave
             // 
@@ -331,6 +333,12 @@
             this.backgroundServerConnection.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundServerConnection_DoWork);
             this.backgroundServerConnection.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundServerConnection_RunWorkerCompleted);
             // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.FileName = "Uitvoer.xml";
+            this.saveFileDialog.Filter = "XML bestand|*.xml";
+            this.saveFileDialog.Title = "Berichten opslaan...";
+            // 
             // PoliceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,6 +390,7 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vernieuwenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
 
     }
 }
