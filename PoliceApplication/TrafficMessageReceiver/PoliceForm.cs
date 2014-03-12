@@ -162,5 +162,15 @@ namespace TrafficMessageReceiver
             this.Enabled = true;
         }
 
+        private void bringToFrontEvent(object sender, EventArgs e)
+        {
+            this.Activate();
+            this.BringToFront();
+        }
+
+        private void closeFormEvent(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

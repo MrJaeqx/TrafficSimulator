@@ -45,24 +45,31 @@
             this.buttonSpeedings = new System.Windows.Forms.Button();
             this.buttonOverview = new System.Windows.Forms.Button();
             this.labelTitle = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.labelStatus = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.backgroundServerConnection = new System.ComponentModel.BackgroundWorker();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.labelStatus = new System.Windows.Forms.Label();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vernieuwenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afsluitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon1
             // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Text = "PolitieUI";
             this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.bringToFrontEvent);
             // 
             // tableLayoutPanel1
             // 
@@ -76,7 +83,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 661F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -251,6 +258,33 @@
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Politie UI";
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.progressBar);
+            this.panel4.Controls.Add(this.labelStatus);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 608);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(288, 44);
+            this.panel4.TabIndex = 2;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(0, 21);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(288, 23);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 1;
+            this.progressBar.Visible = false;
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(0, 0);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(0, 13);
+            this.labelStatus.TabIndex = 0;
+            // 
             // listView1
             // 
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -266,32 +300,34 @@
             this.backgroundServerConnection.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundServerConnection_DoWork);
             this.backgroundServerConnection.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundServerConnection_RunWorkerCompleted);
             // 
-            // panel4
+            // contextMenuStrip1
             // 
-            this.panel4.Controls.Add(this.progressBar);
-            this.panel4.Controls.Add(this.labelStatus);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 608);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(288, 44);
-            this.panel4.TabIndex = 2;
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.vernieuwenToolStripMenuItem,
+            this.afsluitenToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
             // 
-            // labelStatus
+            // openToolStripMenuItem
             // 
-            this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(0, 0);
-            this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(0, 13);
-            this.labelStatus.TabIndex = 0;
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.bringToFrontEvent);
             // 
-            // progressBar
+            // vernieuwenToolStripMenuItem
             // 
-            this.progressBar.Location = new System.Drawing.Point(0, 21);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(288, 23);
-            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar.TabIndex = 1;
-            this.progressBar.Visible = false;
+            this.vernieuwenToolStripMenuItem.Name = "vernieuwenToolStripMenuItem";
+            this.vernieuwenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.vernieuwenToolStripMenuItem.Text = "Vernieuwen";
+            this.vernieuwenToolStripMenuItem.Click += new System.EventHandler(this.refreshEvent);
+            // 
+            // afsluitenToolStripMenuItem
+            // 
+            this.afsluitenToolStripMenuItem.Name = "afsluitenToolStripMenuItem";
+            this.afsluitenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.afsluitenToolStripMenuItem.Text = "Afsluiten";
             // 
             // PoliceForm
             // 
@@ -313,6 +349,7 @@
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -339,6 +376,10 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vernieuwenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem;
 
     }
 }
