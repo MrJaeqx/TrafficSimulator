@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PoliceForm));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vernieuwenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afsluitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -50,17 +54,13 @@
             this.labelStatus = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.backgroundServerConnection = new System.ComponentModel.BackgroundWorker();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vernieuwenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.afsluitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -70,6 +70,35 @@
             this.notifyIcon1.Text = "PolitieUI";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.bringToFrontEvent);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.vernieuwenToolStripMenuItem,
+            this.afsluitenToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 70);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.bringToFrontEvent);
+            // 
+            // vernieuwenToolStripMenuItem
+            // 
+            this.vernieuwenToolStripMenuItem.Name = "vernieuwenToolStripMenuItem";
+            this.vernieuwenToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.vernieuwenToolStripMenuItem.Text = "Vernieuwen";
+            this.vernieuwenToolStripMenuItem.Click += new System.EventHandler(this.refreshEvent);
+            // 
+            // afsluitenToolStripMenuItem
+            // 
+            this.afsluitenToolStripMenuItem.Name = "afsluitenToolStripMenuItem";
+            this.afsluitenToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.afsluitenToolStripMenuItem.Text = "Afsluiten";
             // 
             // tableLayoutPanel1
             // 
@@ -162,6 +191,7 @@
             this.buttonSave.Size = new System.Drawing.Size(60, 60);
             this.buttonSave.TabIndex = 1;
             this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonRefresh
             // 
@@ -174,6 +204,7 @@
             this.buttonRefresh.Size = new System.Drawing.Size(60, 60);
             this.buttonRefresh.TabIndex = 0;
             this.buttonRefresh.UseVisualStyleBackColor = false;
+            this.buttonRefresh.Click += new System.EventHandler(this.refreshEvent);
             // 
             // panel2
             // 
@@ -300,35 +331,6 @@
             this.backgroundServerConnection.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundServerConnection_DoWork);
             this.backgroundServerConnection.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundServerConnection_RunWorkerCompleted);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.vernieuwenToolStripMenuItem,
-            this.afsluitenToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.bringToFrontEvent);
-            // 
-            // vernieuwenToolStripMenuItem
-            // 
-            this.vernieuwenToolStripMenuItem.Name = "vernieuwenToolStripMenuItem";
-            this.vernieuwenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.vernieuwenToolStripMenuItem.Text = "Vernieuwen";
-            this.vernieuwenToolStripMenuItem.Click += new System.EventHandler(this.refreshEvent);
-            // 
-            // afsluitenToolStripMenuItem
-            // 
-            this.afsluitenToolStripMenuItem.Name = "afsluitenToolStripMenuItem";
-            this.afsluitenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.afsluitenToolStripMenuItem.Text = "Afsluiten";
-            // 
             // PoliceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,6 +343,7 @@
             this.MinimumSize = new System.Drawing.Size(1000, 700);
             this.Name = "PoliceForm";
             this.Text = "Politie Stoplicht Interface";
+            this.contextMenuStrip1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -349,7 +352,6 @@
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
