@@ -29,5 +29,16 @@ namespace TrafficMessageReceiver
             ServerName = textBoxServer.Text;
             ServerPort = textBoxPort.Text;
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }
