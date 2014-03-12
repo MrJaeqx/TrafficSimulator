@@ -21,14 +21,14 @@ namespace TrafficMessageReceiver
         public PoliceForm()
         {
             InitializeComponent();
-            data = new PoliceData(serverUrl, serverPort);
+            //data = new PoliceData(serverUrl, serverPort);
             toggleViewEvent(buttonOverview, null);
         }
 
         private void updateList()
         {
             listView1.Clear();
-            data.GetAccidents();
+            //data.GetAccidents();
             switch (currentMode)
             {
                 case 0:
@@ -50,43 +50,7 @@ namespace TrafficMessageReceiver
 
         private void toggleViewEvent(object sender, EventArgs e)
         {
-            Button button = (Button) sender;
-            if (button.Name == buttonOverview.Name)
-            {
-                buttonOverview.BackColor = SystemColors.ButtonHighlight;
-                buttonSpeedings.BackColor = SystemColors.ButtonFace;
-                buttonRedlight.BackColor = SystemColors.ButtonFace;
-                buttonAccident.BackColor = SystemColors.ButtonFace;
-                currentMode = 0;
-                updateList();
-            }
-            else if (button.Name == buttonSpeedings.Name)
-            {
-                buttonOverview.BackColor = SystemColors.ButtonFace;
-                buttonSpeedings.BackColor = SystemColors.ButtonHighlight;
-                buttonRedlight.BackColor = SystemColors.ButtonFace;
-                buttonAccident.BackColor = SystemColors.ButtonFace;
-                currentMode = 1;
-                updateList();
-            }
-            else if (button.Name == buttonRedlight.Name)
-            {
-                buttonOverview.BackColor = SystemColors.ButtonFace;
-                buttonSpeedings.BackColor = SystemColors.ButtonFace;
-                buttonRedlight.BackColor = SystemColors.ButtonHighlight;
-                buttonAccident.BackColor = SystemColors.ButtonFace;
-                currentMode = 2;
-                updateList();
-            }
-            else if (button.Name == buttonAccident.Name)
-            {
-                buttonOverview.BackColor = SystemColors.ButtonFace;
-                buttonSpeedings.BackColor = SystemColors.ButtonFace;
-                buttonRedlight.BackColor = SystemColors.ButtonFace;
-                buttonAccident.BackColor = SystemColors.ButtonHighlight;
-                currentMode = 3;
-                updateList();
-            }
+
         }
 
         private void refreshEvent(object sender, EventArgs e)
@@ -94,25 +58,9 @@ namespace TrafficMessageReceiver
             updateList();
         }
 
-        private void saveXmlDataEvent(object sender, EventArgs e)
+        private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void printListDataEvent(object sender, EventArgs e)
-        {
-
-        }
-
-        private void openSettingsEvent(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+                   }
 
     }
 }
