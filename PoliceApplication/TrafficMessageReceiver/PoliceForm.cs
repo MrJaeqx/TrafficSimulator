@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.ServiceModel;
+using System.IO;
 
 
 namespace TrafficMessageReceiver
@@ -17,6 +18,7 @@ namespace TrafficMessageReceiver
 
         private int currentMode = 0;
         private int lastMode = 0;
+        private string settingsPath = "./settings.ini";
         private string servername = "localhost";
         private string serverport = "8000";
         private PoliceData data;
@@ -25,7 +27,40 @@ namespace TrafficMessageReceiver
         public PoliceForm()
         {
             InitializeComponent();
+            readSettings();
             toggleViewEvent(buttonOverview, null);
+        }
+
+        private void readSettings()
+        {
+            if (!File.Exists(settingsPath))
+            {
+                storeSettings();
+            }
+            else
+            {
+                using (StreamReader sr = File.OpenText(settingsPath))
+                {
+                    try
+                    {
+                        servername = sr.ReadLine();
+                        serverport = sr.ReadLine();
+                    }
+                    catch (NullReferenceException exc)
+                    {
+                        storeSettings();
+                    }
+                }
+            }
+        }
+
+        private void storeSettings()
+        {
+            using (StreamWriter sw = File.CreateText(settingsPath))
+            {
+                sw.WriteLine(servername);
+                sw.WriteLine(serverport);
+            }
         }
 
         private void updateList()
@@ -101,12 +136,14 @@ namespace TrafficMessageReceiver
 
         private void buttonSettings_Click(object sender, EventArgs e)
         {
+            readSettings();
             SettingsForm settingsForm = new SettingsForm(servername, serverport);
             settingsForm.ShowDialog();
             if (settingsForm.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 servername = settingsForm.ServerName;
                 serverport = settingsForm.ServerPort;
+                storeSettings();
             }
 
         }
