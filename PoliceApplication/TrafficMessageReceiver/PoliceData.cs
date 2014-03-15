@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
 
 namespace TrafficMessageReceiver
 {
@@ -12,7 +12,7 @@ namespace TrafficMessageReceiver
     class PoliceData
     {
         /// <summary>Proxy om de TrafficMessageService te gebruiken.</summary>
-        private PoliceService.TrafficMessageClient myTrafficMessageProxy;
+        private ServiceReference.TrafficMessageClient myTrafficMessageProxy;
 
         /// <summary>Lists met de ongelukken</summary>
         private List<Accident> accidentList;
@@ -30,10 +30,7 @@ namespace TrafficMessageReceiver
         public PoliceData(string serverIP, string serverPort)
         {
             // maak de connectie met de server
-            System.ServiceModel.EndpointAddress endpointAddress = new System.ServiceModel.EndpointAddress("http://" + serverIP + ":" + serverPort + "/MEX");
-            System.ServiceModel.Channels.Binding endpointBinding = new System.ServiceModel.WSHttpBinding();
-
-            myTrafficMessageProxy = new TrafficMessageReceiver.PoliceService.TrafficMessageClient();
+            myTrafficMessageProxy = new ServiceReference.TrafficMessageClient();
 
             // initaliseer de lists
             accidentList = new List<Accident>();
