@@ -37,8 +37,12 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.comboBoxRefresh = new System.Windows.Forms.ComboBox();
+            this.checkBoxRefresh = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -103,7 +107,7 @@
             this.panel2.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panel2.Controls.Add(this.buttonSave);
             this.panel2.Controls.Add(this.buttonCancel);
-            this.panel2.Location = new System.Drawing.Point(19, 161);
+            this.panel2.Location = new System.Drawing.Point(19, 231);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(3);
             this.panel2.Size = new System.Drawing.Size(284, 36);
@@ -137,27 +141,68 @@
             this.buttonCancel.Text = "Annuleren";
             this.buttonCancel.UseVisualStyleBackColor = false;
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel3.Controls.Add(this.comboBoxRefresh);
+            this.panel3.Controls.Add(this.checkBoxRefresh);
+            this.panel3.Location = new System.Drawing.Point(19, 161);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(3);
+            this.panel3.Size = new System.Drawing.Size(284, 64);
+            this.panel3.TabIndex = 3;
+            // 
+            // comboBoxRefresh
+            // 
+            this.comboBoxRefresh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxRefresh.FormattingEnabled = true;
+            this.comboBoxRefresh.Items.AddRange(new object[] {
+            "10 seconden",
+            "30 seconden",
+            "1 minuut",
+            "2 minuten",
+            "5 minuten",
+            "10 minuten"});
+            this.comboBoxRefresh.Location = new System.Drawing.Point(10, 29);
+            this.comboBoxRefresh.Name = "comboBoxRefresh";
+            this.comboBoxRefresh.Size = new System.Drawing.Size(268, 21);
+            this.comboBoxRefresh.TabIndex = 2;
+            this.comboBoxRefresh.SelectedIndexChanged += new System.EventHandler(this.comboBoxRefresh_SelectedIndexChanged);
+            // 
+            // checkBoxRefresh
+            // 
+            this.checkBoxRefresh.AutoSize = true;
+            this.checkBoxRefresh.Location = new System.Drawing.Point(10, 6);
+            this.checkBoxRefresh.Name = "checkBoxRefresh";
+            this.checkBoxRefresh.Size = new System.Drawing.Size(153, 17);
+            this.checkBoxRefresh.TabIndex = 1;
+            this.checkBoxRefresh.Text = "Automatisch vernieuwen";
+            this.checkBoxRefresh.UseVisualStyleBackColor = true;
+            this.checkBoxRefresh.CheckedChanged += new System.EventHandler(this.checkBoxRefresh_CheckedChanged);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(315, 218);
+            this.ClientSize = new System.Drawing.Size(315, 286);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsForm";
             this.ShowIcon = false;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Instellingen";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,5 +219,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ComboBox comboBoxRefresh;
+        private System.Windows.Forms.CheckBox checkBoxRefresh;
     }
 }

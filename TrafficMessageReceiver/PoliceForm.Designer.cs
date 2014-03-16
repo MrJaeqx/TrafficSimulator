@@ -55,6 +55,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.backgroundServerConnection = new System.ComponentModel.BackgroundWorker();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -339,6 +340,11 @@
             this.saveFileDialog.Filter = "XML bestand|*.xml";
             this.saveFileDialog.Title = "Berichten opslaan...";
             // 
+            // refreshTimer
+            // 
+            this.refreshTimer.Interval = 30000;
+            this.refreshTimer.Tick += new System.EventHandler(this.refreshEvent);
+            // 
             // PoliceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,6 +397,7 @@
         private System.Windows.Forms.ToolStripMenuItem vernieuwenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.Timer refreshTimer;
 
     }
 }

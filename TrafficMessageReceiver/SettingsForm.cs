@@ -14,14 +14,21 @@ namespace TrafficMessageReceiver
 
         public string ServerName { get; private set; }
         public string ServerPort { get; private set; }
+        public bool AutoRefresh { get; private set; }
+        public int RefreshTime { get; private set; }
 
-        public SettingsForm(string servername, string serverport)
+        public SettingsForm(string servername, string serverport, bool autorefresh, int refreshtime)
         {
             InitializeComponent();
             this.ServerName = servername;
             this.ServerPort = serverport;
+            this.AutoRefresh = autorefresh;
+            this.RefreshTime = refreshtime;
+
             textBoxServer.Text = servername;
             textBoxPort.Text = serverport;
+            checkBoxRefresh.Checked = autorefresh;
+            comboBoxRefresh.SelectedIndex = refreshtime;
         }
 
         private void textChanged(object sender, EventArgs e)
@@ -39,6 +46,25 @@ namespace TrafficMessageReceiver
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void checkBoxRefresh_CheckedChanged(object sender, EventArgs e)
+        {
+            AutoRefresh = checkBoxRefresh.Checked;
+
+            if (checkBoxRefresh.Checked)
+            {
+                comboBoxRefresh.Enabled = true;
+            }
+            else
+            {
+                comboBoxRefresh.Enabled = false;
+            }
+        }
+
+        private void comboBoxRefresh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshTime = comboBoxRefresh.SelectedIndex;
         }
     }
 }

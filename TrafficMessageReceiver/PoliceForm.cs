@@ -18,9 +18,13 @@ namespace TrafficMessageReceiver
 
         private int currentMode = 0;
         private int lastMode = 0;
+
         private string settingsPath = "./settings.ini";
         private string servername = "localhost";
         private string serverport = "8000";
+        private bool autorefresh = false;
+        private int refreshtime = 3;
+
         private PoliceData data;
         private List<ListViewItem> listItems;
 
@@ -29,6 +33,7 @@ namespace TrafficMessageReceiver
             InitializeComponent();
             readSettings();
             toggleViewEvent(buttonOverview, null);
+            if (autorefresh) refreshTimer.Start();
         }
 
         private void readSettings()
@@ -45,6 +50,39 @@ namespace TrafficMessageReceiver
                     {
                         servername = sr.ReadLine();
                         serverport = sr.ReadLine();
+                        autorefresh = sr.ReadLine().Equals("1");
+                        refreshtime = Convert.ToInt32(sr.ReadLine());
+
+                        if (autorefresh)
+                        {
+                            refreshTimer.Start();
+                        }
+                        else
+                        {
+                            refreshTimer.Stop();
+                        }
+
+                        switch (refreshtime)
+                        {
+                            case 0:
+                                refreshTimer.Interval = 10000;
+                                break;
+                            case 1:
+                                refreshTimer.Interval = 30000;
+                                break;
+                            case 2:
+                                refreshTimer.Interval = 60000;
+                                break;
+                            case 3:
+                                refreshTimer.Interval = 120000;
+                                break;
+                            case 4:
+                                refreshTimer.Interval = 300000;
+                                break;
+                            case 5:
+                                refreshTimer.Interval = 600000;
+                                break;
+                        }
                     }
                     catch (NullReferenceException exc)
                     {
@@ -60,7 +98,11 @@ namespace TrafficMessageReceiver
             {
                 sw.WriteLine(servername);
                 sw.WriteLine(serverport);
+                sw.WriteLine(autorefresh ? 1 : 0);
+                sw.WriteLine(refreshtime);
             }
+
+            readSettings();
         }
 
         private void updateList()
@@ -136,13 +178,16 @@ namespace TrafficMessageReceiver
 
         private void buttonSettings_Click(object sender, EventArgs e)
         {
+            refreshTimer.Stop();
             readSettings();
-            SettingsForm settingsForm = new SettingsForm(servername, serverport);
+            SettingsForm settingsForm = new SettingsForm(servername, serverport, autorefresh, refreshtime);
             settingsForm.ShowDialog();
             if (settingsForm.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 servername = settingsForm.ServerName;
                 serverport = settingsForm.ServerPort;
+                autorefresh = settingsForm.AutoRefresh;
+                refreshtime = settingsForm.RefreshTime;
                 storeSettings();
             }
 
@@ -168,6 +213,7 @@ namespace TrafficMessageReceiver
             labelStatus.Text = "Server: " + servername + ":" + serverport;
             progressBar.Visible = true;
             this.Enabled = false;
+            refreshTimer.Stop();
             backgroundServerConnection.RunWorkerAsync();
         }
 
@@ -230,6 +276,7 @@ namespace TrafficMessageReceiver
             listView1.Items.AddRange(listItems.ToArray());
             progressBar.Visible = false;
             this.Enabled = true;
+            if (autorefresh) refreshTimer.Start();
         }
 
         private void bringToFrontEvent(object sender, EventArgs e)
