@@ -65,7 +65,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedLight.cs" />
-    <Compile Include="Service References\PoliceService\Reference.cs">
+    <Compile Include="Service References\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -103,12 +103,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\PoliceService\MessageService.wsdl" />
-    <None Include="Service References\PoliceService\MessageService.xsd">
+    <None Include="Service References\ServiceReference\MessageService.wsdl" />
+    <None Include="Service References\ServiceReference\MessageService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\PoliceService\service.wsdl" />
-    <None Include="Service References\PoliceService\service.xsd">
+    <None Include="Service References\ServiceReference\service.wsdl" />
+    <None Include="Service References\ServiceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -117,9 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\PoliceService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\main.ico" />
@@ -143,13 +140,16 @@
     <None Include="Resources\view.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\PoliceService\configuration91.svcinfo" />
+    <WCFMetadataStorage Include="Service References\ServiceReference\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\PoliceService\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\PoliceService\Reference.svcmap">
+    <None Include="Service References\ServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
