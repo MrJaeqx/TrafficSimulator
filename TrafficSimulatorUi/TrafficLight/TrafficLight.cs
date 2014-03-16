@@ -12,7 +12,7 @@ namespace TrafficSimulatorUi
         public TrafficLight(Point location, int width, int height, Orientation orientation)
             : base(location, width, height, orientation)
         {
-            State = SignalState.IDLE;
+            State = SignalState.STOP;
         }
 
         /// <summary>

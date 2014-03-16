@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace TrafficSimulatorUi
 {
-    class DoubleLaneDriverSensor:Sensor
+    public class DoubleLaneDriverSensor:Sensor
     {
                 /// <summary>
         /// Width of the sensor. 

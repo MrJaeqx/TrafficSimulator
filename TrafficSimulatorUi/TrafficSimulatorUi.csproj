@@ -50,9 +50,6 @@
     <Compile Include="Intersection\Configurations\Type4Configuration.cs" />
     <Compile Include="Intersection\Configurations\Type5Configuration.cs" />
     <Compile Include="Intersection\Configurations\TypeRailwayConfiguration.cs" />
-    <Compile Include="Intersection\IntersectionType2.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="MathHelper.cs" />
     <Compile Include="Sensor\DoubleLaneDriverSensor.cs" />
     <Compile Include="Sensor\RailwaySensor.cs" />
