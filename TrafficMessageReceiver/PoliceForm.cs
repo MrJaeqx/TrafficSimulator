@@ -16,16 +16,21 @@ namespace TrafficMessageReceiver
     public partial class PoliceForm : Form
     {
 
+        // Field voor geselecteerde waarde uit het hoofdmenu.
         private int currentMode = 0;
         private int lastMode = 0;
 
+        // Instellingen fields met standaard instellingen.
         private string settingsPath = "./settings.ini";
         private string servername = "localhost";
         private string serverport = "8000";
         private bool autorefresh = false;
         private int refreshtime = 3;
 
+        // Class die de communicatie met de server regeld.
         private PoliceData data;
+
+        // Lijst met de inhoud voor de ListView.
         private List<ListViewItem> listItems;
 
         public PoliceForm()
@@ -36,23 +41,32 @@ namespace TrafficMessageReceiver
             if (autorefresh) refreshTimer.Start();
         }
 
+        /// <summary>
+        /// Instellingen uit het instellingen bestand uitlezen.
+        /// Indien het bestand nog niet bestaat wordt het aangemaakt met de standaard instellingen.
+        /// </summary>
         private void readSettings()
         {
+            // Controle of het instellingen bestand al bestaat.
+            // Zo niet? Maak het.
             if (!File.Exists(settingsPath))
             {
                 storeSettings();
             }
             else
             {
+                // Instellingen uitlezen.
                 using (StreamReader sr = File.OpenText(settingsPath))
                 {
                     try
                     {
+                        // Fields bijwerken.
                         servername = sr.ReadLine();
                         serverport = sr.ReadLine();
                         autorefresh = sr.ReadLine().Equals("1");
                         refreshtime = Convert.ToInt32(sr.ReadLine());
 
+                        // Automatisch vernieuwen aan of uit zetten
                         if (autorefresh)
                         {
                             refreshTimer.Start();
@@ -62,6 +76,7 @@ namespace TrafficMessageReceiver
                             refreshTimer.Stop();
                         }
 
+                        // Automatisch vernieuwen interval aanpassen.
                         switch (refreshtime)
                         {
                             case 0:
@@ -91,7 +106,10 @@ namespace TrafficMessageReceiver
                 }
             }
         }
-
+        /// <summary>
+        /// Sla alle instellingen op in het instellingen bestand. Bestaande inhoud wordt overschreven.
+        /// Hierna worden de instellingen opnieuw ingelezen en toegepast.
+        /// </summary>
         private void storeSettings()
         {
             using (StreamWriter sw = File.CreateText(settingsPath))
@@ -105,10 +123,17 @@ namespace TrafficMessageReceiver
             readSettings();
         }
 
+        /// <summary>
+        /// Lijst met items bijwerken.
+        /// Hierbij wordt gebruik gemaakt van de mode variabelen of de inhoud te bepalen.
+        /// </summary>
         private void updateList()
         {
+            // Items en kolommen in de lijst wissen.
             listView1.Columns.Clear();
             listView1.Items.Clear();
+
+            // Lijst vullen met kolommen en controleren op nieuwe items.
             switch (currentMode)
             {
                 case 0:
@@ -130,6 +155,11 @@ namespace TrafficMessageReceiver
             }
         }
 
+        /// <summary>
+        /// Schakeld de modus om en vernieuwd de lijst.
+        /// </summary>
+        /// <param name="sender">Button waarheen moet worden geschakeld.</param>
+        /// <param name="e">Niet gebruikt.</param>
         private void toggleViewEvent(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -171,18 +201,34 @@ namespace TrafficMessageReceiver
             }
         }
 
+        /// <summary>
+        /// Actie om de lijst te vernieuwen.
+        /// </summary>
+        /// <param name="sender">Niet gebruikt.</param>
+        /// <param name="e">Niet gebruikt.</param>
         private void refreshEvent(object sender, EventArgs e)
         {
             updateList();
         }
 
+        /// <summary>
+        /// Event voor de settings button.
+        /// Leest alle instellingen uit en start het SettingsForm met de uitgelezen instellingen.
+        /// Werkt de instellingen bij indien het DialogResult OK is.
+        /// </summary>
+        /// <param name="sender">Niet gebruikt.</param>
+        /// <param name="e">Niet gebruikt.</param>
         private void buttonSettings_Click(object sender, EventArgs e)
         {
+            // Stop het vernieuwen.
             refreshTimer.Stop();
+
+            // Lees de instellingen uit.
             readSettings();
+
+            // Open het SettingsForm en werk de instellingen bij indien het resultaat OK is.
             SettingsForm settingsForm = new SettingsForm(servername, serverport, autorefresh, refreshtime);
-            settingsForm.ShowDialog();
-            if (settingsForm.DialogResult == System.Windows.Forms.DialogResult.OK)
+            if (settingsForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 servername = settingsForm.ServerName;
                 serverport = settingsForm.ServerPort;
@@ -193,8 +239,15 @@ namespace TrafficMessageReceiver
 
         }
 
+        /// <summary>
+        /// Event voor de opslaan knop.
+        /// </summary>
+        /// <param name="sender">Niet gebruikt.</param>
+        /// <param name="e">Niet gebruikt.</param>
         private void buttonSave_Click(object sender, EventArgs e)
         {
+
+            // TODO XML opslaan
             if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 lastMode = currentMode;
@@ -203,11 +256,20 @@ namespace TrafficMessageReceiver
             }
         }
 
+        /// <summary>
+        /// Event voor de print button.
+        /// </summary>
+        /// <param name="sender">Niet gebruikt.</param>
+        /// <param name="e">Niet gebruikt.</param>
         private void buttonPrint_Click(object sender, EventArgs e)
         {
-            
+            // TODO Printen
         }
 
+        /// <summary>
+        /// Voorbereidingen voor het starten van de server backgroundworker.
+        /// Blokkeerd de UI.
+        /// </summary>
         private void startBackgroundServerConenction()
         {
             labelStatus.Text = "Server: " + servername + ":" + serverport;
@@ -217,9 +279,18 @@ namespace TrafficMessageReceiver
             backgroundServerConnection.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// Background worker voor server communicatie.
+        /// Werkt de lijst met items bij.
+        /// </summary>
+        /// <param name="sender">Niet gebruikt.</param>
+        /// <param name="e">Niet gebruikt.</param>
         private void backgroundServerConnection_DoWork(object sender, DoWorkEventArgs e)
         {
             listItems = new List<ListViewItem>();
+
+            // Verbinding met de server openen.
+            // Indien dit mislukt een MessageBox weergeven.
             try
             {
                 data = new PoliceData(servername, serverport);
@@ -229,6 +300,8 @@ namespace TrafficMessageReceiver
                 MessageBox.Show(exc.ToString(), "Kon geen verbinding maken met de server", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // Gegevens ophalen op basis van de geselecteerde weergave via het hoofdmenu.
             switch (currentMode)
             {
                 case 0:
@@ -271,6 +344,12 @@ namespace TrafficMessageReceiver
             }
         }
 
+        /// <summary>
+        /// Event dat wordt uigevoerd als de server backgroundworker voltooit is.
+        /// Schakeld de UI weer in en werkt de ListView bij.
+        /// </summary>
+        /// <param name="sender">Niet gebruikt.</param>
+        /// <param name="e">Niet gebruikt.</param>
         private void backgroundServerConnection_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             listView1.Items.AddRange(listItems.ToArray());
@@ -279,12 +358,23 @@ namespace TrafficMessageReceiver
             if (autorefresh) refreshTimer.Start();
         }
 
+        /// <summary>
+        /// Event om het Form weer naar de voorgrond te brengen.
+        /// </summary>
+        /// <param name="sender">Niet gebruikt.</param>
+        /// <param name="e">Niet gebruikt.</param>
         private void bringToFrontEvent(object sender, EventArgs e)
         {
+            // TODO ToFront
             this.Activate();
             this.BringToFront();
         }
 
+        /// <summary>
+        /// Event om het Form te sluiten.
+        /// </summary>
+        /// <param name="sender">Niet gebruikt.</param>
+        /// <param name="e">Niet gebruikt.</param>
         private void closeFormEvent(object sender, EventArgs e)
         {
             this.Close();
