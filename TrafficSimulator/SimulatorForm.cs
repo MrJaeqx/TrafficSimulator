@@ -38,8 +38,14 @@ namespace TrafficSimulator
 
             RoadUser TestCar1 = new BlueCar(new Point(-32, 216), 2);
             RoadUser TestCar2 = new GreenSportsCar(new Point(-32, 244), 2);
+            RoadUser TestCar3 = new BlueSportsCar(new Point(156, -32), 2);
+            RoadUser TestCar4 = new BlueSportsCar(new Point(184, -32), 2);
+            TestCar3.FaceTo(new Point(156, 400));
+            TestCar4.FaceTo(new Point(184, 400));
             intersectionControl1.AddRoadUser(TestCar1);
             intersectionControl1.AddRoadUser(TestCar2);
+            intersectionControl1.AddRoadUser(TestCar3);
+            intersectionControl1.AddRoadUser(TestCar4);
 
             progressTimer.Start();
         }
