@@ -52,7 +52,7 @@
     <Compile Include="Speeding.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Service\TrafficMessageService.csproj">
+    <ProjectReference Include="..\TrafficMessageService\TrafficMessageService.csproj">
       <Project>{78F3F279-E9EC-4805-8956-4D594F25A81D}</Project>
       <Name>TrafficMessageService</Name>
     </ProjectReference>
