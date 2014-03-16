@@ -13,19 +13,33 @@ namespace TrafficSimulator
         /// List to keep track of all road users.
         /// You can put roadusers on intersections to make them appear there.
         /// </summary>
-        private List<RoadUser> roadUsers;
-        private List<IntersectionControl> ICs;
+        private List<LogicControl> logicControls;
+        private List<IntersectionControl> intersections;
+
 
         public SimulatorForm()
         {
             InitializeComponent();
-            roadUsers = new List<RoadUser>();
-            ICs = new List<IntersectionControl>();
+            intersections = new List<IntersectionControl>();
 
-            ICs.Add(intersectionControl1);
-            ICs.Add(intersectionControl2);
-            ICs.Add(intersectionControl3);
-            ICs.Add(intersectionControl4);
+            intersections.Add(intersectionControl1);
+            intersections.Add(intersectionControl2);
+            intersections.Add(intersectionControl3);
+            intersections.Add(intersectionControl4);
+
+            logicControls = new List<LogicControl>();
+
+            //LogicControls.Add(new LogicControlType1());
+            logicControls.Add(new LogicControlType2(intersections));
+            //LogicControls.Add(new LogicControlType3());
+            //LogicControls.Add(new LogicControlType4());
+            //LogicControls.Add(new LogicControlType5());
+            //LogicControls.Add(new LogicControlRail());
+
+            RoadUser TestCar1 = new BlueCar(new Point(-32, 216), 2);
+            RoadUser TestCar2 = new GreenSportsCar(new Point(-32, 244), 2);
+            intersectionControl1.AddRoadUser(TestCar1);
+            intersectionControl1.AddRoadUser(TestCar2);
 
             progressTimer.Start();
         }
@@ -33,32 +47,23 @@ namespace TrafficSimulator
         private void progressTimer_Tick(object sender, EventArgs e)
         {
             UpdateWorld();
-
-            //this is for testing
-            if(intersectionControl1.RoadUsers.Count == 0)
-            {
-                RoadUser TestCar1 = new BlueCar(new Point(-32, 216), 2);
-                RoadUser TestCar2 = new GreenSportsCar(new Point(-32, 244), 2);
-                roadUsers.Clear();
-                roadUsers.Add(TestCar1);
-                roadUsers.Add(TestCar2);
-                intersectionControl1.AddRoadUser(TestCar1);
-                intersectionControl1.AddRoadUser(TestCar2);
-            }
         }
 
         private void UpdateWorld()
         {
-            foreach (RoadUser roadUser in roadUsers)
+            foreach (LogicControl LC in logicControls)
             {
-                roadUser.Move();
-            }
+                foreach (RoadUser roadUser in LC.Intersection.RoadUsers)
+                {
+                    roadUser.Move();
+                }
 
-            foreach (IntersectionControl IC in ICs)
-            {
-                IC.MakeTurn();
-                IC.RemoveEndOfLaneRoadUser();
-                IC.Invalidate();
+                LC.MakeTurn();
+                LC.RemoveEndOFLaneRoadUser();
+                LC.HandleHeadTailCollision();
+                LC.HandleTrafficLight();
+                LC.HandleQueue();
+                LC.Intersection.Invalidate();
             }
         }
 
