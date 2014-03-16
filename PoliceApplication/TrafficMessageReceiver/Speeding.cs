@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Server
+namespace TrafficMessageReceiver
 {
-    class RedLight
+    class Speeding
     {
-
         public int carID { get; private set; }
-        public int trafficLightID { get; private set; }
+        public int carSpeed { get; private set; }
         public DateTime time { get; private set; }
 
         // constructor, defineert alle variabelen
-        public RedLight(int carID, int trafficLightID, DateTime time)
+        public Speeding(int carID, int carSpeed, DateTime time)
         {
             this.carID = carID;
-            this.trafficLightID = trafficLightID;
+            this.carSpeed = carSpeed;
             this.time = time;
         }
 
@@ -25,11 +24,10 @@ namespace Server
         {
             return time.ToLongTimeString();
         }
-
         // maakt een leesbare string van alle data
         override
         public String ToString() {
-            return Convert.ToString(carID) + " - " + Convert.ToString(trafficLightID) + " - " + time.ToLongTimeString();
+            return Convert.ToString(carID) + " - " + Convert.ToString(carSpeed) + "km/h - " + time.ToLongTimeString();
         }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f48c1d82-4663-4465-a96c-8683f43dd7b1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b2501bd4-819a-44ea-9adb-22e4e30e66ff" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.10.10.1:8000/MEX" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="http://localhost:8000/MEX" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MessageService1.wsdl" MetadataType="Wsdl" ID="b88d163a-257e-4fa4-847f-f91519d62751" SourceId="1" SourceUrl="http://10.10.10.1:8000/MEX" />
-    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="c7d49c4d-161d-4794-abc8-12ac2d620127" SourceId="1" SourceUrl="http://10.10.10.1:8000/MEX" />
-    <MetadataFile FileName="MessageService1.xsd" MetadataType="Schema" ID="a6e20366-d1e3-4413-bb66-017befa000ea" SourceId="1" SourceUrl="http://10.10.10.1:8000/MEX" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="c5695494-2a75-473c-b2a5-2ab13bf13a59" SourceId="1" SourceUrl="http://10.10.10.1:8000/MEX" />
+    <MetadataFile FileName="MessageService.wsdl" MetadataType="Wsdl" ID="c4189e30-7355-4413-99c2-1a284f1fe6d9" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="d5c1eb9f-aaf2-4fb7-a600-58b1f8e1924b" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
+    <MetadataFile FileName="MessageService.xsd" MetadataType="Schema" ID="a375a473-67e7-4785-8ed8-8901e23f62c3" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="0a858bd0-2ec8-46c2-b709-14d40fde1bf4" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
