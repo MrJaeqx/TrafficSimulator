@@ -24,6 +24,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficMessageSender", "TrafficMessageSender\TrafficMessageSender.csproj", "{B443949E-451C-4FD9-8135-825DAF4A2CB7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arduino", "Arduino\Arduino.csproj", "{6A4297E1-D292-4550-80F9-2AC5D7128995}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoLib", "ArduinoLib\ArduinoLib.csproj", "{9C5AEC80-AD73-4DED-BBF1-56A10B70ABD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +106,16 @@ Global
 		{6A4297E1-D292-4550-80F9-2AC5D7128995}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6A4297E1-D292-4550-80F9-2AC5D7128995}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6A4297E1-D292-4550-80F9-2AC5D7128995}.Release|x86.ActiveCfg = Release|Any CPU
+		{9C5AEC80-AD73-4DED-BBF1-56A10B70ABD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C5AEC80-AD73-4DED-BBF1-56A10B70ABD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C5AEC80-AD73-4DED-BBF1-56A10B70ABD2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9C5AEC80-AD73-4DED-BBF1-56A10B70ABD2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9C5AEC80-AD73-4DED-BBF1-56A10B70ABD2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9C5AEC80-AD73-4DED-BBF1-56A10B70ABD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C5AEC80-AD73-4DED-BBF1-56A10B70ABD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C5AEC80-AD73-4DED-BBF1-56A10B70ABD2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9C5AEC80-AD73-4DED-BBF1-56A10B70ABD2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9C5AEC80-AD73-4DED-BBF1-56A10B70ABD2}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
