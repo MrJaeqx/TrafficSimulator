@@ -74,6 +74,12 @@ namespace TrafficMessageReceiver
                 this.Close();
                 return true;
             }
+            else if (keyData == Keys.Enter)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
+                return true;
+            }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
