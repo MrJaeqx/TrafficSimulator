@@ -8,7 +8,6 @@ namespace TrafficSimulator
 {
     class LogicControlType3 : LogicControl
     {
-        public override IntersectionControl Intersection { get; protected set; }
 
         public override List<LaneId> Queue { get; protected set; }
 
