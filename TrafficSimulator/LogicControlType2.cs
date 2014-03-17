@@ -79,13 +79,6 @@ namespace TrafficSimulator
                         } 
                     }
                     //LEFT_LANE
-                    else if (P.X == 182 && P.Y == 182)
-                    {
-                        if (random.Next(0, 2) == 1)
-                        {
-                            roadUser.FaceTo(new Point(182, 400));
-                        }
-                    }
                     else if(P.X == 156 && P.Y == 182)
                     {
                         roadUser.FaceTo(new Point(156, 400));
@@ -139,13 +132,6 @@ namespace TrafficSimulator
                         }
                     }
                     //LEFT_LANE
-                    if (P.X == 216 && P.Y == 216)
-                    {;
-                        if (random.Next(0, 2) == 1)
-                        {
-                            roadUser.FaceTo(new Point(216, 0));
-                        }
-                    }
                     else if (P.X == 244 && P.Y == 216)
                     {
                         roadUser.FaceTo(new Point(244, 0));
