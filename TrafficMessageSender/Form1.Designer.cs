@@ -28,58 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.messageTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.SendMessageBtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // messageTextBox
+            // button1
             // 
-            this.messageTextBox.Location = new System.Drawing.Point(141, 224);
-            this.messageTextBox.MinimumSize = new System.Drawing.Size(400, 0);
-            this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(400, 20);
-            this.messageTextBox.TabIndex = 0;
+            this.button1.Location = new System.Drawing.Point(13, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(170, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "AddRedLight";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label2
+            // button2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(52, 227);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "message";
+            this.button2.Location = new System.Drawing.Point(13, 43);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(170, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "AddSpeeding";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // SendMessageBtn
+            // button3
             // 
-            this.SendMessageBtn.Location = new System.Drawing.Point(202, 88);
-            this.SendMessageBtn.Name = "SendMessageBtn";
-            this.SendMessageBtn.Size = new System.Drawing.Size(197, 23);
-            this.SendMessageBtn.TabIndex = 3;
-            this.SendMessageBtn.Text = "Send a Message";
-            this.SendMessageBtn.UseVisualStyleBackColor = true;
-            this.SendMessageBtn.Click += new System.EventHandler(this.SendMessageBtn_Click);
+            this.button3.Location = new System.Drawing.Point(13, 73);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(170, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "AddUnfall";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // TrafficMessageSender
+            // MessageSenderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 376);
-            this.Controls.Add(this.SendMessageBtn);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.messageTextBox);
-            this.Name = "TrafficMessageSender";
+            this.ClientSize = new System.Drawing.Size(195, 111);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Name = "MessageSenderForm";
             this.Text = "TrafficMessageSender";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox messageTextBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button SendMessageBtn;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+
 
     }
 }

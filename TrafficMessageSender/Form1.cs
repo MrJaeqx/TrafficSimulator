@@ -13,20 +13,35 @@ namespace TrafficMessageSender
     {
         // proxy om de TrafficMessageService te gebruiken
         private TrafficMessageService.TrafficMessageClient myTrafficMessageProxy;
+
+        private Random r;
         
         public MessageSenderForm()
         {
             InitializeComponent();
             myTrafficMessageProxy = new TrafficMessageService.TrafficMessageClient();
+            r = new Random();
 
         }
 
-        private void SendMessageBtn_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            // VOEG ZELF TOE 
-            // code om de message in messageTextBox te versturen via web service TrafficMessageService als de user op de button klikt
-            // na afloop moet de TextBox weer leeg zijn
+            myTrafficMessageProxy.SendRedLight(r.Next(1, 999), r.Next(1, 999), RandomDate());
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            myTrafficMessageProxy.SendSpeeding(r.Next(1, 999), r.Next(1, 250), RandomDate());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            myTrafficMessageProxy.SendAccident(r.Next(1, 999), RandomDate());
+        }
+
+        private DateTime RandomDate()
+        {
+            return new DateTime(r.Next(1900, 2015), r.Next(1, 12), r.Next(1, 28), r.Next(1, 24), r.Next(1, 60), r.Next(1, 60));
         }
     }
 }
