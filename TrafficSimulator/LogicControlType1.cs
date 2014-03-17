@@ -9,7 +9,6 @@ namespace TrafficSimulator
 {
     class LogicControlType1 : LogicControl
     {
-        public override IntersectionControl Intersection { get; protected set; }
 
         public override List<LaneId> Queue { get; protected set; }
         public LogicControlType1(List<IntersectionControl> intersections)
@@ -18,7 +17,7 @@ namespace TrafficSimulator
             {
                 if (intersection.IntersectionType == IntersectionType.TYPE_1)
                 {
-                    Intersection = intersection;
+                    base.Intersection = intersection;
                 }
             }
         }

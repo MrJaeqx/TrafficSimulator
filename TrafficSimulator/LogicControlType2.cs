@@ -69,7 +69,7 @@ namespace TrafficSimulator
 
         public override void MakeTurn()
         {
-            foreach (RoadUser roadUser in Intersection.RoadUsers)
+            foreach (RoadUser roadUser in base.Intersection.RoadUsers)
             {
                 Point P = roadUser.Location;
 
@@ -131,18 +131,18 @@ namespace TrafficSimulator
         {
             if (base.Intersection.RoadUsers.Count > 0)
             {
-                foreach (RoadUser roadUser in Intersection.RoadUsers)
+                foreach (RoadUser roadUser in base.Intersection.RoadUsers)
                 {
                     Point P = roadUser.Location;
 
                     if (P.X >= 400 || P.X <= -32)
                     {
-                        Intersection.RemoveRoadUser(roadUser);
+                        base.Intersection.RemoveRoadUser(roadUser);
                         break;
                     }
                     else if (P.Y >= 400 || P.Y <= -32)
                     {
-                        Intersection.RemoveRoadUser(roadUser);
+                        base.Intersection.RemoveRoadUser(roadUser);
                         break;
                     }
                 }
@@ -150,7 +150,7 @@ namespace TrafficSimulator
         }
         public override void HandleTrafficLight()
         {
-           foreach (RoadUser roadUser in Intersection.RoadUsers)
+           foreach (RoadUser roadUser in base.Intersection.RoadUsers)
            {
                //NORTH inbound LEFT AND RIGHT lane
                if (base.AddToTrafficLightQueue(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT, roadUser))
@@ -225,7 +225,7 @@ namespace TrafficSimulator
                 //WEST_LANE_RIGHT
                 if (Queue[0] == LaneId.WEST_INBOUND_ROAD_RIGHT)
                 {
-                    if (Intersection.GetTrafficLight(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP
+                    if (base.Intersection.GetTrafficLight(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP
                         && base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT).State == SignalState.STOP
                         && base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP)
                     {
