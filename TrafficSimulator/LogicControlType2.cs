@@ -167,7 +167,8 @@ namespace TrafficSimulator
            foreach (RoadUser roadUser in Intersection.RoadUsers)
            {
                //WEST inbound RIGHT lane
-               if (Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).State == SignalState.STOP 
+               if ((Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).State == SignalState.STOP 
+                   || Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).State == SignalState.CLEAR_CROSSING)
                    && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(LaneId.WEST_INBOUND_ROAD_RIGHT).BoundingBox))
                {
                    roadUser.Speed = 0;
@@ -177,7 +178,8 @@ namespace TrafficSimulator
                    }
                }
                //WEST inbound LEFT lane
-               else if (Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT).State == SignalState.STOP
+               else if ((Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT).State == SignalState.STOP
+                   || Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT).State == SignalState.CLEAR_CROSSING)
                    && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(LaneId.WEST_INBOUND_ROAD_LEFT).BoundingBox))
                {
                    roadUser.Speed = 0;
@@ -187,7 +189,8 @@ namespace TrafficSimulator
                    }
                }
                //NORTH inbound LEFT AND RIGHT lane
-               else if (Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP
+               else if ((Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP
+                   || Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.CLEAR_CROSSING)
                    && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).BoundingBox))
                {
                    roadUser.Speed = 0;
@@ -197,83 +200,6 @@ namespace TrafficSimulator
                    }
                }
            }
-        }
-
-        public override void HandleHeadTailCollision()
-        {
-            foreach (RoadUser roadUser1 in Intersection.RoadUsers)
-            {
-                Rectangle boundBox = roadUser1.BoundingBox;
-
-                //driving right
-                if (roadUser1.Direction == 0)
-                {
-                    boundBox.Offset(new Point(4, 0));
-
-                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
-                    {
-                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
-                        {
-                            roadUser1.Speed = 0;
-                        }
-                        else
-                        {
-                            roadUser1.Speed = 2;
-                        }
-                    }
-                }
-                //driving down
-                else if (roadUser1.Direction == 90)
-                {
-                    boundBox.Offset(new Point(0, 4));
-
-                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
-                    {
-                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
-                        {
-                            roadUser1.Speed = 0;
-                        }
-                        else
-                        {
-                            roadUser1.Speed = 2;
-                        }
-                    }
-                }
-                //driving left
-                else if (roadUser1.Direction == 180)
-                {
-                    boundBox.Offset(new Point(-4, 0));
-
-                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
-                    {
-                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
-                        {
-                            roadUser1.Speed = 0;
-                        }
-                        else
-                        {
-                            roadUser1.Speed = 2;
-                        }
-                    }
-                }
-                //driving up
-                else if (roadUser1.Direction == 270)
-                {
-                    boundBox.Offset(new Point(0, 4));
-
-                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
-                    {
-                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
-                        {
-                            roadUser1.Speed = 0;
-                        }
-                        else
-                        {
-                            roadUser1.Speed = 2;
-                        }
-                    }
-                }
-            }
         }
 
         public override void HandleQueue()

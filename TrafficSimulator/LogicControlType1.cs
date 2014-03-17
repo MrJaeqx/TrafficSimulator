@@ -37,11 +37,6 @@ namespace TrafficSimulator
             throw new NotImplementedException();
         }
 
-        public override void HandleHeadTailCollision()
-        {
-            throw new NotImplementedException();
-        }
-
         public override void HandleQueue()
         {
             throw new NotImplementedException();
