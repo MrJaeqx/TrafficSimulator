@@ -33,7 +33,7 @@ namespace TrafficSimulator
 
             //LogicControls.Add(new LogicControlType1());
             logicControls.Add(new LogicControlType2(intersections));
-            //LogicControls.Add(new LogicControlType3());
+            logicControls.Add(new LogicControlType3(intersections));
             //LogicControls.Add(new LogicControlType4());
             //LogicControls.Add(new LogicControlType5());
             //LogicControls.Add(new LogicControlRail());
@@ -48,6 +48,17 @@ namespace TrafficSimulator
             intersectionControl1.AddRoadUser(TestCar2);
             intersectionControl1.AddRoadUser(TestCar3);
             intersectionControl1.AddRoadUser(TestCar4);
+
+            RoadUser TestCar5 = new BlueCar(new Point(-32, 216), 2);
+            RoadUser TestCar6 = new GreenSportsCar(new Point(-32, 244), 2);
+            RoadUser TestCar7 = new BlueSportsCar(new Point(156, -32), 2);
+            RoadUser TestCar8 = new BlueSportsCar(new Point(184, -32), 2);
+            TestCar7.FaceTo(new Point(156, 400));
+            TestCar8.FaceTo(new Point(184, 400));
+            intersectionControl4.AddRoadUser(TestCar5);
+            intersectionControl4.AddRoadUser(TestCar6);
+            intersectionControl4.AddRoadUser(TestCar7);
+            intersectionControl4.AddRoadUser(TestCar8);
 
             progressTimer.Start();
         }
