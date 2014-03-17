@@ -25,6 +25,21 @@ namespace TrafficSimulator
 
         public abstract void HandleTrafficLight();
 
+        private void CheckCollision(RoadUser roadUser1, Rectangle boundBox)
+        {
+            foreach (RoadUser roadUser2 in Intersection.RoadUsers)
+            {
+                if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
+                {
+                    roadUser1.Speed = 0;
+                }
+                else
+                {
+                    roadUser1.Speed = 2;
+                }
+            }
+        }
+
         public void HandleHeadTailCollision()
         {
             foreach (RoadUser roadUser1 in Intersection.RoadUsers)
@@ -35,69 +50,25 @@ namespace TrafficSimulator
                 if (roadUser1.Direction == 0)
                 {
                     boundBox.Offset(new Point(4, 0));
-
-                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
-                    {
-                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
-                        {
-                            roadUser1.Speed = 0;
-                        }
-                        else
-                        {
-                            roadUser1.Speed = 2;
-                        }
-                    }
+                    CheckCollision(roadUser1, boundBox);
                 }
                 //driving down
                 else if (roadUser1.Direction == 270)
                 {
                     boundBox.Offset(new Point(0, 4));
-
-                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
-                    {
-                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
-                        {
-                            roadUser1.Speed = 0;
-                        }
-                        else
-                        {
-                            roadUser1.Speed = 2;
-                        }
-                    }
+                    CheckCollision(roadUser1, boundBox);
                 }
                 //driving left
                 else if (roadUser1.Direction == 180)
                 {
                     boundBox.Offset(new Point(-4, 0));
-
-                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
-                    {
-                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
-                        {
-                            roadUser1.Speed = 0;
-                        }
-                        else
-                        {
-                            roadUser1.Speed = 2;
-                        }
-                    }
+                    CheckCollision(roadUser1, boundBox);
                 }
                 //driving up
                 else if (roadUser1.Direction == 90)
                 {
                     boundBox.Offset(new Point(0, 4));
-
-                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
-                    {
-                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
-                        {
-                            roadUser1.Speed = 0;
-                        }
-                        else
-                        {
-                            roadUser1.Speed = 2;
-                        }
-                    }
+                    CheckCollision(roadUser1, boundBox);
                 }
             }
         }
