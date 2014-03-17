@@ -318,7 +318,7 @@ namespace TrafficMessageReceiver
                     List<Speeding> speedings = data.GetSpeedings();
                     foreach (Speeding speeding in speedings)
                     {
-                        ListViewItem item = new ListViewItem(new[] { "0", "00-00-000", speeding.timeToString(), speeding.carID.ToString(), speeding.carSpeed.ToString() });
+                        ListViewItem item = new ListViewItem(new[] { "0", speeding.time.ToShortDateString(), speeding.time.ToShortTimeString(), speeding.carID.ToString(), speeding.carSpeed.ToString() });
                         listItems.Add(item);
                     }
                     break;
@@ -326,7 +326,7 @@ namespace TrafficMessageReceiver
                     List<RedLight> redlights = data.GetRedLights();
                     foreach (RedLight redlight in redlights)
                     {
-                        ListViewItem item = new ListViewItem(new[] { "0", "00-00-000", redlight.timeToString(), redlight.carID.ToString(), redlight.trafficLightID.ToString() });
+                        ListViewItem item = new ListViewItem(new[] { "0", redlight.time.ToShortDateString(), redlight.time.ToShortTimeString(), redlight.carID.ToString(), redlight.trafficLightID.ToString() });
                         listItems.Add(item);
                     }
                     break;
@@ -334,7 +334,7 @@ namespace TrafficMessageReceiver
                     List<Accident> accidents = data.GetAccidents();
                     foreach (Accident accident in accidents)
                     {
-                        ListViewItem item = new ListViewItem(new[] { "0", "00-00-000", accident.timeToString(), accident.junctionID.ToString() });
+                        ListViewItem item = new ListViewItem(new[] { "0", accident.time.ToShortDateString(), accident.time.ToShortTimeString(), accident.junctionID.ToString() });
                         listItems.Add(item);
                     }
                     break;
