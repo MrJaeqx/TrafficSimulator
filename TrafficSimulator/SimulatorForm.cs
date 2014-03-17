@@ -40,7 +40,7 @@ namespace TrafficSimulator
 
             RoadUser TestCar1 = new BlueCar(new Point(-32, 216), 2);
             RoadUser TestCar2 = new GreenSportsCar(new Point(-32, 244), 2);
-            RoadUser TestCar3 = new BlueSportsCar(new Point(156, -32), 2);
+            RoadUser TestCar3 = new BlueSportsCar(new Point(156, 32), 2);
             RoadUser TestCar4 = new BlueSportsCar(new Point(184, -32), 2);
             TestCar3.FaceTo(new Point(156, 400));
             TestCar4.FaceTo(new Point(184, 400));
@@ -97,6 +97,14 @@ namespace TrafficSimulator
             // - How to get the state of a traffic light.
             // - How to set thet state of a traffic light.
 
+            Debug.WriteLine("Clicked traffic light with lane id: " + e.LaneId + ", of intersection: ");
+            IntersectionControl intersection = (IntersectionControl)sender;
+            TrafficLight trafficLight = intersection.GetTrafficLight(e.LaneId);
+            trafficLight.SwitchTo(SignalState.STOP);
+        }
+
+        private void intersectionControl1_TrafficLightClick(object sender, TrafficLightClickEventArgs e)
+        {
             Debug.WriteLine("Clicked traffic light with lane id: " + e.LaneId + ", of intersection: ");
             IntersectionControl intersection = (IntersectionControl)sender;
             TrafficLight trafficLight = intersection.GetTrafficLight(e.LaneId);
