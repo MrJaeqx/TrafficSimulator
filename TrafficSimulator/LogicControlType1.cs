@@ -10,29 +10,9 @@ namespace TrafficSimulator
 {
     public class LogicControlType1 : LogicControl
     {
-        public override IntersectionControl Intersection
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            protected set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override IntersectionControl Intersection { get; protected set; }
 
-        public override List<LaneId> Queue
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            protected set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public override List<LaneId> Queue { get; protected set; }
         public LogicControlType1(List<IntersectionControl> intersections)
         {
             foreach (IntersectionControl intersection in intersections)
