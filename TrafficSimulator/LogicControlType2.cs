@@ -74,7 +74,6 @@ namespace TrafficSimulator
             foreach (RoadUser roadUser in Intersection.RoadUsers)
             {
                 Point P = roadUser.Location;
-                Random random = new Random();
 
                 //NORTH_INBOUND_LANE
                 if (roadUser.Direction == 270)
@@ -83,30 +82,20 @@ namespace TrafficSimulator
                     Type1Turn(roadUser, P, 156, 156, 0, 156);
                     //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
                     Type1Turn(roadUser, P, 156, 182, 0, 182);
-                    //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid
+                    //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
                     Type2Turn(roadUser, P, 184, 244, 400, 244);
                 }
 
                 //EAST_INBOUND_LANE
                 else if (roadUser.Direction == 180)
                 {
-                    //RIGHT_LANE
-                    if (P.X == 244 && P.Y == 156)
-                    {
-                        if (random.Next(0, 3) == 1)
-                        {
-                            roadUser.FaceTo(new Point(244, 0));
-                        }
-                    }
-                    else if (P.X == 216 && P.Y == 156)
-                    {
-                        if (random.Next(0, 3) == 1)
-                        {
-                            roadUser.FaceTo(new Point(216, 0));
-                        } 
-                    }
-                    //LEFT_LANE
-                    else if(P.X == 156 && P.Y == 182)
+                    //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                    Type1Turn(roadUser, P, 244, 156, 244, 0);
+                    //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                    Type1Turn(roadUser, P, 216, 156, 216, 0);
+
+                    //LEFT_LANE links af slaan aan het eind van de lane
+                    if(P.X == 156 && P.Y == 182)
                     {
                         roadUser.FaceTo(new Point(156, 400));
                     }
@@ -115,51 +104,24 @@ namespace TrafficSimulator
                 //SOUTH_INBOUND_LANE
                 else if (roadUser.Direction == 90)
                 {
-                    //RIGHT_LANE
-                    if (P.X == 244 && P.Y == 244)
-                    {
-                        if (random.Next(0, 3) == 1)
-                        {
-                            roadUser.FaceTo(new Point(400, 244));
-                        }
-                    }
-                    else if(P.X == 244 && P.Y == 216)
-                    {
-                        if (random.Next(0, 3) == 1)
-                        {
-                            roadUser.FaceTo(new Point(400, 216));
-                        }
-                    }
-                    //LEFT_LANE
-                    else if (P.X == 216 && P.Y == 156)
-                    {
-                        if (random.Next(0, 2) == 1)
-                        {
-                            roadUser.FaceTo(new Point(0, 156));
-                        }
-                    }
+                    //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                    Type1Turn(roadUser, P, 244, 244, 400, 244);
+                    //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                    Type1Turn(roadUser, P, 244, 216, 400, 216);
+                    //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
+                    Type2Turn(roadUser, P, 216, 156, 0, 156);
                 }
 
                 //WEST_INBOUND_LANE
                 else if (roadUser.Direction == 0)
                 {
-                    //RIGHT_LANE
-                    if (P.X == 156 && P.Y == 244)
-                    {
-                        if (random.Next(0, 3) == 1)
-                        {
-                            roadUser.FaceTo(new Point(156, 400));
-                        }
-                    }
-                    else if (P.X == 182 && P.Y == 244)
-                    {
-                        if (random.Next(0, 3) == 1)
-                        {
-                            roadUser.FaceTo(new Point(182, 400));
-                        }
-                    }
-                    //LEFT_LANE
-                    else if (P.X == 244 && P.Y == 216)
+                    //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                    Type1Turn(roadUser, P, 156, 244, 156, 400);
+                    //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                    Type1Turn(roadUser, P, 182, 244, 182, 400);
+
+                    //LEFT_LANE links af slaan aan het eind van de lane
+                    if (P.X == 244 && P.Y == 216)
                     {
                         roadUser.FaceTo(new Point(244, 0));
                     }
@@ -188,37 +150,30 @@ namespace TrafficSimulator
                 }
             }
         }
-
         public override void HandleTrafficLight()
         {
            foreach (RoadUser roadUser in Intersection.RoadUsers)
            {
                //WEST inbound RIGHT lane
-               if ((Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).State == SignalState.STOP 
-                   || Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).State == SignalState.CLEAR_CROSSING)
-                   && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(LaneId.WEST_INBOUND_ROAD_RIGHT).BoundingBox))
+               if (base.AddToTrafficLightQueue(LaneId.WEST_INBOUND_ROAD_RIGHT, roadUser))
                {
                    roadUser.Speed = 0;
                    if(!Queue.Contains(LaneId.WEST_INBOUND_ROAD_RIGHT))
                    {
-                    Queue.Add(LaneId.WEST_INBOUND_ROAD_RIGHT);
+                        Queue.Add(LaneId.WEST_INBOUND_ROAD_RIGHT);
                    }
                }
                //WEST inbound LEFT lane
-               else if ((Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT).State == SignalState.STOP
-                   || Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT).State == SignalState.CLEAR_CROSSING)
-                   && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(LaneId.WEST_INBOUND_ROAD_LEFT).BoundingBox))
+               else if (base.AddToTrafficLightQueue(LaneId.WEST_INBOUND_ROAD_LEFT, roadUser))
                {
                    roadUser.Speed = 0;
                    if(!Queue.Contains(LaneId.WEST_INBOUND_ROAD_RIGHT))
                    {
-                    Queue.Add(LaneId.WEST_INBOUND_ROAD_LEFT);
+                        Queue.Add(LaneId.WEST_INBOUND_ROAD_LEFT);
                    }
                }
                //NORTH inbound LEFT AND RIGHT lane
-               else if ((Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP
-                   || Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.CLEAR_CROSSING)
-                   && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).BoundingBox))
+               else if (base.AddToTrafficLightQueue(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT, roadUser))
                {
                    roadUser.Speed = 0;
                    if(!Queue.Contains(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT))
