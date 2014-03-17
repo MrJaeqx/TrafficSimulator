@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TrafficSimulatorUi;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace TrafficSimulator
 {
@@ -24,7 +25,82 @@ namespace TrafficSimulator
 
         public abstract void HandleTrafficLight();
 
-        public abstract void HandleHeadTailCollision();
+        public void HandleHeadTailCollision()
+        {
+            foreach (RoadUser roadUser1 in Intersection.RoadUsers)
+            {
+                Rectangle boundBox = roadUser1.BoundingBox;
+
+                //driving right
+                if (roadUser1.Direction == 0)
+                {
+                    boundBox.Offset(new Point(4, 0));
+
+                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
+                    {
+                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
+                        {
+                            roadUser1.Speed = 0;
+                        }
+                        else
+                        {
+                            roadUser1.Speed = 2;
+                        }
+                    }
+                }
+                //driving down
+                else if (roadUser1.Direction == 270)
+                {
+                    boundBox.Offset(new Point(0, 4));
+
+                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
+                    {
+                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
+                        {
+                            roadUser1.Speed = 0;
+                        }
+                        else
+                        {
+                            roadUser1.Speed = 2;
+                        }
+                    }
+                }
+                //driving left
+                else if (roadUser1.Direction == 180)
+                {
+                    boundBox.Offset(new Point(-4, 0));
+
+                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
+                    {
+                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
+                        {
+                            roadUser1.Speed = 0;
+                        }
+                        else
+                        {
+                            roadUser1.Speed = 2;
+                        }
+                    }
+                }
+                //driving up
+                else if (roadUser1.Direction == 90)
+                {
+                    boundBox.Offset(new Point(0, 4));
+
+                    foreach (RoadUser roadUser2 in Intersection.RoadUsers)
+                    {
+                        if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
+                        {
+                            roadUser1.Speed = 0;
+                        }
+                        else
+                        {
+                            roadUser1.Speed = 2;
+                        }
+                    }
+                }
+            }
+        }
 
         public abstract void HandleQueue();
     }

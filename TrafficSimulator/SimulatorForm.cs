@@ -26,6 +26,8 @@ namespace TrafficSimulator
             intersections.Add(intersectionControl2);
             intersections.Add(intersectionControl3);
             intersections.Add(intersectionControl4);
+            intersections.Add(intersectionControl5);
+            intersections.Add(intersectionControl6);
 
             logicControls = new List<LogicControl>();
 
