@@ -274,7 +274,7 @@ namespace TrafficMessageReceiver
         {
             labelStatus.Text = "Server: " + servername + ":" + serverport;
             progressBar.Visible = true;
-            this.Enabled = false;
+            panel1.Enabled = false;
             refreshTimer.Stop();
             backgroundServerConnection.RunWorkerAsync();
         }
@@ -354,7 +354,7 @@ namespace TrafficMessageReceiver
         {
             listView1.Items.AddRange(listItems.ToArray());
             progressBar.Visible = false;
-            this.Enabled = true;
+            panel1.Enabled = true;
             if (autorefresh) refreshTimer.Start();
         }
 
