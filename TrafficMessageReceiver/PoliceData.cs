@@ -80,6 +80,7 @@ namespace TrafficMessageReceiver
             // haal de xml van de server
             string XmlString = myTrafficMessageProxy.RetrieveMessage();
             XmlDocument XmlData = new XmlDocument();
+            XmlData.LoadXml(XmlString);
 
             // sla de xml op 
             try
@@ -129,10 +130,10 @@ namespace TrafficMessageReceiver
             foreach (XmlElement Speeding in Speedings)
             {
                 int carID = Convert.ToInt32(Speeding.GetElementsByTagName("car_id")[0].InnerText);
-                int trafficlightID = Convert.ToInt32(Speeding.GetElementsByTagName("speed")[0].InnerText);
+                int carSpeed = Convert.ToInt32(Speeding.GetElementsByTagName("speed")[0].InnerText);
                 DateTime time = ConvertDateTime(Speeding.GetElementsByTagName("time")[0].InnerText);
 
-                redLightList.Add(new RedLight(carID, trafficlightID, time));
+                speedingList.Add(new Speeding(carID, carSpeed, time));
             }
         }
 
