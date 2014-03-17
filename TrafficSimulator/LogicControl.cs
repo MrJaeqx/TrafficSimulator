@@ -10,7 +10,7 @@ namespace TrafficSimulator
 {
     public abstract class LogicControl
     {
-        public abstract IntersectionControl Intersection { get; protected set; }
+        public IntersectionControl Intersection { get; protected set; }
 
         public abstract List<LaneId> Queue { get; protected set; }
 
@@ -25,9 +25,9 @@ namespace TrafficSimulator
 
         protected bool AddToTrafficLightQueue(LaneId laneId, RoadUser roadUser)
         {
-            return ((Intersection.GetTrafficLight(laneId).State == SignalState.STOP
+            return (Intersection.GetTrafficLight(laneId).State == SignalState.STOP
             || Intersection.GetTrafficLight(laneId).State == SignalState.CLEAR_CROSSING)
-            && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(laneId).BoundingBox));
+            && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(laneId).BoundingBox);
         }
 
         public abstract void HandleTrafficLight();

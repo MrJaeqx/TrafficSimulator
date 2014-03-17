@@ -10,8 +10,6 @@ namespace TrafficSimulator
 {
     class LogicControlType2 : LogicControl
     {
-        public override IntersectionControl Intersection { get; protected set; }
-
         public override List<LaneId> Queue { get; protected set; }
 
         public LogicControlType2(List<IntersectionControl> intersections)
@@ -20,7 +18,7 @@ namespace TrafficSimulator
             {
                 if (intersection.IntersectionType == IntersectionType.TYPE_2)
                 {
-                    Intersection = intersection;
+                    base.Intersection = intersection;
                 }
             }
         }
@@ -131,7 +129,7 @@ namespace TrafficSimulator
 
         public override void RemoveEndOFLaneRoadUser()
         {
-            if (Intersection.RoadUsers.Count > 0)
+            if (base.Intersection.RoadUsers.Count > 0)
             {
                 foreach (RoadUser roadUser in Intersection.RoadUsers)
                 {
@@ -154,31 +152,67 @@ namespace TrafficSimulator
         {
            foreach (RoadUser roadUser in Intersection.RoadUsers)
            {
-               //WEST inbound RIGHT lane
-               if (base.AddToTrafficLightQueue(LaneId.WEST_INBOUND_ROAD_RIGHT, roadUser))
+               //NORTH inbound LEFT AND RIGHT lane
+               if (base.AddToTrafficLightQueue(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT, roadUser))
                {
                    roadUser.Speed = 0;
-                   if(!Queue.Contains(LaneId.WEST_INBOUND_ROAD_RIGHT))
+                   if(!Queue.Contains(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT))
                    {
-                        Queue.Add(LaneId.WEST_INBOUND_ROAD_RIGHT);
+                       Queue.Add(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT);
+                   }
+               }
+               //EAST inbound RIGHT lane
+               else if (base.AddToTrafficLightQueue(LaneId.EAST_INBOUND_ROAD_RIGHT, roadUser))
+               {
+                   roadUser.Speed = 0;
+                   if (!Queue.Contains(LaneId.EAST_INBOUND_ROAD_RIGHT))
+                   {
+                       Queue.Add(LaneId.EAST_INBOUND_ROAD_RIGHT);
+                   }
+               }
+               //EAST inbound LEFT lane
+               else if (base.AddToTrafficLightQueue(LaneId.EAST_INBOUND_ROAD_LEFT, roadUser))
+               {
+                   roadUser.Speed = 0;
+                   if (!Queue.Contains(LaneId.EAST_INBOUND_ROAD_LEFT))
+                   {
+                       Queue.Add(LaneId.EAST_INBOUND_ROAD_LEFT);
+                   }
+               }
+               //SOUTH inbound RIGHT lane
+               else if (base.AddToTrafficLightQueue(LaneId.SOUTH_INBOUND_ROAD_RIGHT, roadUser))
+               {
+                   roadUser.Speed = 0;
+                   if (!Queue.Contains(LaneId.SOUTH_INBOUND_ROAD_RIGHT))
+                   {
+                       Queue.Add(LaneId.SOUTH_INBOUND_ROAD_RIGHT);
+                   }
+               }
+               //SOUTH inbound LEFT lane
+               else if (base.AddToTrafficLightQueue(LaneId.SOUTH_INBOUND_ROAD_LEFT, roadUser))
+               {
+                   roadUser.Speed = 0;
+                   if (!Queue.Contains(LaneId.SOUTH_INBOUND_ROAD_LEFT))
+                   {
+                       Queue.Add(LaneId.SOUTH_INBOUND_ROAD_LEFT);
+                   }
+               }
+               //WEST inbound RIGHT lane
+               else if (base.AddToTrafficLightQueue(LaneId.WEST_INBOUND_ROAD_RIGHT, roadUser))
+               {
+                   roadUser.Speed = 0;
+                   if (!Queue.Contains(LaneId.WEST_INBOUND_ROAD_RIGHT))
+                   {
+                       Queue.Add(LaneId.WEST_INBOUND_ROAD_RIGHT);
                    }
                }
                //WEST inbound LEFT lane
                else if (base.AddToTrafficLightQueue(LaneId.WEST_INBOUND_ROAD_LEFT, roadUser))
                {
                    roadUser.Speed = 0;
-                   if(!Queue.Contains(LaneId.WEST_INBOUND_ROAD_RIGHT))
+                   if (!Queue.Contains(LaneId.WEST_INBOUND_ROAD_RIGHT))
                    {
-                        Queue.Add(LaneId.WEST_INBOUND_ROAD_LEFT);
-                   }
-               }
-               //NORTH inbound LEFT AND RIGHT lane
-               else if (base.AddToTrafficLightQueue(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT, roadUser))
-               {
-                   roadUser.Speed = 0;
-                   if(!Queue.Contains(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT))
-                   {
-                       Queue.Add(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT);
+                       Queue.Add(LaneId.WEST_INBOUND_ROAD_LEFT);
                    }
                }
            }
@@ -192,10 +226,10 @@ namespace TrafficSimulator
                 if (Queue[0] == LaneId.WEST_INBOUND_ROAD_RIGHT)
                 {
                     if (Intersection.GetTrafficLight(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP
-                        && Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT).State == SignalState.STOP
-                        && Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP)
+                        && base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT).State == SignalState.STOP
+                        && base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP)
                     {
-                        Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.GO);
+                        base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.GO);
                         Queue.RemoveAt(0);
                     }
                 }
@@ -203,12 +237,12 @@ namespace TrafficSimulator
                 //WEST_LANE_LEFT
                 else if (Queue[0] == LaneId.WEST_INBOUND_ROAD_LEFT)
                 {
-                    if (Intersection.GetTrafficLight(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP
-                        && Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP
-                        && Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT).State == SignalState.STOP
-                        && Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_RIGHT).State == SignalState.STOP)
+                    if (base.Intersection.GetTrafficLight(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP
+                        && base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).State == SignalState.STOP
+                        && base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT).State == SignalState.STOP
+                        && base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_RIGHT).State == SignalState.STOP)
                     {
-                        Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT).SwitchTo(SignalState.GO);
+                        base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT).SwitchTo(SignalState.GO);
                         Queue.RemoveAt(0);
                     }
                 }
