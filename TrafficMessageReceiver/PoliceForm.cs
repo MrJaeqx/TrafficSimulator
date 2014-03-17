@@ -253,7 +253,6 @@ namespace TrafficMessageReceiver
         private void buttonSave_Click(object sender, EventArgs e)
         {
 
-            // TODO XML opslaan
             if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 lastMode = currentMode;
