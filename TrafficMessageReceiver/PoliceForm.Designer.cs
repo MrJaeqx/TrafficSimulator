@@ -49,8 +49,11 @@
             this.buttonSpeedings = new System.Windows.Forms.Button();
             this.buttonOverview = new System.Windows.Forms.Button();
             this.labelTitle = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.labelRefresh = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.labelServer = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.backgroundServerConnection = new System.ComponentModel.BackgroundWorker();
@@ -62,6 +65,7 @@
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,13 +127,13 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel4, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.panel5, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(294, 655);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -141,7 +145,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(288, 599);
+            this.panel1.Size = new System.Drawing.Size(288, 549);
             this.panel1.TabIndex = 1;
             // 
             // panel3
@@ -292,32 +296,61 @@
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Politie UI";
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.panel4);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(3, 558);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(288, 94);
+            this.panel5.TabIndex = 2;
+            // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel4.Controls.Add(this.labelRefresh);
             this.panel4.Controls.Add(this.progressBar);
+            this.panel4.Controls.Add(this.labelServer);
             this.panel4.Controls.Add(this.labelStatus);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 608);
+            this.panel4.Location = new System.Drawing.Point(3, 6);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(288, 44);
-            this.panel4.TabIndex = 2;
+            this.panel4.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.panel4.Size = new System.Drawing.Size(282, 88);
+            this.panel4.TabIndex = 3;
+            // 
+            // labelRefresh
+            // 
+            this.labelRefresh.AutoSize = true;
+            this.labelRefresh.Location = new System.Drawing.Point(7, 36);
+            this.labelRefresh.Name = "labelRefresh";
+            this.labelRefresh.Size = new System.Drawing.Size(134, 13);
+            this.labelRefresh.TabIndex = 3;
+            this.labelRefresh.Text = "Automatisch vernieuwen";
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(0, 21);
+            this.progressBar.Location = new System.Drawing.Point(10, 59);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(288, 23);
-            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar.TabIndex = 1;
-            this.progressBar.Visible = false;
+            this.progressBar.Size = new System.Drawing.Size(260, 23);
+            this.progressBar.TabIndex = 2;
+            // 
+            // labelServer
+            // 
+            this.labelServer.AutoSize = true;
+            this.labelServer.Location = new System.Drawing.Point(7, 23);
+            this.labelServer.Name = "labelServer";
+            this.labelServer.Size = new System.Drawing.Size(38, 13);
+            this.labelServer.TabIndex = 1;
+            this.labelServer.Text = "Server";
             // 
             // labelStatus
             // 
             this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(0, 0);
+            this.labelStatus.Location = new System.Drawing.Point(7, 10);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(0, 13);
+            this.labelStatus.Size = new System.Drawing.Size(86, 13);
             this.labelStatus.TabIndex = 0;
+            this.labelStatus.Text = "Niet bijgewerkt";
             // 
             // listView1
             // 
@@ -364,6 +397,7 @@
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
@@ -389,15 +423,18 @@
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.ListView listView1;
         private System.ComponentModel.BackgroundWorker backgroundServerConnection;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ProgressBar progressBar;
-        private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vernieuwenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.Timer refreshTimer;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label labelRefresh;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label labelServer;
+        private System.Windows.Forms.Label labelStatus;
 
     }
 }

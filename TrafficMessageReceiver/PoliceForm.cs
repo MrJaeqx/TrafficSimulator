@@ -16,6 +16,8 @@ namespace TrafficMessageReceiver
     public partial class PoliceForm : Form
     {
 
+        private bool error = false;
+
         // Field voor geselecteerde waarde uit het hoofdmenu.
         private int currentMode = 0;
         private int lastMode = 0;
@@ -65,6 +67,10 @@ namespace TrafficMessageReceiver
                         serverport = sr.ReadLine();
                         autorefresh = sr.ReadLine().Equals("1");
                         refreshtime = Convert.ToInt32(sr.ReadLine());
+
+                        // Labels bijwerken
+                        labelServer.Text = "Server: " + servername + ":" + serverport;
+                        labelRefresh.Text = "Automatisch vernieuwen: " + (autorefresh ? "aan" : "uit");
 
                         // Automatisch vernieuwen aan of uit zetten
                         if (autorefresh)
@@ -272,8 +278,8 @@ namespace TrafficMessageReceiver
         /// </summary>
         private void startBackgroundServerConenction()
         {
-            labelStatus.Text = "Server: " + servername + ":" + serverport;
-            progressBar.Visible = true;
+            labelStatus.Text = "Bijwerken...";
+            progressBar.Style = ProgressBarStyle.Marquee;
             panel1.Enabled = false;
             refreshTimer.Stop();
             backgroundServerConnection.RunWorkerAsync();
@@ -297,6 +303,8 @@ namespace TrafficMessageReceiver
             }
             catch (EndpointNotFoundException exc)
             {
+                autorefresh = false;
+                error = true;
                 MessageBox.Show(exc.ToString(), "Kon geen verbinding maken met de server", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -342,6 +350,8 @@ namespace TrafficMessageReceiver
                     }
                     break;
             }
+
+            error = false;
         }
 
         /// <summary>
@@ -352,8 +362,10 @@ namespace TrafficMessageReceiver
         /// <param name="e">Niet gebruikt.</param>
         private void backgroundServerConnection_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            storeSettings();
+            labelStatus.Text = (error ? "Fout bij het verbinden met de server." : ("Bijgewerkt op " + DateTime.Now.ToString("HH:mm:ss tt")));
             listView1.Items.AddRange(listItems.ToArray());
-            progressBar.Visible = false;
+            progressBar.Style = ProgressBarStyle.Blocks;
             panel1.Enabled = true;
             if (autorefresh) refreshTimer.Start();
         }
