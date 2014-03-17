@@ -32,8 +32,8 @@ namespace TrafficSimulator
             logicControls = new List<LogicControl>();
 
             //LogicControls.Add(new LogicControlType1());
-            //logicControls.Add(new LogicControlType2(intersections));
-            logicControls.Add(new LogicControlType3(intersections));
+            logicControls.Add(new LogicControlType2(intersections));
+            //logicControls.Add(new LogicControlType3(intersections));
             //LogicControls.Add(new LogicControlType4());
             //LogicControls.Add(new LogicControlType5());
             //LogicControls.Add(new LogicControlRail());

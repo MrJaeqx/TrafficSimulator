@@ -179,22 +179,13 @@ namespace TrafficSimulator
                        Queue.Add(LaneId.EAST_INBOUND_ROAD_LEFT);
                    }
                }
-               //SOUTH inbound RIGHT lane
-               else if (base.AddToTrafficLightQueue(LaneId.SOUTH_INBOUND_ROAD_RIGHT, roadUser))
+               //SOUTH inbound LEFT AND RIGHT lane
+               else if (base.AddToTrafficLightQueue(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT, roadUser))
                {
                    roadUser.Speed = 0;
-                   if (!Queue.Contains(LaneId.SOUTH_INBOUND_ROAD_RIGHT))
+                   if (!Queue.Contains(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT))
                    {
-                       Queue.Add(LaneId.SOUTH_INBOUND_ROAD_RIGHT);
-                   }
-               }
-               //SOUTH inbound LEFT lane
-               else if (base.AddToTrafficLightQueue(LaneId.SOUTH_INBOUND_ROAD_LEFT, roadUser))
-               {
-                   roadUser.Speed = 0;
-                   if (!Queue.Contains(LaneId.SOUTH_INBOUND_ROAD_LEFT))
-                   {
-                       Queue.Add(LaneId.SOUTH_INBOUND_ROAD_LEFT);
+                       Queue.Add(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT);
                    }
                }
                //WEST inbound RIGHT lane
