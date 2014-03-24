@@ -34,6 +34,15 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.intersectionControl6 = new TrafficSimulatorUi.IntersectionControl();
+            this.intersectionControl5 = new TrafficSimulatorUi.IntersectionControl();
+            this.intersectionControl4 = new TrafficSimulatorUi.IntersectionControl();
+            this.intersectionControl3 = new TrafficSimulatorUi.IntersectionControl();
+            this.intersectionControl1 = new TrafficSimulatorUi.IntersectionControl();
+            this.intersectionControl2 = new TrafficSimulatorUi.IntersectionControl();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.bestandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afsluitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -45,22 +54,13 @@
             this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.bestandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.afsluitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.intersectionControl6 = new TrafficSimulatorUi.IntersectionControl();
-            this.intersectionControl5 = new TrafficSimulatorUi.IntersectionControl();
-            this.intersectionControl4 = new TrafficSimulatorUi.IntersectionControl();
-            this.intersectionControl3 = new TrafficSimulatorUi.IntersectionControl();
-            this.intersectionControl1 = new TrafficSimulatorUi.IntersectionControl();
-            this.intersectionControl2 = new TrafficSimulatorUi.IntersectionControl();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressTimer
@@ -75,14 +75,14 @@
             this.labelStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1203, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1203, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // labelStatus
             // 
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(57, 20);
+            this.labelStatus.Size = new System.Drawing.Size(44, 17);
             this.labelStatus.Text = "Gereed";
             // 
             // toolStripContainer1
@@ -100,7 +100,7 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl3);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl2);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1203, 796);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1203, 803);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -110,8 +110,92 @@
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            // 
+            // intersectionControl6
+            // 
+            this.intersectionControl6.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_RAILWAY;
+            this.intersectionControl6.Location = new System.Drawing.Point(800, 3);
+            this.intersectionControl6.MaximumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl6.MinimumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl6.Name = "intersectionControl6";
+            this.intersectionControl6.Size = new System.Drawing.Size(400, 400);
+            this.intersectionControl6.TabIndex = 11;
+            // 
+            // intersectionControl5
+            // 
+            this.intersectionControl5.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_4;
+            this.intersectionControl5.Location = new System.Drawing.Point(800, 403);
+            this.intersectionControl5.MaximumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl5.MinimumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl5.Name = "intersectionControl5";
+            this.intersectionControl5.Size = new System.Drawing.Size(400, 400);
+            this.intersectionControl5.TabIndex = 10;
+            // 
+            // intersectionControl4
+            // 
+            this.intersectionControl4.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_3;
+            this.intersectionControl4.Location = new System.Drawing.Point(3, 403);
+            this.intersectionControl4.MaximumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl4.MinimumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl4.Name = "intersectionControl4";
+            this.intersectionControl4.Size = new System.Drawing.Size(400, 400);
+            this.intersectionControl4.TabIndex = 9;
+            // 
+            // intersectionControl3
+            // 
+            this.intersectionControl3.Location = new System.Drawing.Point(403, 403);
+            this.intersectionControl3.MaximumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl3.MinimumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl3.Name = "intersectionControl3";
+            this.intersectionControl3.Size = new System.Drawing.Size(400, 400);
+            this.intersectionControl3.TabIndex = 8;
+            // 
+            // intersectionControl1
+            // 
+            this.intersectionControl1.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_2;
+            this.intersectionControl1.Location = new System.Drawing.Point(3, 3);
+            this.intersectionControl1.MaximumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl1.MinimumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl1.Name = "intersectionControl1";
+            this.intersectionControl1.Size = new System.Drawing.Size(400, 400);
+            this.intersectionControl1.TabIndex = 7;
+            // 
+            // intersectionControl2
+            // 
+            this.intersectionControl2.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_5;
+            this.intersectionControl2.Location = new System.Drawing.Point(403, 3);
+            this.intersectionControl2.MaximumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl2.MinimumSize = new System.Drawing.Size(400, 400);
+            this.intersectionControl2.Name = "intersectionControl2";
+            this.intersectionControl2.Size = new System.Drawing.Size(400, 400);
+            this.intersectionControl2.TabIndex = 6;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bestandToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1203, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // bestandToolStripMenuItem
+            // 
+            this.bestandToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.afsluitenToolStripMenuItem});
+            this.bestandToolStripMenuItem.Name = "bestandToolStripMenuItem";
+            this.bestandToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.bestandToolStripMenuItem.Text = "Bestand";
+            // 
+            // afsluitenToolStripMenuItem
+            // 
+            this.afsluitenToolStripMenuItem.Name = "afsluitenToolStripMenuItem";
+            this.afsluitenToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.afsluitenToolStripMenuItem.Text = "Afsluiten";
             // 
             // toolStrip1
             // 
@@ -128,7 +212,7 @@
             this.pasteToolStripButton,
             this.toolStripSeparator1,
             this.helpToolStripButton});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(3, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(199, 25);
             this.toolStrip1.TabIndex = 1;
@@ -215,91 +299,6 @@
             this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.helpToolStripButton.Text = "He&lp";
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bestandToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 25);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1203, 28);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // bestandToolStripMenuItem
-            // 
-            this.bestandToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.afsluitenToolStripMenuItem});
-            this.bestandToolStripMenuItem.Name = "bestandToolStripMenuItem";
-            this.bestandToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
-            this.bestandToolStripMenuItem.Text = "Bestand";
-            // 
-            // afsluitenToolStripMenuItem
-            // 
-            this.afsluitenToolStripMenuItem.Name = "afsluitenToolStripMenuItem";
-            this.afsluitenToolStripMenuItem.Size = new System.Drawing.Size(136, 24);
-            this.afsluitenToolStripMenuItem.Text = "Afsluiten";
-            // 
-            // intersectionControl6
-            // 
-            this.intersectionControl6.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_RAILWAY;
-            this.intersectionControl6.Location = new System.Drawing.Point(800, 3);
-            this.intersectionControl6.MaximumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl6.MinimumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl6.Name = "intersectionControl6";
-            this.intersectionControl6.Size = new System.Drawing.Size(400, 400);
-            this.intersectionControl6.TabIndex = 11;
-            // 
-            // intersectionControl5
-            // 
-            this.intersectionControl5.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_4;
-            this.intersectionControl5.Location = new System.Drawing.Point(800, 403);
-            this.intersectionControl5.MaximumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl5.MinimumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl5.Name = "intersectionControl5";
-            this.intersectionControl5.Size = new System.Drawing.Size(400, 400);
-            this.intersectionControl5.TabIndex = 10;
-            // 
-            // intersectionControl4
-            // 
-            this.intersectionControl4.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_3;
-            this.intersectionControl4.Location = new System.Drawing.Point(3, 403);
-            this.intersectionControl4.MaximumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl4.MinimumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl4.Name = "intersectionControl4";
-            this.intersectionControl4.Size = new System.Drawing.Size(400, 400);
-            this.intersectionControl4.TabIndex = 9;
-            // 
-            // intersectionControl3
-            // 
-            this.intersectionControl3.Location = new System.Drawing.Point(403, 403);
-            this.intersectionControl3.MaximumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl3.MinimumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl3.Name = "intersectionControl3";
-            this.intersectionControl3.Size = new System.Drawing.Size(400, 400);
-            this.intersectionControl3.TabIndex = 8;
-            // 
-            // intersectionControl1
-            // 
-            this.intersectionControl1.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_2;
-            this.intersectionControl1.Location = new System.Drawing.Point(3, 3);
-            this.intersectionControl1.MaximumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl1.MinimumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl1.Name = "intersectionControl1";
-            this.intersectionControl1.Size = new System.Drawing.Size(400, 400);
-            this.intersectionControl1.TabIndex = 7;
-            this.intersectionControl1.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl1_TrafficLightClick);
-            // 
-            // intersectionControl2
-            // 
-            this.intersectionControl2.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_5;
-            this.intersectionControl2.Location = new System.Drawing.Point(403, 3);
-            this.intersectionControl2.MaximumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl2.MinimumSize = new System.Drawing.Size(400, 400);
-            this.intersectionControl2.Name = "intersectionControl2";
-            this.intersectionControl2.Size = new System.Drawing.Size(400, 400);
-            this.intersectionControl2.TabIndex = 6;
-            // 
             // SimulatorForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -320,10 +319,10 @@
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -359,4 +358,3 @@
 
     }
 }
-

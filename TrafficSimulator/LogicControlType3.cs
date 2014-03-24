@@ -18,6 +18,7 @@ namespace TrafficSimulator
                 if (intersection.IntersectionType == IntersectionType.TYPE_3)
                 {
                     base.Intersection = intersection;
+                    Intersection = intersection;
                 }
             }
         }
