@@ -17,6 +17,7 @@ namespace TrafficSimulator
         public IntersectionControl IntersectionRight { get; protected set; }
         public IntersectionControl IntersectionBottom { get; protected set; }
 
+
         public abstract List<LaneId> Queue { get; protected set; }
 
         public LogicControl()
@@ -174,7 +175,6 @@ namespace TrafficSimulator
                     Queue.Add(lane);
                 }
             }
-
         }
 
         public abstract void HandleTrafficLight();
