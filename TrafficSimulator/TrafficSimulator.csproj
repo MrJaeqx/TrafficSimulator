@@ -83,6 +83,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ArduinoLib\ArduinoLib.csproj">
+      <Project>{f8fd87af-1fa5-4130-a741-33a9779bb25f}</Project>
+      <Name>ArduinoLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TrafficSimulatorUi\TrafficSimulatorUi.csproj">
       <Project>{88D76406-6430-48B6-A237-FD19EA3A99A5}</Project>
       <Name>TrafficSimulatorUi</Name>
