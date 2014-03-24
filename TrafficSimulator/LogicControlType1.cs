@@ -49,28 +49,6 @@ namespace TrafficSimulator
             }
         }
 
-        public override void RemoveEndOFLaneRoadUser()
-        {
-            if (base.Intersection.RoadUsers.Count > 0)
-            {
-                foreach (RoadUser roadUser in Intersection.RoadUsers)
-                {
-                    Point p = roadUser.Location;
-
-                    if (p.X >= 400 || p.X <= -32)
-                    {
-                        Intersection.RemoveRoadUser(roadUser);
-                        break;
-                    }
-                    else if (p.Y >= 400 || p.Y <= -32)
-                    {
-                        Intersection.RemoveRoadUser(roadUser);
-                        break;
-                    }
-                }
-            }
-        }
-
         public override void HandleTrafficLight()
         {
             throw new NotImplementedException();

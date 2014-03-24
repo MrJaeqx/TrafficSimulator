@@ -16,54 +16,26 @@ namespace TrafficSimulator
         {
             foreach (IntersectionControl intersection in intersections)
             {
+                //toekennen van het eigen kruispunt
                 if (intersection.IntersectionType == IntersectionType.TYPE_2)
                 {
                     base.Intersection = intersection;
                 }
-            }
-        }
 
-        /// <summary>
-        /// Bepalen om een bocht te maken met een kans van 1 op 3
-        /// </summary>
-        /// <param name="roadUser">de roaduser waar het om gaat</param>
-        /// <param name="P"> het punt waar de roaduser zich bevind</param>
-        /// <param name="X1"> de X van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="Y1"> de Y van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="X2"> de X van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        /// <param name="Y2"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        private void Type1Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
-        {
-            Random random = new Random();
-
-            if (P.X == X1 && P.Y == Y1)
-            {
-                if (random.Next(0, 3) == 1)
+                //toekennen van het kruispunt dat zich rechts van dit kruispunt bevind
+                if (intersection.IntersectionType == IntersectionType.TYPE_5)
                 {
-                    roadUser.FaceTo(new Point(X2, Y2));
+                    base.IntersectionRight = intersection;
                 }
-            }
-        }
 
-        /// <summary>
-        /// Bepalen om een bocht te maken met een kans van 1 op 2
-        /// </summary>
-        /// <param name="roadUser">de roaduser waar het om gaat</param>
-        /// <param name="P"> het punt waar de roaduser zich bevind</param>
-        /// <param name="X1"> de X van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="Y1"> de Y van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="X2"> de X van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        /// <param name="Y2"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        private void Type2Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
-        {
-            Random random = new Random();
-
-            if (P.X == X1 && P.Y == Y2)
-            {
-                if (random.Next(0, 10) == 1)
+                //toekennen van het kruispunt dat zich onder van dit kruispunt bevind
+                if (intersection.IntersectionType == IntersectionType.TYPE_3)
                 {
-                    roadUser.FaceTo(new Point(X2, Y2));
+                    base.IntersectionBottom = intersection;
                 }
+
+                base.IntersectionLeft = null;
+                base.IntersectionTop = null;
             }
         }
 
@@ -127,85 +99,25 @@ namespace TrafficSimulator
             }
         }
 
-        public override void RemoveEndOFLaneRoadUser()
-        {
-            if (base.Intersection.RoadUsers.Count > 0)
-            {
-                foreach (RoadUser roadUser in base.Intersection.RoadUsers)
-                {
-                    Point P = roadUser.Location;
-
-                    if (P.X >= 400 || P.X <= -32)
-                    {
-                        base.Intersection.RemoveRoadUser(roadUser);
-                        break;
-                    }
-                    else if (P.Y >= 400 || P.Y <= -32)
-                    {
-                        base.Intersection.RemoveRoadUser(roadUser);
-                        break;
-                    }
-                }
-            }
-        }
         public override void HandleTrafficLight()
         {
            foreach (RoadUser roadUser in base.Intersection.RoadUsers)
            {
                //NORTH inbound LEFT AND RIGHT lane
-               if (base.AddToTrafficLightQueue(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT, roadUser))
-               {
-                   roadUser.Speed = 0;
-                   if(!Queue.Contains(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT))
-                   {
-                       Queue.Add(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT);
-                   }
-               }
+               HandleTrafficLightLane(roadUser, LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT);
+
                //EAST inbound RIGHT lane
-               else if (base.AddToTrafficLightQueue(LaneId.EAST_INBOUND_ROAD_RIGHT, roadUser))
-               {
-                   roadUser.Speed = 0;
-                   if (!Queue.Contains(LaneId.EAST_INBOUND_ROAD_RIGHT))
-                   {
-                       Queue.Add(LaneId.EAST_INBOUND_ROAD_RIGHT);
-                   }
-               }
+               HandleTrafficLightLane(roadUser, LaneId.EAST_INBOUND_ROAD_RIGHT);
                //EAST inbound LEFT lane
-               else if (base.AddToTrafficLightQueue(LaneId.EAST_INBOUND_ROAD_LEFT, roadUser))
-               {
-                   roadUser.Speed = 0;
-                   if (!Queue.Contains(LaneId.EAST_INBOUND_ROAD_LEFT))
-                   {
-                       Queue.Add(LaneId.EAST_INBOUND_ROAD_LEFT);
-                   }
-               }
+               HandleTrafficLightLane(roadUser, LaneId.EAST_INBOUND_ROAD_LEFT);
+
                //SOUTH inbound LEFT AND RIGHT lane
-               else if (base.AddToTrafficLightQueue(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT, roadUser))
-               {
-                   roadUser.Speed = 0;
-                   if (!Queue.Contains(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT))
-                   {
-                       Queue.Add(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT);
-                   }
-               }
+               HandleTrafficLightLane(roadUser, LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT);
+
                //WEST inbound RIGHT lane
-               else if (base.AddToTrafficLightQueue(LaneId.WEST_INBOUND_ROAD_RIGHT, roadUser))
-               {
-                   roadUser.Speed = 0;
-                   if (!Queue.Contains(LaneId.WEST_INBOUND_ROAD_RIGHT))
-                   {
-                       Queue.Add(LaneId.WEST_INBOUND_ROAD_RIGHT);
-                   }
-               }
+               HandleTrafficLightLane(roadUser, LaneId.WEST_INBOUND_ROAD_RIGHT);
                //WEST inbound LEFT lane
-               else if (base.AddToTrafficLightQueue(LaneId.WEST_INBOUND_ROAD_LEFT, roadUser))
-               {
-                   roadUser.Speed = 0;
-                   if (!Queue.Contains(LaneId.WEST_INBOUND_ROAD_RIGHT))
-                   {
-                       Queue.Add(LaneId.WEST_INBOUND_ROAD_LEFT);
-                   }
-               }
+               HandleTrafficLightLane(roadUser, LaneId.WEST_INBOUND_ROAD_LEFT);
            }
         }
 

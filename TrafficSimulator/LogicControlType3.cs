@@ -86,21 +86,19 @@ namespace TrafficSimulator
             }
         }
 
-        public override void RemoveEndOFLaneRoadUser()
-        {
-            // BASE
-        }
-
         public override void HandleTrafficLight()
         {
             foreach (RoadUser roadUser in base.Intersection.RoadUsers)
             {
                 //NORTH inbound LEFT AND RIGHT lane
                 HandleTrafficLightLane(roadUser, LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT);
+
                 //EAST inbound LEFT AND RIGHT lane
                 HandleTrafficLightLane(roadUser, LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT);
+
                 //SOUTH inbound LEFT AND RIGHT lane
                 HandleTrafficLightLane(roadUser, LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT);
+
                 //WEST inbound LEFT AND RIGHT lane
                 HandleTrafficLightLane(roadUser, LaneId.WEST_INBOUND_ROAD_LEFT_AND_RIGHT);
             }
@@ -114,7 +112,7 @@ namespace TrafficSimulator
                 //WEST_LANE_RIGHT
                 if (Queue[0] == LaneId.WEST_INBOUND_ROAD_LEFT_AND_RIGHT)
                 {
-                    
+
                         base.Intersection.GetTrafficLight(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.STOP);
                         base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.STOP);
                         base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.STOP);
@@ -133,66 +131,6 @@ namespace TrafficSimulator
                     
                 }
             }
-        }
-
-        // Onderstaande methods naar base overzetten
-
-
-        /// <summary>
-        /// Bepalen om een bocht te maken met een kans van 1 op 3
-        /// </summary>
-        /// <param name="roadUser">de roaduser waar het om gaat</param>
-        /// <param name="P"> het punt waar de roaduser zich bevind</param>
-        /// <param name="X1"> de X van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="Y1"> de Y van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="X2"> de X van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        /// <param name="Y2"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        private void Type1Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
-        {
-            Random random = new Random();
-
-            if (P.X == X1 && P.Y == Y1)
-            {
-                if (random.Next(0, 3) == 1)
-                {
-                    roadUser.FaceTo(new Point(X2, Y2));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Bepalen om een bocht te maken met een kans van 1 op 2
-        /// </summary>
-        /// <param name="roadUser">de roaduser waar het om gaat</param>
-        /// <param name="P"> het punt waar de roaduser zich bevind</param>
-        /// <param name="X1"> de X van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="Y1"> de Y van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="X2"> de X van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        /// <param name="Y2"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        private void Type2Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
-        {
-            Random random = new Random();
-
-            if (P.X == X1 && P.Y == Y1)
-            {
-                if (random.Next(0, 10) == 1)
-                {
-                    roadUser.FaceTo(new Point(X2, Y2));
-                }
-            }
-        }
-
-        private void HandleTrafficLightLane(RoadUser roadUser, LaneId lane)
-        {
-            if (base.AddToTrafficLightQueue(lane, roadUser))
-            {
-                roadUser.Speed = 0;
-                if (!Queue.Contains(lane))
-                {
-                    Queue.Add(lane);
-                }
-            }
-
         }
     }
 }

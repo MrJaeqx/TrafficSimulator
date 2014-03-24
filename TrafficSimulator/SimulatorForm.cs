@@ -34,9 +34,9 @@ namespace TrafficSimulator
             logicControls.Add(new LogicControlType1(intersections));
             logicControls.Add(new LogicControlType2(intersections));
             logicControls.Add(new LogicControlType3(intersections));
-            logicControls.Add(new LogicControlType4(intersections));
-            logicControls.Add(new LogicControlType5(intersections));
-            logicControls.Add(new LogicControlRail());
+            //logicControls.Add(new LogicControlType4(intersections));
+            //logicControls.Add(new LogicControlType5(intersections));
+            //logicControls.Add(new LogicControlRail());
 
             progressTimer.Start();
         }
@@ -56,7 +56,7 @@ namespace TrafficSimulator
                 }
 
                 LC.MakeTurn();
-                LC.RemoveEndOFLaneRoadUser();
+                LC.RemoveOutsideScreenRoadUser();
                 LC.HandleHeadTailCollision();
                 LC.HandleTrafficLight();
                 LC.HandleQueue();
