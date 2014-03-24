@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Drawing;
+=======
+>>>>>>> origin/TYPE_2
 using System.Linq;
 using System.Text;
 using TrafficSimulatorUi;
@@ -29,6 +32,7 @@ namespace TrafficSimulator
 
         public override void MakeTurn()
         {
+
             foreach (RoadUser roadUser in base.Intersection.RoadUsers)
             {
                 Point P = roadUser.Location;
@@ -190,6 +194,7 @@ namespace TrafficSimulator
                     Queue.Add(lane);
                 }
             }
+
         }
     }
 }

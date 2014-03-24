@@ -33,14 +33,14 @@ namespace TrafficSimulator
 
             //LogicControls.Add(new LogicControlType1());
             //logicControls.Add(new LogicControlType2(intersections));
-            logicControls.Add(new LogicControlType3(intersections));
+            //logicControls.Add(new LogicControlType3(intersections));
             //LogicControls.Add(new LogicControlType4());
             //LogicControls.Add(new LogicControlType5());
             //LogicControls.Add(new LogicControlRail());
 
             RoadUser TestCar1 = new BlueCar(new Point(-32, 216), 2);
             RoadUser TestCar2 = new GreenSportsCar(new Point(-32, 244), 2);
-            RoadUser TestCar3 = new BlueSportsCar(new Point(156, -32), 2);
+            RoadUser TestCar3 = new BlueSportsCar(new Point(156, 32), 2);
             RoadUser TestCar4 = new BlueSportsCar(new Point(184, -32), 2);
             TestCar3.FaceTo(new Point(156, 400));
             TestCar4.FaceTo(new Point(184, 400));
@@ -53,6 +53,7 @@ namespace TrafficSimulator
             RoadUser TestCar6 = new GreenSportsCar(new Point(-32, 244), 2);
             RoadUser TestCar7 = new BlueSportsCar(new Point(156, -32), 2);
             RoadUser TestCar8 = new BlueSportsCar(new Point(184, -32), 2);
+<<<<<<< HEAD
             RoadUser TestCar9 = new BlueSportsCar(new Point(216, 432), 2);
             RoadUser TestCar10 = new BlueSportsCar(new Point(244, 432), 2);
             RoadUser TestCar11 = new GreenSportsCar(new Point(432, 156), 2);
@@ -63,14 +64,21 @@ namespace TrafficSimulator
             TestCar10.FaceTo(new Point(244, 0));
             TestCar11.FaceTo(new Point(0, 156));
             TestCar12.FaceTo(new Point(0, 184));
+=======
+            TestCar7.FaceTo(new Point(156, 400));
+            TestCar8.FaceTo(new Point(184, 400));
+>>>>>>> origin/TYPE_2
             intersectionControl4.AddRoadUser(TestCar5);
             intersectionControl4.AddRoadUser(TestCar6);
             intersectionControl4.AddRoadUser(TestCar7);
             intersectionControl4.AddRoadUser(TestCar8);
+<<<<<<< HEAD
             intersectionControl4.AddRoadUser(TestCar9);
             intersectionControl4.AddRoadUser(TestCar10);
             intersectionControl4.AddRoadUser(TestCar11);
             intersectionControl4.AddRoadUser(TestCar12);
+=======
+>>>>>>> origin/TYPE_2
 
             progressTimer.Start();
         }
@@ -109,6 +117,14 @@ namespace TrafficSimulator
             // - How to get the state of a traffic light.
             // - How to set thet state of a traffic light.
 
+            Debug.WriteLine("Clicked traffic light with lane id: " + e.LaneId + ", of intersection: ");
+            IntersectionControl intersection = (IntersectionControl)sender;
+            TrafficLight trafficLight = intersection.GetTrafficLight(e.LaneId);
+            trafficLight.SwitchTo(SignalState.STOP);
+        }
+
+        private void intersectionControl1_TrafficLightClick(object sender, TrafficLightClickEventArgs e)
+        {
             Debug.WriteLine("Clicked traffic light with lane id: " + e.LaneId + ", of intersection: ");
             IntersectionControl intersection = (IntersectionControl)sender;
             TrafficLight trafficLight = intersection.GetTrafficLight(e.LaneId);
