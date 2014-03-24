@@ -39,7 +39,7 @@ namespace TrafficSimulator
 
             if (P.X == X1 && P.Y == Y1)
             {
-                if (random.Next(0, 3) == 1)
+                if (random.Next(0, 30) == 1)
                 {
                     roadUser.FaceTo(new Point(X2, Y2));
                 }
@@ -61,7 +61,7 @@ namespace TrafficSimulator
 
             if (P.X == X1 && P.Y == Y2)
             {
-                if (random.Next(0, 10) == 1)
+                if (random.Next(0, 2) == 1)
                 {
                     roadUser.FaceTo(new Point(X2, Y2));
                 }
@@ -78,18 +78,83 @@ namespace TrafficSimulator
                 {
                     Point P = roadUser.Location;
 
-                    if (P.X >= 400 || P.X <= -32)
+                    if (P.X >= 418 || P.X <= -18)
                     {
                         Intersection.RemoveRoadUser(roadUser);
                         break;
                     }
-                    else if (P.Y >= 400 || P.Y <= -32)
+                    else if (P.Y >= 418 || P.Y <= -18)
                     {
                         Intersection.RemoveRoadUser(roadUser);
                         break;
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// methode die gebruikt wordt om roadUsers van het ene kruispunt naar het andere over te zetten
+        /// </summary>
+        /// <param name="roadUser">de roadUser waar het om gaat</param>
+        /// <param name="leaveX">de X positie waar wordt gedetecteerd of een auto het kruispunt gaat verlaten</param>
+        /// <param name="leaveY">de Y positie waar wordt gedetecteerd of een auto het kruispunt gaat verlaten</param>
+        /// <param name="spawnX">de X positie waar de nieuwe roadUser wordt gemaakt</param>
+        /// <param name="spawnY">de Y positie waar de nieuwe roadUser wordt gemaakt</param>
+        /// <param name="faceToX">de X positie waarde nieuwe roadUser naar toe moet wijzen</param>
+        /// <param name="faceToY">de Y positie waarde nieuwe roadUser naar toe moet wijzen</param>
+        private void TransferCarMethod(RoadUser roadUser, int leaveX, int leaveY, int spawnX, int spawnY, int faceToX, int faceToY)
+        {
+            Point P = roadUser.Location;
+
+            if (IntersectionBottom != null && P.X == leaveX && P.Y == leaveY)
+            {
+                RoadUser newRoadUser = null;
+
+                if (roadUser is BlueCar)
+                {
+                    newRoadUser = new BlueCar(new Point(spawnX, spawnY), 2);
+                }
+                else if (roadUser is BlueSportsCar)
+                {
+                    newRoadUser = new BlueSportsCar(new Point(spawnX, spawnY), 2);
+                }
+                else if (roadUser is GreenSportsCar)
+                {
+                    newRoadUser = new GreenSportsCar(new Point(spawnX, spawnY), 2);
+                }
+
+                if (newRoadUser != null)
+                {
+                    newRoadUser.FaceTo(new Point(faceToX, faceToY));
+                    IntersectionBottom.AddRoadUser(newRoadUser);
+                }
+            }
+        }
+
+        public void TransferCarsBetweenIntersections()
+        {
+            if (Intersection.RoadUsers.Count > 0)
+            {
+                foreach (RoadUser roadUser in Intersection.RoadUsers)
+                {
+                    //tranfser naar een kruispunt aan de onderkant
+                    TransferCarMethod(roadUser, 156, 382, 156, -18, 156, 400);
+                    TransferCarMethod(roadUser, 186, 382, 186, -18, 186, 400);
+
+                    //transfer naar een kruispunt rechts
+                    TransferCarMethod(roadUser, 382, 216, -18, 216, 400, 216);
+                    TransferCarMethod(roadUser, 382, 244, -18, 244, 400, 244);
+
+                    //transfer naar een kruipunt aan de bovenkant
+                    TransferCarMethod(roadUser, 216, 18, 216, 428, 216, 0);
+                    TransferCarMethod(roadUser, 244, 18, 244, 428, 244, 0);
+
+                    //transfer naar een kruispunt links
+                    TransferCarMethod(roadUser, 18, 156, 418, 156, 0, 156);
+                    TransferCarMethod(roadUser, 18, 186, 418, 186, 0, 186);
+                }
+            }
+
         }
 
         protected bool AddToTrafficLightQueue(LaneId laneId, RoadUser roadUser)
@@ -131,33 +196,36 @@ namespace TrafficSimulator
 
         public void HandleHeadTailCollision()
         {
-            foreach (RoadUser roadUser1 in Intersection.RoadUsers)
+            if (Intersection.RoadUsers.Count > 0)
             {
-                Rectangle boundBox = roadUser1.BoundingBox;
+                foreach (RoadUser roadUser1 in Intersection.RoadUsers)
+                {
+                    Rectangle boundBox = roadUser1.BoundingBox;
 
-                //driving right
-                if (roadUser1.Direction == 0)
-                {
-                    boundBox.Offset(new Point(4, 0));
-                    CheckCollision(roadUser1, boundBox);
-                }
-                //driving down
-                else if (roadUser1.Direction == 270)
-                {
-                    boundBox.Offset(new Point(0, 4));
-                    CheckCollision(roadUser1, boundBox);
-                }
-                //driving left
-                else if (roadUser1.Direction == 180)
-                {
-                    boundBox.Offset(new Point(-4, 0));
-                    CheckCollision(roadUser1, boundBox);
-                }
-                //driving up
-                else if (roadUser1.Direction == 90)
-                {
-                    boundBox.Offset(new Point(0, 4));
-                    CheckCollision(roadUser1, boundBox);
+                    //driving right
+                    if (roadUser1.Direction == 0)
+                    {
+                        boundBox.Offset(new Point(4, 0));
+                        CheckCollision(roadUser1, boundBox);
+                    }
+                    //driving down
+                    else if (roadUser1.Direction == 270)
+                    {
+                        boundBox.Offset(new Point(0, 4));
+                        CheckCollision(roadUser1, boundBox);
+                    }
+                    //driving left
+                    else if (roadUser1.Direction == 180)
+                    {
+                        boundBox.Offset(new Point(-4, 0));
+                        CheckCollision(roadUser1, boundBox);
+                    }
+                    //driving up
+                    else if (roadUser1.Direction == 90)
+                    {
+                        boundBox.Offset(new Point(0, 4));
+                        CheckCollision(roadUser1, boundBox);
+                    }
                 }
             }
         }

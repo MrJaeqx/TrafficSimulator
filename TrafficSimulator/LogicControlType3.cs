@@ -9,22 +9,31 @@ namespace TrafficSimulator
 {
     class LogicControlType3 : LogicControl
     {
-
-        private Random random;
-
         public override List<LaneId> Queue { get; protected set; }
 
         public LogicControlType3(List<IntersectionControl> intersections)
         {
-            random = new Random();
-
             foreach (IntersectionControl intersection in intersections)
             {
                 if (intersection.IntersectionType == IntersectionType.TYPE_3)
                 {
                     base.Intersection = intersection;
-                    Intersection = intersection;
                 }
+
+                //toekennen van het kruispunt dat zich rechts van dit kruispunt bevind
+                if (intersection.IntersectionType == IntersectionType.TYPE_2)
+                {
+                    base.IntersectionTop = intersection;
+                }
+
+                //toekennen van het kruispunt dat zich onder van dit kruispunt bevind
+                if (intersection.IntersectionType == IntersectionType.TYPE_1)
+                {
+                    base.IntersectionRight = intersection;
+                }
+
+                base.IntersectionLeft = null;
+                base.IntersectionBottom = null;
             }
         }
 
