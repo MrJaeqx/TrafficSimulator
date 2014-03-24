@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TrafficSimulatorUi;
+using System.Diagnostics;
 
 namespace TrafficSimulator
 {
@@ -74,6 +75,22 @@ namespace TrafficSimulator
                 }
             }
             //throw new NotImplementedException();
+        }
+
+        public void TrainIncomingEvent(object sender, EventArgs e)
+        {
+            base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.STOP);
+            base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.STOP);
+            Train = true;
+            Debug.WriteLine("TrainIncomingEvent");
+        }
+
+        public void TrainPassedEvent(object sender, EventArgs e)
+        {
+            base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.GO);
+            base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.GO);
+            Train = false;
+            Debug.WriteLine("TrainPassedEvent");
         }
     }
 }
