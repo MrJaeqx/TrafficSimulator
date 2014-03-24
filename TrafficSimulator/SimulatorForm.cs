@@ -1,7 +1,9 @@
-﻿using System;
+﻿using ArduinoLib;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO.Ports;
 using System.Windows.Forms;
 using TrafficSimulatorUi;
 
@@ -16,6 +18,7 @@ namespace TrafficSimulator
         private List<LogicControl> logicControls;
         private List<IntersectionControl> intersections;
 
+        private Arduino arduino;
 
         public SimulatorForm()
         {
@@ -50,6 +53,30 @@ namespace TrafficSimulator
             intersectionControl1.AddRoadUser(TestCar4);
 
             progressTimer.Start();
+
+            //toolStripComboBoxArduinoCom.Items.Clear();
+            //toolStripComboBoxArduinoCom.Items.AddRange(SerialPort.GetPortNames());
+            
+        }
+
+        /// <summary>
+        /// Event voor een aankomende trein.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void arduino_trainIncomingEvent(object sender, EventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// Event voor een passerende trein.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void arduino_trainPassedEvent(object sender, EventArgs e)
+        {
+            
         }
 
         private void progressTimer_Tick(object sender, EventArgs e)
@@ -90,6 +117,25 @@ namespace TrafficSimulator
             IntersectionControl intersection = (IntersectionControl)sender;
             TrafficLight trafficLight = intersection.GetTrafficLight(e.LaneId);
             trafficLight.SwitchTo(SignalState.STOP);
+        }
+
+        private void connectButtonClick(object sender, EventArgs e)
+        {
+            ToolStripButton button = (ToolStripButton)sender;
+
+            if (button.Checked)
+            {
+                arduino.Close();
+                button.Checked = false;
+            }
+            else
+            {
+                arduino = new Arduino(toolStripComboBoxArduinoCom.Text, 9600);
+                arduino.trainIncomingEvent += arduino_trainIncomingEvent;
+                arduino.trainPassedEvent += arduino_trainPassedEvent;
+                arduino.Open();
+                button.Checked = true;
+            }
         }
     }
 }

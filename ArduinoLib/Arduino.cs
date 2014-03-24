@@ -1,86 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO.Ports;
 
 namespace ArduinoLib
 {
-    public class ArduinoLib
+    public class Arduino
     {
+        /// <summary>
+        /// Serial poort voor communicatie met de Arduino.
+        /// </summary>
         private SerialPort serialPort;
 
         /// <summary>
-        /// Arduino serial port voorbereiden.
+        /// Event voor als er een trein aan komt.
         /// </summary>
-        /// <param name="comport">COM poort van de Arduino.</param>
-        /// <param name="baudrate">Baudrate van de verbinding met de Arduino.</param>
-        public ArduinoLib(String comport, int baudrate)
+        public event EventHandler trainIncomingEvent;
+
+        /// <summary>
+        /// Event voor als er een trein is gepasseerd.
+        /// </summary>
+        public event EventHandler trainPassedEvent;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="comport">COM poort van de Arduino</param>
+        /// <param name="baudrate">Baudrate voor de communticatie</param>
+        public Arduino(string comport, int baudrate)
         {
-            serialPort = new SerialPort(comport);
-            serialPort.BaudRate = baudrate;
-            serialPort.DataReceived += this.DataReceivedHandler;
+            serialPort = new SerialPort(comport, baudrate);
+
+            // Eventhandler aankoppelen voor ontvangen data.
+            serialPort.DataReceived += serialPort_DataReceived;
         }
 
         /// <summary>
-        /// Serial port openen.
+        /// Communicatie met de Arduino openen.
         /// </summary>
         public void Open()
         {
-            try
-            {
-                serialPort.Open();
-            }
-            catch (Exception exc)
-            {
-                throw exc;
-            }
+            serialPort.Open();
         }
 
         /// <summary>
-        /// Data naar de Arduino verzenden. Opent de Serial port indien dit nog niet is gebeurt.
-        /// </summary>
-        /// <param name="data">Byte om te verzenden.</param>
-        public void Send(byte data)
-        {
-            if (!serialPort.IsOpen)
-            {
-                try
-                {
-                    Open();
-                }
-                catch (Exception exc)
-                {
-                    throw exc;
-                }
-
-            }
-        }
-
-        /// <summary>
-        /// Event voor de ontvangen data.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
-        {
-            SerialPort sp = (SerialPort) sender;
-            int received = sp.ReadByte();
-        }
-
-        /// <summary>
-        /// Serial port sluiten.
+        /// Communicatie met de Arduino sluiten.
         /// </summary>
         public void Close()
         {
-            try
-            {
-                serialPort.Close();
-            }
-            catch (Exception exc) { }
+            serialPort.Close();
         }
 
-        
+        /// <summary>
+        /// Event voor ontvangen data van de Arduino
+        /// </summary>
+        /// <param name="sender">Serial poort waarvan de data afkomstig is.</param>
+        /// <param name="e">Niet gebruikt.</param>
+        private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            int received = sp.ReadByte();
+            Debug.WriteLine(received.ToString());
+
+            // TODO Check de berichten
+            // Aankomende trein
+            if (received == 49)
+            {
+                trainIncomingEvent.Invoke(null, null);
+            }
+            // Passerende trein
+            else if (received == 50)
+            {
+                trainPassedEvent.Invoke(null, null);
+            }
+        }
     }
 }
