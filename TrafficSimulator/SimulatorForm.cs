@@ -31,12 +31,27 @@ namespace TrafficSimulator
 
             logicControls = new List<LogicControl>();
 
-            logicControls.Add(new LogicControlType1(intersections));
+            //logicControls.Add(new LogicControlType1(intersections));
             logicControls.Add(new LogicControlType2(intersections));
             logicControls.Add(new LogicControlType3(intersections));
             //logicControls.Add(new LogicControlType4(intersections));
             //logicControls.Add(new LogicControlType5(intersections));
             //logicControls.Add(new LogicControlRail());
+
+            RoadUser testCar0 = new BlueCar(new Point(156, -18), 2);
+            testCar0.FaceTo(new Point(156, 400));
+            intersectionControl1.AddRoadUser(testCar0);
+
+            RoadUser testCar1 = new BlueSportsCar(new Point(-18, 244), 2);
+            intersectionControl1.AddRoadUser(testCar1);
+
+            RoadUser testCar2 = new GreenSportsCar(new Point(418, 156), 2);
+            testCar2.FaceTo(new Point(0, 156));
+            intersectionControl1.AddRoadUser(testCar2);
+
+            RoadUser testCar3 = new GreenSportsCar(new Point(244, 418), 2);
+            testCar3.FaceTo(new Point(244, 0));
+            intersectionControl1.AddRoadUser(testCar3);
 
             progressTimer.Start();
         }
@@ -56,6 +71,7 @@ namespace TrafficSimulator
                 }
 
                 LC.MakeTurn();
+                LC.TransferCarsBetweenIntersections();
                 LC.RemoveOutsideScreenRoadUser();
                 LC.HandleHeadTailCollision();
                 LC.HandleTrafficLight();
@@ -78,7 +94,7 @@ namespace TrafficSimulator
             Debug.WriteLine("Clicked traffic light with lane id: " + e.LaneId + ", of intersection: ");
             IntersectionControl intersection = (IntersectionControl)sender;
             TrafficLight trafficLight = intersection.GetTrafficLight(e.LaneId);
-            trafficLight.SwitchTo(SignalState.STOP);
+            trafficLight.SwitchTo(SignalState.CLEAR_CROSSING);
         }
 
         private void intersectionControl1_TrafficLightClick(object sender, TrafficLightClickEventArgs e)
@@ -86,7 +102,7 @@ namespace TrafficSimulator
             Debug.WriteLine("Clicked traffic light with lane id: " + e.LaneId + ", of intersection: ");
             IntersectionControl intersection = (IntersectionControl)sender;
             TrafficLight trafficLight = intersection.GetTrafficLight(e.LaneId);
-            trafficLight.SwitchTo(SignalState.STOP);
+            trafficLight.SwitchTo(SignalState.CLEAR_CROSSING);
         }
     }
 }
