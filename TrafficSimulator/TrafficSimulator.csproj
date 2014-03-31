@@ -52,6 +52,7 @@
     <Compile Include="LogicControlType2.cs" />
     <Compile Include="LogicControlType3.cs" />
     <Compile Include="LogicControlType4.cs" />
+    <Compile Include="LogicControlType5.cs" />
     <Compile Include="RandomRoadUsers.cs" />
     <Compile Include="SimulatorForm.cs">
       <SubType>Form</SubType>
