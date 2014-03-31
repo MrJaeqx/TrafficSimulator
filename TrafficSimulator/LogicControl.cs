@@ -40,7 +40,7 @@ namespace TrafficSimulator
 
             if (P.X == X1 && P.Y == Y1)
             {
-                if (random.Next(0, 30) == 1)
+                if (random.Next(0, 1) == 1)
                 {
                     roadUser.FaceTo(new Point(X2, Y2));
                 }
@@ -60,7 +60,7 @@ namespace TrafficSimulator
         {
             Random random = new Random();
 
-            if (P.X == X1 && P.Y == Y2)
+            if (P.X == X1 && P.Y == Y1)
             {
                 if (random.Next(0, 2) == 1)
                 {
