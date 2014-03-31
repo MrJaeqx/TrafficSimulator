@@ -19,6 +19,8 @@ namespace TrafficSimulator
         private List<IntersectionControl> intersections;
 
         private Arduino arduino;
+        private LogicControlRail railIntersection;
+        private bool enableArduino = false;
 
         public SimulatorForm()
         {
@@ -60,27 +62,8 @@ namespace TrafficSimulator
 
             //toolStripComboBoxArduinoCom.Items.Clear();
             //toolStripComboBoxArduinoCom.Items.AddRange(SerialPort.GetPortNames());
-            
-        }
 
-        /// <summary>
-        /// Event voor een aankomende trein.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void arduino_trainIncomingEvent(object sender, EventArgs e)
-        {
-            
-        }
-
-        /// <summary>
-        /// Event voor een passerende trein.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void arduino_trainPassedEvent(object sender, EventArgs e)
-        {
-            
+            //connectButtonClick(null, null);
         }
 
         private void progressTimer_Tick(object sender, EventArgs e)
@@ -133,20 +116,18 @@ namespace TrafficSimulator
 
         private void connectButtonClick(object sender, EventArgs e)
         {
-            ToolStripButton button = (ToolStripButton)sender;
-
-            if (button.Checked)
+            if (enableArduino)
             {
                 arduino.Close();
-                button.Checked = false;
+                enableArduino = false;
             }
             else
             {
-                arduino = new Arduino(toolStripComboBoxArduinoCom.Text, 9600);
-                arduino.trainIncomingEvent += arduino_trainIncomingEvent;
-                arduino.trainPassedEvent += arduino_trainPassedEvent;
+                arduino = new Arduino("COM3", 9600);
+                arduino.trainIncomingEvent += railIntersection.TrainIncomingEvent;
+                arduino.trainPassedEvent += railIntersection.TrainPassedEvent;
                 arduino.Open();
-                button.Checked = true;
+                enableArduino = true;
             }
         }
 
