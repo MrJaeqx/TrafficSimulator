@@ -29,6 +29,11 @@ namespace TrafficSimulator
         public SimulatorForm()
         {
             InitializeComponent();
+
+            trafficLightTimer.Interval = 5000;
+            trafficLightTimer.Tick += trafficlightTimer_Tick;
+            trafficLightTimer.Enabled = true;
+
             intersections = new List<IntersectionControl>();
 
             intersections.Add(intersectionControl1);
@@ -51,9 +56,7 @@ namespace TrafficSimulator
 
             randomRoadUsers = new RandomRoadUsers(intersections);
 
-            trafficlightTimer.Interval = 5000;
-            trafficlightTimer.Tick += trafficlightTimer_Tick;
-            trafficlightTimer.Start();
+            
 
             progressTimer.Start();
 
