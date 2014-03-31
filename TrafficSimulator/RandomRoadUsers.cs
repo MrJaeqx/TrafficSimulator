@@ -62,7 +62,7 @@ namespace TrafficSimulator
                 {
                     case 0:
                         //south inbound left pedestrian
-                        //newRoadUser = new Pedestrian();
+                        newRoadUser = new Pedestrian(new Point(0, 0), 1);
                         break;
                     case 1:
                         //south inbound left road
@@ -78,7 +78,7 @@ namespace TrafficSimulator
                         break;
                     case 3:
                         //south inbound right pedestrian
-                        //newRoadUser = new Pedestrian();
+                        newRoadUser = new Pedestrian(new Point(0, 0), 1);
                         break;
                     default:
                         break;
@@ -92,7 +92,7 @@ namespace TrafficSimulator
                 {
                     case 0:
                         //north inbound left pedestrian
-                        //newRoadUser = new Pedestrian();
+                        newRoadUser = new Pedestrian(new Point(0, 0), 1);
                         break;
                     case 1:
                         //north inbound left lane
@@ -108,11 +108,11 @@ namespace TrafficSimulator
                         break;
                     case 3:
                         //north inbound right pedestrian
-                        //newRoadUser = new Pedestrian();
+                        newRoadUser = new Pedestrian(new Point(0, 0), 1);
                         break;
                     case 4:
                         //left inbound left pedestrian
-                        //newRoadUser = new Pedestrian();
+                        newRoadUser = new Pedestrian(new Point(0, 0), 1);
                         break;
                     case 5:
                         //left inbound left lane
@@ -128,7 +128,7 @@ namespace TrafficSimulator
                         break;
                     case 7:
                         //left inbound right pedestrian
-                        //newRoadUser = new Pedestrian;
+                        newRoadUser = new Pedestrian(new Point(0, 0), 1);
                         break;
                     default:
                         break;
@@ -142,7 +142,7 @@ namespace TrafficSimulator
                 {
                     case 0:
                         //south inbound left pedestrian
-                        //newRoadUser = new Pedestrian();
+                        newRoadUser = new Pedestrian(new Point(0, 0), 1);
                         break;
                     case 1:
                         //south inbound left lane
@@ -158,11 +158,11 @@ namespace TrafficSimulator
                         break;
                     case 3:
                         //south inbound right pedestrian
-                        //newRoadUser = new Pedestrian();
+                        newRoadUser = new Pedestrian(new Point(0, 0), 1);
                         break;
                     case 4:
                         //left inbound left pedestrian
-                        //newRoadUser = new Pedestrian();
+                        newRoadUser = new Pedestrian(new Point(0, 0), 1);
                         break;
                     case 5:
                         //left inbound left lane
@@ -178,7 +178,7 @@ namespace TrafficSimulator
                         break;
                     case 7:
                         //left inbound right pedestrian
-                        //newRoadUser = new Pedestrian;
+                        newRoadUser = new Pedestrian(new Point(0, 0), 1);
                         break;
                     default:
                         break;
