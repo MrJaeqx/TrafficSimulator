@@ -93,6 +93,26 @@ namespace TrafficSimulator
             }
         }
 
+        private RoadUser pickCorrectCar(RoadUser roadUser, int spawnX, int spawnY)
+        {
+            if (roadUser is BlueCar)
+            {
+                return new BlueCar(new Point(spawnX, spawnY), 2);
+            }
+            else if (roadUser is BlueSportsCar)
+            {
+                return new BlueSportsCar(new Point(spawnX, spawnY), 2);
+            }
+            else if (roadUser is GreenSportsCar)
+            {
+                return new GreenSportsCar(new Point(spawnX, spawnY), 2);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// methode die gebruikt wordt om roadUsers van het ene kruispunt naar het andere over te zetten
         /// </summary>
@@ -109,25 +129,42 @@ namespace TrafficSimulator
 
             if (IntersectionBottom != null && P.X == leaveX && P.Y == leaveY)
             {
-                RoadUser newRoadUser = null;
-
-                if (roadUser is BlueCar)
-                {
-                    newRoadUser = new BlueCar(new Point(spawnX, spawnY), 2);
-                }
-                else if (roadUser is BlueSportsCar)
-                {
-                    newRoadUser = new BlueSportsCar(new Point(spawnX, spawnY), 2);
-                }
-                else if (roadUser is GreenSportsCar)
-                {
-                    newRoadUser = new GreenSportsCar(new Point(spawnX, spawnY), 2);
-                }
+                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
 
                 if (newRoadUser != null)
                 {
                     newRoadUser.FaceTo(new Point(faceToX, faceToY));
                     IntersectionBottom.AddRoadUser(newRoadUser);
+                }
+            }
+            else if (IntersectionLeft != null && P.X == leaveX && P.Y == leaveY)
+            {
+                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
+
+                if (newRoadUser != null)
+                {
+                    newRoadUser.FaceTo(new Point(faceToX, faceToY));
+                    IntersectionLeft.AddRoadUser(newRoadUser);
+                }
+            }
+            else if (IntersectionRight != null && P.X == leaveX && P.Y == leaveY)
+            {
+                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
+
+                if (newRoadUser != null)
+                {
+                    newRoadUser.FaceTo(new Point(faceToX, faceToY));
+                    IntersectionRight.AddRoadUser(newRoadUser);
+                }
+            }
+            else if (IntersectionTop != null && P.X == leaveX && P.Y == leaveY)
+            {
+                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
+
+                if (newRoadUser != null)
+                {
+                    newRoadUser.FaceTo(new Point(faceToX, faceToY));
+                    IntersectionTop.AddRoadUser(newRoadUser);
                 }
             }
         }
