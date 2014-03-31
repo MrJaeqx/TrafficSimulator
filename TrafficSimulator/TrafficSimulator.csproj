@@ -58,6 +58,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="LogicControlType4.cs" />
+    <Compile Include="RandomRoadUsers.cs" />
     <Compile Include="SimulatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,7 +106,7 @@
       <Name>ArduinoLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrafficSimulatorUi\TrafficSimulatorUi.csproj">
-      <Project>{88D76406-6430-48B6-A237-FD19EA3A99A5}</Project>
+      <Project>{88d76406-6430-48b6-a237-fd19ea3a99a5}</Project>
       <Name>TrafficSimulatorUi</Name>
     </ProjectReference>
   </ItemGroup>

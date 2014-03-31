@@ -40,7 +40,7 @@ namespace TrafficSimulator
 
             if (P.X == X1 && P.Y == Y1)
             {
-                if (random.Next(0, 30) == 1)
+                if (random.Next(0, 1) == 1)
                 {
                     roadUser.FaceTo(new Point(X2, Y2));
                 }
@@ -60,7 +60,7 @@ namespace TrafficSimulator
         {
             Random random = new Random();
 
-            if (P.X == X1 && P.Y == Y2)
+            if (P.X == X1 && P.Y == Y1)
             {
                 if (random.Next(0, 2) == 1)
                 {
@@ -93,6 +93,26 @@ namespace TrafficSimulator
             }
         }
 
+        private RoadUser pickCorrectCar(RoadUser roadUser, int spawnX, int spawnY)
+        {
+            if (roadUser is BlueCar)
+            {
+                return new BlueCar(new Point(spawnX, spawnY), 2);
+            }
+            else if (roadUser is BlueSportsCar)
+            {
+                return new BlueSportsCar(new Point(spawnX, spawnY), 2);
+            }
+            else if (roadUser is GreenSportsCar)
+            {
+                return new GreenSportsCar(new Point(spawnX, spawnY), 2);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// methode die gebruikt wordt om roadUsers van het ene kruispunt naar het andere over te zetten
         /// </summary>
@@ -109,25 +129,42 @@ namespace TrafficSimulator
 
             if (IntersectionBottom != null && P.X == leaveX && P.Y == leaveY)
             {
-                RoadUser newRoadUser = null;
-
-                if (roadUser is BlueCar)
-                {
-                    newRoadUser = new BlueCar(new Point(spawnX, spawnY), 2);
-                }
-                else if (roadUser is BlueSportsCar)
-                {
-                    newRoadUser = new BlueSportsCar(new Point(spawnX, spawnY), 2);
-                }
-                else if (roadUser is GreenSportsCar)
-                {
-                    newRoadUser = new GreenSportsCar(new Point(spawnX, spawnY), 2);
-                }
+                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
 
                 if (newRoadUser != null)
                 {
                     newRoadUser.FaceTo(new Point(faceToX, faceToY));
                     IntersectionBottom.AddRoadUser(newRoadUser);
+                }
+            }
+            else if (IntersectionLeft != null && P.X == leaveX && P.Y == leaveY)
+            {
+                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
+
+                if (newRoadUser != null)
+                {
+                    newRoadUser.FaceTo(new Point(faceToX, faceToY));
+                    IntersectionLeft.AddRoadUser(newRoadUser);
+                }
+            }
+            else if (IntersectionRight != null && P.X == leaveX && P.Y == leaveY)
+            {
+                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
+
+                if (newRoadUser != null)
+                {
+                    newRoadUser.FaceTo(new Point(faceToX, faceToY));
+                    IntersectionRight.AddRoadUser(newRoadUser);
+                }
+            }
+            else if (IntersectionTop != null && P.X == leaveX && P.Y == leaveY)
+            {
+                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
+
+                if (newRoadUser != null)
+                {
+                    newRoadUser.FaceTo(new Point(faceToX, faceToY));
+                    IntersectionTop.AddRoadUser(newRoadUser);
                 }
             }
         }
@@ -144,11 +181,11 @@ namespace TrafficSimulator
 
                     //transfer naar een kruispunt rechts
                     TransferCarMethod(roadUser, 382, 216, -18, 216, 400, 216);
-                    TransferCarMethod(roadUser, 382, 244, -18, 244, 400, 244);
+                    TransferCarMethod(roadUser, 382, 244, -518, 244, 400, 244);
 
                     //transfer naar een kruipunt aan de bovenkant
-                    TransferCarMethod(roadUser, 216, 18, 216, 428, 216, 0);
-                    TransferCarMethod(roadUser, 244, 18, 244, 428, 244, 0);
+                    TransferCarMethod(roadUser, 216, 18, 216, 418, 216, 0);
+                    TransferCarMethod(roadUser, 244, 18, 244, 418, 244, 0);
 
                     //transfer naar een kruispunt links
                     TransferCarMethod(roadUser, 18, 156, 418, 156, 0, 156);
