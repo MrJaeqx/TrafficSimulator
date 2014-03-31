@@ -55,26 +55,7 @@ namespace TrafficSimulator
 
         public override void HandleQueue()
         {
-            if (Queue.Count > 0)
-            {
-                if (Queue[0] == LaneId.WEST_INBOUND_ROAD_LEFT_AND_RIGHT)
-                {
-                    if (!Train)
-                    {
-                        base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.GO);
-                        Queue.RemoveAt(0);
-                    }
-                }
-                else if (Queue[0] == LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT)
-                {
-                    if (!Train)
-                    {
-                        base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.GO);
-                        Queue.RemoveAt(0);
-                    }
-                }
-            }
-            //throw new NotImplementedException();
+            
         }
 
         public void TrainIncomingEvent(object sender, EventArgs e)
