@@ -32,31 +32,24 @@ namespace TrafficSimulator
             intersections = new List<IntersectionControl>();
 
             intersections.Add(intersectionControl1);
-            //intersections.Add(intersectionControl2);
-            //intersections.Add(intersectionControl3);
+            intersections.Add(intersectionControl2);
+            intersections.Add(intersectionControl3);
             intersections.Add(intersectionControl4);
-            //intersections.Add(intersectionControl5);
-            //intersections.Add(intersectionControl6);
+            intersections.Add(intersectionControl5);
+            intersections.Add(intersectionControl6);
 
             logicControls = new List<LogicControl>();
 
-            //logicControls.Add(new LogicControlType1(intersections));
+            railIntersection = new LogicControlRail(intersections);
+
+            logicControls.Add(new LogicControlType1(intersections));
             logicControls.Add(new LogicControlType2(intersections));
             logicControls.Add(new LogicControlType3(intersections));
-            //logicControls.Add(new LogicControlType4(intersections));
-            //logicControls.Add(new LogicControlType5(intersections));
-            //logicControls.Add(new LogicControlRail());
-
+            logicControls.Add(new LogicControlType4(intersections));
+            logicControls.Add(new LogicControlType5(intersections));
+            logicControls.Add(railIntersection);
 
             randomRoadUsers = new RandomRoadUsers(intersections);
-
-            RoadUser testCar0 = new BlueSportsCar(new Point(156, -18), 2);
-            testCar0.FaceTo(new Point(156, 400));
-            intersectionControl1.AddRoadUser(testCar0);
-
-            RoadUser testCar4 = new Pedestrian(new Point(132, -9), 2);
-            testCar4.FaceTo(new Point(132, 400));
-            intersectionControl4.AddRoadUser(testCar4);
 
             trafficlightTimer.Interval = 5000;
             trafficlightTimer.Tick += trafficlightTimer_Tick;
