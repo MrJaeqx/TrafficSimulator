@@ -101,11 +101,11 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl3);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl2);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1203, 803);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1203, 671);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1203, 874);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1203, 742);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -310,7 +310,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1203, 874);
+            this.ClientSize = new System.Drawing.Size(1203, 742);
             this.Controls.Add(this.toolStripContainer1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
