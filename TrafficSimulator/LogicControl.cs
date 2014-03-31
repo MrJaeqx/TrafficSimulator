@@ -181,11 +181,11 @@ namespace TrafficSimulator
 
                     //transfer naar een kruispunt rechts
                     TransferCarMethod(roadUser, 382, 216, -18, 216, 400, 216);
-                    TransferCarMethod(roadUser, 382, 244, -18, 244, 400, 244);
+                    TransferCarMethod(roadUser, 382, 244, -518, 244, 400, 244);
 
                     //transfer naar een kruipunt aan de bovenkant
-                    TransferCarMethod(roadUser, 216, 18, 216, 428, 216, 0);
-                    TransferCarMethod(roadUser, 244, 18, 244, 428, 244, 0);
+                    TransferCarMethod(roadUser, 216, 18, 216, 418, 216, 0);
+                    TransferCarMethod(roadUser, 244, 18, 244, 418, 244, 0);
 
                     //transfer naar een kruispunt links
                     TransferCarMethod(roadUser, 18, 156, 418, 156, 0, 156);

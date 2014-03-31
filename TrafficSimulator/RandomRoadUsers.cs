@@ -148,7 +148,7 @@ namespace TrafficSimulator
                     case 1:
                         //south inbound left lane
                         newRoadUser = pickRandomCar(216, 418);
-                        newRoadUser.FaceTo(new Point(216, 0));                       
+                        newRoadUser.FaceTo(new Point(216, 0));
                         break;
                     case 2:
                         //south inbound right lane
@@ -223,7 +223,7 @@ namespace TrafficSimulator
                     case 6:
                         //right inbound right lane
                         newRoadUser = pickRandomCar(418, 244);
-                        newRoadUser.FaceTo(new Point(0, 244));                       
+                        newRoadUser.FaceTo(new Point(0, 244));
                         break;
                     case 7:
                         //right inbound right pedestrian

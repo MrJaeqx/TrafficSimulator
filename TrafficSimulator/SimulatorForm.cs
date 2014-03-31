@@ -47,7 +47,16 @@ namespace TrafficSimulator
             //logicControls.Add(new LogicControlType5(intersections));
             //logicControls.Add(new LogicControlRail());
 
+
             randomRoadUsers = new RandomRoadUsers(intersections);
+
+            RoadUser testCar0 = new BlueSportsCar(new Point(156, -18), 2);
+            testCar0.FaceTo(new Point(156, 400));
+            intersectionControl1.AddRoadUser(testCar0);
+
+            RoadUser testCar4 = new Pedestrian(new Point(132, -9), 2);
+            testCar4.FaceTo(new Point(132, 400));
+            intersectionControl4.AddRoadUser(testCar4);
 
             trafficlightTimer.Interval = 5000;
             trafficlightTimer.Tick += trafficlightTimer_Tick;
