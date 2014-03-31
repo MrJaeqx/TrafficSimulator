@@ -1,7 +1,9 @@
-﻿using System;
+﻿using ArduinoLib;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO.Ports;
 using System.Windows.Forms;
 using TrafficSimulatorUi;
 
@@ -16,6 +18,9 @@ namespace TrafficSimulator
         private List<LogicControl> logicControls;
         private List<IntersectionControl> intersections;
 
+        private Arduino arduino;
+        private LogicControlRail railIntersection;
+        private bool enableArduino = false;
 
         public SimulatorForm()
         {
@@ -31,25 +36,34 @@ namespace TrafficSimulator
 
             logicControls = new List<LogicControl>();
 
-            //LogicControls.Add(new LogicControlType1());
+            //logicControls.Add(new LogicControlType1(intersections));
             logicControls.Add(new LogicControlType2(intersections));
-            //LogicControls.Add(new LogicControlType3());
-            //LogicControls.Add(new LogicControlType4());
-            //LogicControls.Add(new LogicControlType5());
-            //LogicControls.Add(new LogicControlRail());
+            logicControls.Add(new LogicControlType3(intersections));
+            //logicControls.Add(new LogicControlType4(intersections));
+            //logicControls.Add(new LogicControlType5(intersections));
+            //logicControls.Add(new LogicControlRail());
 
-            RoadUser TestCar1 = new BlueCar(new Point(-32, 216), 2);
-            RoadUser TestCar2 = new GreenSportsCar(new Point(-32, 244), 2);
-            RoadUser TestCar3 = new BlueSportsCar(new Point(156, -32), 2);
-            RoadUser TestCar4 = new BlueSportsCar(new Point(184, -32), 2);
-            TestCar3.FaceTo(new Point(156, 400));
-            TestCar4.FaceTo(new Point(184, 400));
-            intersectionControl1.AddRoadUser(TestCar1);
-            intersectionControl1.AddRoadUser(TestCar2);
-            intersectionControl1.AddRoadUser(TestCar3);
-            intersectionControl1.AddRoadUser(TestCar4);
+            RoadUser testCar0 = new BlueCar(new Point(156, -18), 2);
+            testCar0.FaceTo(new Point(156, 400));
+            intersectionControl4.AddRoadUser(testCar0);
+
+            RoadUser testCar1 = new BlueSportsCar(new Point(-18, 244), 2);
+            intersectionControl4.AddRoadUser(testCar1);
+
+            RoadUser testCar2 = new GreenSportsCar(new Point(418, 156), 2);
+            testCar2.FaceTo(new Point(0, 156));
+            intersectionControl4.AddRoadUser(testCar2);
+
+            RoadUser testCar3 = new GreenSportsCar(new Point(244, 418), 2);
+            testCar3.FaceTo(new Point(244, 0));
+            intersectionControl4.AddRoadUser(testCar3);
 
             progressTimer.Start();
+
+            //toolStripComboBoxArduinoCom.Items.Clear();
+            //toolStripComboBoxArduinoCom.Items.AddRange(SerialPort.GetPortNames());
+
+            //connectButtonClick(null, null);
         }
 
         private void progressTimer_Tick(object sender, EventArgs e)
@@ -67,10 +81,10 @@ namespace TrafficSimulator
                 }
 
                 LC.MakeTurn();
-                LC.RemoveEndOFLaneRoadUser();
+                LC.TransferCarsBetweenIntersections();
+                LC.RemoveOutsideScreenRoadUser();
                 LC.HandleHeadTailCollision();
                 LC.HandleTrafficLight();
-                LC.HandleQueue();
                 LC.Intersection.Invalidate();
             }
         }
@@ -89,7 +103,40 @@ namespace TrafficSimulator
             Debug.WriteLine("Clicked traffic light with lane id: " + e.LaneId + ", of intersection: ");
             IntersectionControl intersection = (IntersectionControl)sender;
             TrafficLight trafficLight = intersection.GetTrafficLight(e.LaneId);
-            trafficLight.SwitchTo(SignalState.STOP);
+            trafficLight.SwitchTo(SignalState.CLEAR_CROSSING);
+        }
+
+        private void intersectionControl1_TrafficLightClick(object sender, TrafficLightClickEventArgs e)
+        {
+            Debug.WriteLine("Clicked traffic light with lane id: " + e.LaneId + ", of intersection: ");
+            IntersectionControl intersection = (IntersectionControl)sender;
+            TrafficLight trafficLight = intersection.GetTrafficLight(e.LaneId);
+            trafficLight.SwitchTo(SignalState.CLEAR_CROSSING);
+        }
+
+        private void connectButtonClick(object sender, EventArgs e)
+        {
+            if (enableArduino)
+            {
+                arduino.Close();
+                enableArduino = false;
+            }
+            else
+            {
+                arduino = new Arduino("COM3", 9600);
+                arduino.trainIncomingEvent += railIntersection.TrainIncomingEvent;
+                arduino.trainPassedEvent += railIntersection.TrainPassedEvent;
+                arduino.Open();
+                enableArduino = true;
+            }
+        }
+
+        private void trafficlightTimer_Tick(object sender, EventArgs e)
+        {
+            foreach (LogicControl LC in logicControls)
+            {
+                LC.HandleQueue();
+            }
         }
     }
 }

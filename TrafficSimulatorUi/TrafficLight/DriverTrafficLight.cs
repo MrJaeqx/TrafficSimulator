@@ -41,7 +41,7 @@ namespace TrafficSimulatorUi
         /// <summary>
         /// Duration of the SignalState.CLEAR_CROSSING state (msec).
         /// </summary>
-        private const int clearCrossingStateDuration = 2000;
+        private const int clearCrossingStateDuration = 3000;
 
         /// <summary>
         /// The coordinates for drawing the red light 
