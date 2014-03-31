@@ -24,6 +24,8 @@ namespace TrafficSimulator
 
         private RandomRoadUsers randomRoadUsers;
 
+        private Timer trafficLightTimer = new Timer();
+
         public SimulatorForm()
         {
             InitializeComponent();
@@ -46,6 +48,10 @@ namespace TrafficSimulator
             //logicControls.Add(new LogicControlRail());
 
             randomRoadUsers = new RandomRoadUsers(intersections);
+
+            trafficlightTimer.Interval = 5000;
+            trafficlightTimer.Tick += trafficlightTimer_Tick;
+            trafficlightTimer.Start();
 
             progressTimer.Start();
 
