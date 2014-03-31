@@ -4,22 +4,25 @@
 
 Bounce trein = Bounce();
 
-const int LDR = A1;
+const int LDR1 = A1;
+const int LDR2 = A0;
 const int leds = 5;
 int slagboompositie = 0;
 
 int lichtsterkte = 0;
 
-Servo myservo;  // create servo object to control a servo 
+Servo myservo1;
+Servo myservo2; // create servo object to control a servo 
 // a maximum of eight servo objects can be created 
 
 int pos = 0;    // variable to store the servo position 
 
 void setup() 
 {
-  trein.attach(7);
-  trein.interval(5);
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  //trein.attach(7);
+  //trein.interval(5);
+  myservo1.attach(9);
+  myservo2.attach(10);  // attaches the servo on pin 9 to the servo object
   pinMode(leds, OUTPUT);
   digitalWrite(leds, LOW);
   
@@ -28,17 +31,19 @@ void setup()
 
 void loop() 
 {
-  int lichtinval = analogRead(LDR);
+  int startLicht = analogRead(LDR1);
+  int eindLicht = analogRead(LDR2);
   
-  Serial.print(lichtinval);
-  Serial.print(" ");
-  
-  trein.update();
+  //Serial.println(startLicht);
+  //Serial.println(eindLicht);
+ 
+  //trein.update();
 
-  int valueTrein = trein.read();
+  //int valueTrein = trein.read();
 
-  if(valueTrein == HIGH || lichtinval < 400)
+  if(startLicht < 400 && eindLicht >= 400)
   {
+    Serial.println("1");
     if(slagboompositie == 0)
     {
       digitalWrite(leds, HIGH);
@@ -47,7 +52,7 @@ void loop()
       slagboompositie = 1;
     }
   }
-  else
+  else if(startLicht >= 400 && eindLicht >= 400)
   {
     if(slagboompositie == 1)
     {
@@ -55,6 +60,7 @@ void loop()
       SlagboomOpen();
       digitalWrite(leds, LOW);
       slagboompositie = 0;
+      Serial.println("2");
     }
   }
 }
