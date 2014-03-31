@@ -19,6 +19,8 @@ namespace TrafficSimulator
         private List<IntersectionControl> intersections;
 
         private Arduino arduino;
+        private LogicControlRail railIntersection;
+        private bool enableArduino = false;
 
         public SimulatorForm()
         {
@@ -43,44 +45,25 @@ namespace TrafficSimulator
 
             RoadUser testCar0 = new BlueCar(new Point(156, -18), 2);
             testCar0.FaceTo(new Point(156, 400));
-            intersectionControl1.AddRoadUser(testCar0);
+            intersectionControl4.AddRoadUser(testCar0);
 
             RoadUser testCar1 = new BlueSportsCar(new Point(-18, 244), 2);
-            intersectionControl1.AddRoadUser(testCar1);
+            intersectionControl4.AddRoadUser(testCar1);
 
             RoadUser testCar2 = new GreenSportsCar(new Point(418, 156), 2);
             testCar2.FaceTo(new Point(0, 156));
-            intersectionControl1.AddRoadUser(testCar2);
+            intersectionControl4.AddRoadUser(testCar2);
 
             RoadUser testCar3 = new GreenSportsCar(new Point(244, 418), 2);
             testCar3.FaceTo(new Point(244, 0));
-            intersectionControl1.AddRoadUser(testCar3);
+            intersectionControl4.AddRoadUser(testCar3);
 
             progressTimer.Start();
 
             //toolStripComboBoxArduinoCom.Items.Clear();
             //toolStripComboBoxArduinoCom.Items.AddRange(SerialPort.GetPortNames());
-            
-        }
 
-        /// <summary>
-        /// Event voor een aankomende trein.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void arduino_trainIncomingEvent(object sender, EventArgs e)
-        {
-            
-        }
-
-        /// <summary>
-        /// Event voor een passerende trein.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void arduino_trainPassedEvent(object sender, EventArgs e)
-        {
-            
+            //connectButtonClick(null, null);
         }
 
         private void progressTimer_Tick(object sender, EventArgs e)
@@ -102,7 +85,6 @@ namespace TrafficSimulator
                 LC.RemoveOutsideScreenRoadUser();
                 LC.HandleHeadTailCollision();
                 LC.HandleTrafficLight();
-                LC.HandleQueue();
                 LC.Intersection.Invalidate();
             }
         }
@@ -134,20 +116,26 @@ namespace TrafficSimulator
 
         private void connectButtonClick(object sender, EventArgs e)
         {
-            ToolStripButton button = (ToolStripButton)sender;
-
-            if (button.Checked)
+            if (enableArduino)
             {
                 arduino.Close();
-                button.Checked = false;
+                enableArduino = false;
             }
             else
             {
-                arduino = new Arduino(toolStripComboBoxArduinoCom.Text, 9600);
-                arduino.trainIncomingEvent += arduino_trainIncomingEvent;
-                arduino.trainPassedEvent += arduino_trainPassedEvent;
+                arduino = new Arduino("COM3", 9600);
+                arduino.trainIncomingEvent += railIntersection.TrainIncomingEvent;
+                arduino.trainPassedEvent += railIntersection.TrainPassedEvent;
                 arduino.Open();
-                button.Checked = true;
+                enableArduino = true;
+            }
+        }
+
+        private void trafficlightTimer_Tick(object sender, EventArgs e)
+        {
+            foreach (LogicControl LC in logicControls)
+            {
+                LC.HandleQueue();
             }
         }
     }
