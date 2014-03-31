@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrafficSimulator.TrafficMessageClient {
+namespace TrafficSimulator.TrafficMessageService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="MessageService", ConfigurationName="TrafficMessageClient.ITrafficMessage")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="MessageService", ConfigurationName="TrafficMessageService.ITrafficMessage")]
     public interface ITrafficMessage {
         
         [System.ServiceModel.OperationContractAttribute(Action="MessageService/ITrafficMessage/GetServerName", ReplyAction="MessageService/ITrafficMessage/GetServerNameResponse")]
@@ -32,12 +32,12 @@ namespace TrafficSimulator.TrafficMessageClient {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ITrafficMessageChannel : TrafficSimulator.TrafficMessageClient.ITrafficMessage, System.ServiceModel.IClientChannel {
+    public interface ITrafficMessageChannel : TrafficSimulator.TrafficMessageService.ITrafficMessage, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TrafficMessageClient : System.ServiceModel.ClientBase<TrafficSimulator.TrafficMessageClient.ITrafficMessage>, TrafficSimulator.TrafficMessageClient.ITrafficMessage {
+    public partial class TrafficMessageClient : System.ServiceModel.ClientBase<TrafficSimulator.TrafficMessageService.ITrafficMessage>, TrafficSimulator.TrafficMessageService.ITrafficMessage {
         
         public TrafficMessageClient() {
         }

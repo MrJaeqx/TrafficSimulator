@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b2b27bdf-ad50-407d-9faf-20d13ccb96d8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="69b0b837-fa61-4a0f-805f-599caa01b990" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -21,10 +21,10 @@
     <MetadataSource Address="http://localhost:8000/MEX" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="MessageService.wsdl" MetadataType="Wsdl" ID="ddbe1eae-5d4f-4b7d-8d0e-3281ae2c5df5" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="8b5f92b1-78d7-40d4-acf2-2df50965f7d6" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
-    <MetadataFile FileName="MessageService.xsd" MetadataType="Schema" ID="f4a5ed43-f3c5-4011-83e7-f83768708ea0" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="8a0b5f29-2aa5-4615-ba98-c2681e2c3c15" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
+    <MetadataFile FileName="MessageService.wsdl" MetadataType="Wsdl" ID="52f19d17-0158-443d-a599-9394a38cb37c" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="e7d30220-521e-43b8-9a21-3971b9770129" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
+    <MetadataFile FileName="MessageService.xsd" MetadataType="Schema" ID="b1ad613d-bd92-4bd5-8c8f-995a54bb6f5f" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="c57f154d-8074-48e0-8f52-dfbefab23f40" SourceId="1" SourceUrl="http://localhost:8000/MEX" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
