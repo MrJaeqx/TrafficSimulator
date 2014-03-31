@@ -43,18 +43,18 @@ namespace TrafficSimulator
 
             RoadUser testCar0 = new BlueCar(new Point(156, -18), 2);
             testCar0.FaceTo(new Point(156, 400));
-            intersectionControl1.AddRoadUser(testCar0);
+            intersectionControl4.AddRoadUser(testCar0);
 
             RoadUser testCar1 = new BlueSportsCar(new Point(-18, 244), 2);
-            intersectionControl1.AddRoadUser(testCar1);
+            intersectionControl4.AddRoadUser(testCar1);
 
             RoadUser testCar2 = new GreenSportsCar(new Point(418, 156), 2);
             testCar2.FaceTo(new Point(0, 156));
-            intersectionControl1.AddRoadUser(testCar2);
+            intersectionControl4.AddRoadUser(testCar2);
 
             RoadUser testCar3 = new GreenSportsCar(new Point(244, 418), 2);
             testCar3.FaceTo(new Point(244, 0));
-            intersectionControl1.AddRoadUser(testCar3);
+            intersectionControl4.AddRoadUser(testCar3);
 
             progressTimer.Start();
 
@@ -102,7 +102,6 @@ namespace TrafficSimulator
                 LC.RemoveOutsideScreenRoadUser();
                 LC.HandleHeadTailCollision();
                 LC.HandleTrafficLight();
-                LC.HandleQueue();
                 LC.Intersection.Invalidate();
             }
         }
@@ -148,6 +147,14 @@ namespace TrafficSimulator
                 arduino.trainPassedEvent += arduino_trainPassedEvent;
                 arduino.Open();
                 button.Checked = true;
+            }
+        }
+
+        private void trafficlightTimer_Tick(object sender, EventArgs e)
+        {
+            foreach (LogicControl LC in logicControls)
+            {
+                LC.HandleQueue();
             }
         }
     }
