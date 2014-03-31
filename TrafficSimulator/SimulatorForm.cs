@@ -40,7 +40,7 @@ namespace TrafficSimulator
 
             RoadUser testCar0 = new BlueSportsCar(new Point(156, -18), 2);
             testCar0.FaceTo(new Point(156, 400));
-            intersectionControl4.AddRoadUser(testCar0);
+            intersectionControl1.AddRoadUser(testCar0);
 
             RoadUser testCar1 = new BlueSportsCar(new Point(-18, 244), 2);
             intersectionControl4.AddRoadUser(testCar1);
