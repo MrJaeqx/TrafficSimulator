@@ -26,7 +26,7 @@ namespace TrafficSimulator
         }
 
         /// <summary>
-        /// Bepalen om een bocht te maken met een kans van 1 op 3
+        /// Bepalen om een bocht te maken met een kans van 1 op 2
         /// </summary>
         /// <param name="roadUser">de roaduser waar het om gaat</param>
         /// <param name="P"> het punt waar de roaduser zich bevind</param>
@@ -48,7 +48,7 @@ namespace TrafficSimulator
         }
 
         /// <summary>
-        /// Bepalen om een bocht te maken met een kans van 1 op 2
+        /// Bepalen om een bocht te maken met een kans van 1 op 3
         /// </summary>
         /// <param name="roadUser">de roaduser waar het om gaat</param>
         /// <param name="P"> het punt waar de roaduser zich bevind</param>
@@ -63,6 +63,28 @@ namespace TrafficSimulator
             if (P.X == X1 && P.Y == Y1)
             {
                 if (random.Next(0, 2) == 1)
+                {
+                    roadUser.FaceTo(new Point(X2, Y2));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Bepalen om een bocht te maken met een kans van 1 op 4
+        /// </summary>
+        /// <param name="roadUser">de roaduser waar het om gaat</param>
+        /// <param name="P"> het punt waar de roaduser zich bevind</param>
+        /// <param name="X1"> de X van het punt waar de bocht moet plaatsvinden</param>
+        /// <param name="Y1"> de Y van het punt waar de bocht moet plaatsvinden</param>
+        /// <param name="X2"> de X van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
+        /// <param name="Y2"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
+        protected void Type3Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
+        {
+            Random random = new Random();
+
+            if (P.X == X1 && P.Y == Y1)
+            {
+                if (random.Next(0, 3) == 1)
                 {
                     roadUser.FaceTo(new Point(X2, Y2));
                 }
