@@ -34,28 +34,28 @@ namespace TrafficSimulator
             //logicControls.Add(new LogicControlType1(intersections));
             logicControls.Add(new LogicControlType2(intersections));
             logicControls.Add(new LogicControlType3(intersections));
-            //logicControls.Add(new LogicControlType4(intersections));
+            logicControls.Add(new LogicControlType4(intersections));
             //logicControls.Add(new LogicControlType5(intersections));
             //logicControls.Add(new LogicControlRail());
 
-            RoadUser testCar0 = new BlueSportsCar(new Point(156, -18), 2);
+            /*RoadUser testCar0 = new BlueSportsCar(new Point(156, -18), 2);
             testCar0.FaceTo(new Point(156, 400));
-            intersectionControl4.AddRoadUser(testCar0);
+            intersectionControl4.AddRoadUser(testCar0);*/
 
             RoadUser testCar1 = new BlueSportsCar(new Point(-18, 244), 2);
-            intersectionControl4.AddRoadUser(testCar1);
+            intersectionControl5.AddRoadUser(testCar1);
 
             RoadUser testCar2 = new GreenSportsCar(new Point(418, 156), 2);
             testCar2.FaceTo(new Point(0, 156));
-            intersectionControl4.AddRoadUser(testCar2);
+            intersectionControl5.AddRoadUser(testCar2);
 
             RoadUser testCar3 = new GreenSportsCar(new Point(244, 418), 2);
             testCar3.FaceTo(new Point(244, 0));
-            intersectionControl4.AddRoadUser(testCar3);
+            intersectionControl5.AddRoadUser(testCar3);
 
-            RoadUser testCar4 = new Pedestrian(new Point(132, -9), 2);
+            /*RoadUser testCar4 = new Pedestrian(new Point(132, -9), 2);
             testCar4.FaceTo(new Point(132, 400));
-            intersectionControl4.AddRoadUser(testCar4);
+            intersectionControl4.AddRoadUser(testCar4);*/
 
             progressTimer.Start();
         }
