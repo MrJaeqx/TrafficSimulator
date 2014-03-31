@@ -148,6 +148,9 @@
   <data name="IntersectionTypeRailwayImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Intersections\IntersectionTypeRailway.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Pedestrian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pedestrian.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="RedLightImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\TrafficLights\RedLightImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
