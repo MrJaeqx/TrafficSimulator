@@ -8,6 +8,8 @@ namespace TrafficSimulator
     public static class TrafficMessageSender
     {
 
+        private static List<double> speedingsID = new List<double>();
+
         public static void SendAccident(int junctionID)
         {
             new TrafficMessageService.TrafficMessageClient().SendAccident(junctionID, DateTime.Now);
@@ -18,9 +20,13 @@ namespace TrafficSimulator
             new TrafficMessageService.TrafficMessageClient().SendRedLight(carID, trafficLightID, DateTime.Now);
         }
 
-        public static void SendSpeeding(int carID, int carSpeed)
+        public static void SendSpeeding(double carID, double carSpeed)
         {
-            new TrafficMessageService.TrafficMessageClient().SendSpeeding(carID, carSpeed, DateTime.Now);
+            if (!speedingsID.Exists(x => x == carID))
+            {
+                speedingsID.Add(carID);
+                new TrafficMessageService.TrafficMessageClient().SendSpeeding((int)carID, (int)carSpeed, DateTime.Now);
+            }
         }
     }
 }
