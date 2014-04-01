@@ -248,7 +248,7 @@ namespace TrafficSimulator
                 }
                 else
                 {
-                    roadUser1.Speed = 2;
+                    roadUser1.Speed = roadUser1.MaxSpeed;
                 }
             }
         }
@@ -284,6 +284,19 @@ namespace TrafficSimulator
                     {
                         boundBox.Offset(new Point(0, 4));
                         CheckCollision(roadUser1, boundBox);
+                    }
+                }
+            }
+        }
+
+        public void CheckSpeed()
+        {
+            if (Intersection.RoadUsers.Count > 0)
+            {
+                foreach (RoadUser roadUser in Intersection.RoadUsers)
+                {
+                    if (roadUser.Speed >= 5) {
+                        TrafficMessageSender.SendSpeeding(roadUser.ID, roadUser.Speed);
                     }
                 }
             }

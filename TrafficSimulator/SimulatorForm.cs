@@ -6,6 +6,7 @@ using System.IO.Ports;
 using System.Windows.Forms;
 using TrafficSimulatorUi;
 using ArduinoLib;
+using System.ServiceModel;
 
 namespace TrafficSimulator
 {
@@ -21,6 +22,7 @@ namespace TrafficSimulator
         private Arduino arduino;
         private LogicControlRail railIntersection;
         private bool enableArduino = false;
+        private bool enableMessageServer = false;
 
         private RandomRoadUsers randomRoadUsers;
 
@@ -85,6 +87,23 @@ namespace TrafficSimulator
                 LC.RemoveOutsideScreenRoadUser();
                 LC.HandleHeadTailCollision();
                 LC.HandleTrafficLight();
+
+                if (enableMessageServer)
+                {
+                    try
+                    {
+                        LC.CheckSpeed();
+                    }
+                    catch (EndpointNotFoundException)
+                    {
+                        DialogResult result = MessageBox.Show("Kon geen verbinding maken met de berichten server.", "Geen verbinding", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
+                        if (result == System.Windows.Forms.DialogResult.Cancel)
+                        {
+                            enableMessageServer = false;
+                        }
+                    }
+                }
+
                 LC.Intersection.Invalidate();
             }
         }
