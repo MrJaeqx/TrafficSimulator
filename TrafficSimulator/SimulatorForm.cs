@@ -21,6 +21,7 @@ namespace TrafficSimulator
         private Arduino arduino;
         private LogicControlRail railIntersection;
         private bool enableArduino = false;
+        private bool enableMessageServer = false;
 
         private RandomRoadUsers randomRoadUsers;
 
@@ -85,7 +86,12 @@ namespace TrafficSimulator
                 LC.RemoveOutsideScreenRoadUser();
                 LC.HandleHeadTailCollision();
                 LC.HandleTrafficLight();
-                LC.CheckSpeed();
+
+                if (enableMessageServer)
+                {
+                    LC.CheckSpeed();
+                }
+
                 LC.Intersection.Invalidate();
             }
         }
