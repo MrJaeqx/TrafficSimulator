@@ -65,6 +65,16 @@ namespace TrafficSimulatorUi
         private RotatedImageCache rotatedImageCache;
 
         /// <summary>
+        /// ID of the road user.
+        /// </summary>
+        private double id;
+
+        /// <summary>
+        /// Amount of generated road users. Used the creation of the ID.
+        /// </summary>
+        private static double idcounter = 0;
+
+        /// <summary>
         /// Creates a road user
         /// </summary>
         /// <param name="image">The image to use then painting the road user.</param>
@@ -80,6 +90,7 @@ namespace TrafficSimulatorUi
             Speed = speed;
             MaxSpeed = speed;
             Direction = 0D;
+            id = idcounter++;
         }
 
         /// <summary>
@@ -191,6 +202,15 @@ namespace TrafficSimulatorUi
                 direction = MathHelper.AbsModulus(value, 360D);
                 Image = rotatedImageCache.GetImage(Convert.ToInt32(direction));
                 SetDXAndDY(Speed, Direction);
+            }
+        }
+
+        public double ID
+        {
+            get { return id; }
+            private set
+            {
+
             }
         }
 
