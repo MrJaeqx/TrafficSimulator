@@ -289,6 +289,19 @@ namespace TrafficSimulator
             }
         }
 
+        public void CheckSpeed()
+        {
+            if (Intersection.RoadUsers.Count > 0)
+            {
+                foreach (RoadUser roadUser in Intersection.RoadUsers)
+                {
+                    if (roadUser.Speed >= 5) {
+                        TrafficMessageSender.SendSpeeding(roadUser.ID, roadUser.Speed);
+                    }
+                }
+            }
+        }
+
         public abstract void HandleQueue();
     }
 }

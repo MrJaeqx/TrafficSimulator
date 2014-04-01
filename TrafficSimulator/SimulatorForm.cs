@@ -85,6 +85,7 @@ namespace TrafficSimulator
                 LC.RemoveOutsideScreenRoadUser();
                 LC.HandleHeadTailCollision();
                 LC.HandleTrafficLight();
+                LC.CheckSpeed();
                 LC.Intersection.Invalidate();
             }
         }
