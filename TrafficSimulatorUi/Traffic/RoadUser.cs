@@ -39,6 +39,11 @@ namespace TrafficSimulatorUi
         private double speed;
 
         /// <summary>
+        /// The maximum speed of the road user (see property for description)
+        /// </summary>
+        private double maxSpeed;
+
+        /// <summary>
         /// The bounding box of the item.
         /// </summary>
         private Rectangle boundingBox;
@@ -73,6 +78,7 @@ namespace TrafficSimulatorUi
             rotatedImageCache = new RotatedImageCache(image);
             Location = location;
             Speed = speed;
+            MaxSpeed = speed;
             Direction = 0D;
         }
 
@@ -91,6 +97,22 @@ namespace TrafficSimulatorUi
             {
                 speed = value;
                 SetDXAndDY(Speed, Direction);
+            }
+        }
+
+        /// <summary>
+        /// The maximum speed the road user can go.
+        /// This is used to restore the speed of the road user after it has stopped.
+        /// </summary>
+        public double MaxSpeed
+        {
+            get
+            {
+                return maxSpeed;
+            }
+            set
+            {
+                maxSpeed = value;
             }
         }
 

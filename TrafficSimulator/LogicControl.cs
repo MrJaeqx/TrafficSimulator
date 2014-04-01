@@ -226,7 +226,7 @@ namespace TrafficSimulator
                 }
                 else
                 {
-                    roadUser1.Speed = 2;
+                    roadUser1.Speed = roadUser1.MaxSpeed;
                 }
             }
         }
