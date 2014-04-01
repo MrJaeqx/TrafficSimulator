@@ -59,6 +59,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="LogicControlType4.cs" />
+    <Compile Include="LogicControlType5.cs" />
     <Compile Include="RandomRoadUsers.cs" />
     <Compile Include="SimulatorForm.cs">
       <SubType>Form</SubType>

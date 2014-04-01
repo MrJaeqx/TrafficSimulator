@@ -12,7 +12,7 @@ namespace TrafficSimulator
     {
         public List<IntersectionControl> Intersections { get; private set; }
 
-        const int newRoadUserSpawnRate = 1000;
+        const int newRoadUserSpawnRate = 5000;
 
         Timer timer;
 
@@ -31,12 +31,11 @@ namespace TrafficSimulator
             Random carType = new Random();
             Random carSpeed = new Random();
 
-            int pickNewCar = carType.Next(0, 3);
             double newCarSpeed = carSpeed.Next(1, 4);
 
             if (new Random().Next(0, 10) == 10) newCarSpeed = 5;
 
-            switch (pickNewCar)
+            switch (carType.Next(0, 3))
             {
                 case 0:
                     return new BlueCar(new Point(spawnX, spawnY), newCarSpeed);
@@ -56,13 +55,11 @@ namespace TrafficSimulator
 
             RoadUser newRoadUser = null;
 
-            IntersectionControl intersection = Intersections[randomIntersection.Next(0, 2)];
+            IntersectionControl intersection = Intersections[randomIntersection.Next(6)];
 
             if (intersection.IntersectionType == IntersectionType.TYPE_1)
             {
-                int whereToSpawn = whereToSpawnRandom.Next(0, 4);
-
-                switch (whereToSpawn)
+                switch (whereToSpawnRandom.Next(4))
                 {
                     case 0:
                         //south inbound left pedestrian
@@ -90,9 +87,7 @@ namespace TrafficSimulator
             }
             else if (intersection.IntersectionType == IntersectionType.TYPE_2)
             {
-                int whereToSpawn = whereToSpawnRandom.Next(0, 8);
-
-                switch (whereToSpawn)
+                switch (whereToSpawnRandom.Next(8))
                 {
                     case 0:
                         //north inbound left pedestrian
@@ -140,9 +135,7 @@ namespace TrafficSimulator
             }
             else if (intersection.IntersectionType == IntersectionType.TYPE_3)
             {
-                int whereToSpawn = whereToSpawnRandom.Next(0, 8);
-
-                switch (whereToSpawn)
+                switch (whereToSpawnRandom.Next(8))
                 {
                     case 0:
                         //south inbound left pedestrian
@@ -190,9 +183,7 @@ namespace TrafficSimulator
             }
             else if (intersection.IntersectionType == IntersectionType.TYPE_4)
             {
-                int whereToSpawn = whereToSpawnRandom.Next(0, 8);
-
-                switch (whereToSpawn)
+                switch (whereToSpawnRandom.Next(8))
                 {
                     case 0:
                         //south inbound left pedestrian
@@ -221,13 +212,13 @@ namespace TrafficSimulator
                         break;
                     case 5:
                         //right inbound left lane
-                        newRoadUser = pickRandomCar(418, 216);
-                        newRoadUser.FaceTo(new Point(0, 216));
+                        newRoadUser = pickRandomCar(418, 156);
+                        newRoadUser.FaceTo(new Point(0, 156));
                         break;
                     case 6:
                         //right inbound right lane
-                        newRoadUser = pickRandomCar(418, 244);
-                        newRoadUser.FaceTo(new Point(0, 244));
+                        newRoadUser = pickRandomCar(418, 186);
+                        newRoadUser.FaceTo(new Point(0, 186));
                         break;
                     case 7:
                         //right inbound right pedestrian
@@ -240,9 +231,7 @@ namespace TrafficSimulator
             }
             else if (intersection.IntersectionType == IntersectionType.TYPE_5)
             {
-                int whereToSpawn = whereToSpawnRandom.Next(0, 4);
-
-                switch (whereToSpawn)
+                switch (whereToSpawnRandom.Next(4))
                 {
                     case 0:
                         //north inbound left pedestrian
@@ -251,13 +240,13 @@ namespace TrafficSimulator
                         break;
                     case 1:
                         //north inbound left lane
-                        newRoadUser = pickRandomCar(216, -18);
-                        newRoadUser.FaceTo(new Point(216, 400));
+                        newRoadUser = pickRandomCar(156, -18);
+                        newRoadUser.FaceTo(new Point(156, 400));
                         break;
                     case 2:
                         //north inbound right lane
-                        newRoadUser = pickRandomCar(244, -18);
-                        newRoadUser.FaceTo(new Point(216, 400));
+                        newRoadUser = pickRandomCar(186, -18);
+                        newRoadUser.FaceTo(new Point(186, 400));
                         break;
                     case 3:
                         //north inbound right pedestrian
@@ -270,9 +259,7 @@ namespace TrafficSimulator
             }
             else if (intersection.IntersectionType == IntersectionType.TYPE_RAILWAY)
             {
-                int whereToSpawn = whereToSpawnRandom.Next(0, 4);
-
-                switch (whereToSpawn)
+                switch (whereToSpawnRandom.Next(4))
                 {
                     case 0:
                         //right inbound left pedestrian

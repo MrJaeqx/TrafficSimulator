@@ -51,12 +51,12 @@ namespace TrafficSimulator
 
         public override void HandleTrafficLight()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void HandleQueue()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
