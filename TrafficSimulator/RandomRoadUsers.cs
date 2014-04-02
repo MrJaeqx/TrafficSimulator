@@ -31,9 +31,9 @@ namespace TrafficSimulator
             Random carType = new Random();
             Random carSpeed = new Random();
 
-            double newCarSpeed = carSpeed.Next(1, 4);
+            double newCarSpeed = carSpeed.Next(2, 4);
 
-            if (new Random().Next(0, 10) == 10) newCarSpeed = 5;
+            if (new Random().Next(0, 5) == 0) newCarSpeed = 5;
 
             switch (carType.Next(0, 3))
             {
