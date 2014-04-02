@@ -302,6 +302,17 @@ namespace TrafficSimulator
             }
         }
 
+        public void CheckRedLight()
+        {
+            if (Intersection.RoadUsers.Count > 0)
+            {
+                foreach (RoadUser roadUser in Intersection.RoadUsers)
+                {
+                    if (roadUser.RedLight) TrafficMessageSender.SendRedLight(roadUser.ID, 0);
+                }
+            }
+        }
+
         public abstract void HandleQueue();
     }
 }
