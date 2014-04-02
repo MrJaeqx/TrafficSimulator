@@ -95,7 +95,7 @@ namespace TrafficSimulatorUi
             Speed = speed;
             MaxSpeed = speed;
             Direction = 0D;
-            id = idcounter++;
+            ID = idcounter++;
             RedLight = redlight;
         }
 
@@ -211,12 +211,15 @@ namespace TrafficSimulatorUi
             }
         }
 
+        /// <summary>
+        /// Unique ID of the road user.
+        /// </summary>
         public double ID
         {
             get { return id; }
             private set
             {
-
+                id = value;
             }
         }
 
