@@ -246,14 +246,10 @@ namespace TrafficSimulator
                 {
                     roadUser1.Speed = 0;
                 }
-                else
-                {
-                    roadUser1.Speed = 2;
-                }
             }
         }
 
-        public void HandleHeadTailCollision()
+        public void HandleCollision()
         {
             if (Intersection.RoadUsers.Count > 0)
             {
@@ -284,6 +280,19 @@ namespace TrafficSimulator
                     {
                         boundBox.Offset(new Point(0, 4));
                         CheckCollision(roadUser1, boundBox);
+                    }
+                }
+            }
+        }
+
+        public void CheckSpeed()
+        {
+            if (Intersection.RoadUsers.Count > 0)
+            {
+                foreach (RoadUser roadUser in Intersection.RoadUsers)
+                {
+                    if (roadUser.Speed >= 5) {
+                        TrafficMessageSender.SendSpeeding(roadUser.ID, roadUser.Speed);
                     }
                 }
             }

@@ -39,6 +39,11 @@ namespace TrafficSimulatorUi
         private double speed;
 
         /// <summary>
+        /// The maximum speed of the road user (see property for description)
+        /// </summary>
+        private double maxSpeed;
+
+        /// <summary>
         /// The bounding box of the item.
         /// </summary>
         private Rectangle boundingBox;
@@ -60,6 +65,16 @@ namespace TrafficSimulatorUi
         private RotatedImageCache rotatedImageCache;
 
         /// <summary>
+        /// ID of the road user.
+        /// </summary>
+        private double id;
+
+        /// <summary>
+        /// Amount of generated road users. Used the creation of the ID.
+        /// </summary>
+        private static double idcounter = 0;
+
+        /// <summary>
         /// Creates a road user
         /// </summary>
         /// <param name="image">The image to use then painting the road user.</param>
@@ -73,7 +88,9 @@ namespace TrafficSimulatorUi
             rotatedImageCache = new RotatedImageCache(image);
             Location = location;
             Speed = speed;
+            MaxSpeed = speed;
             Direction = 0D;
+            id = idcounter++;
         }
 
         /// <summary>
@@ -91,6 +108,22 @@ namespace TrafficSimulatorUi
             {
                 speed = value;
                 SetDXAndDY(Speed, Direction);
+            }
+        }
+
+        /// <summary>
+        /// The maximum speed the road user can go.
+        /// This is used to restore the speed of the road user after it has stopped.
+        /// </summary>
+        public double MaxSpeed
+        {
+            get
+            {
+                return maxSpeed;
+            }
+            set
+            {
+                maxSpeed = value;
             }
         }
 
@@ -169,6 +202,15 @@ namespace TrafficSimulatorUi
                 direction = MathHelper.AbsModulus(value, 360D);
                 Image = rotatedImageCache.GetImage(Convert.ToInt32(direction));
                 SetDXAndDY(Speed, Direction);
+            }
+        }
+
+        public double ID
+        {
+            get { return id; }
+            private set
+            {
+
             }
         }
 
