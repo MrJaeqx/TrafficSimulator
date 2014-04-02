@@ -231,7 +231,8 @@ namespace TrafficSimulator
         {
             if (AddToTrafficLightQueue(lane, roadUser))
             {
-                roadUser.Speed = 0;
+                if (!roadUser.RedLight) roadUser.Speed = 0;
+
                 if (!Queue.Contains(lane))
                 {
                     Queue.Add(lane);
