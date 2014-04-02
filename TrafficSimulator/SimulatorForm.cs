@@ -77,15 +77,17 @@ namespace TrafficSimulator
         {
             foreach (LogicControl LC in logicControls)
             {
+                LC.HandleCollision();
+
                 foreach (RoadUser roadUser in LC.Intersection.RoadUsers)
                 {
                     roadUser.Move();
+                    roadUser.Speed = roadUser.MaxSpeed;
                 }
 
                 LC.MakeTurn();
                 LC.TransferCarsBetweenIntersections();
                 LC.RemoveOutsideScreenRoadUser();
-                LC.HandleHeadTailCollision();
                 LC.HandleTrafficLight();
 
                 if (enableMessageServer)

@@ -246,14 +246,10 @@ namespace TrafficSimulator
                 {
                     roadUser1.Speed = 0;
                 }
-                else
-                {
-                    roadUser1.Speed = roadUser1.MaxSpeed;
-                }
             }
         }
 
-        public void HandleHeadTailCollision()
+        public void HandleCollision()
         {
             if (Intersection.RoadUsers.Count > 0)
             {
