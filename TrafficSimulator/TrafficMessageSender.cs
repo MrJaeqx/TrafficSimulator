@@ -9,15 +9,20 @@ namespace TrafficSimulator
     {
 
         private static List<double> speedingsID = new List<double>();
+        private static List<double> redlightID = new List<double>();
 
         public static void SendAccident(int junctionID)
         {
             new TrafficMessageService.TrafficMessageClient().SendAccident(junctionID, DateTime.Now);
         }
 
-        public static void SendRedLight(int carID, int trafficLightID)
+        public static void SendRedLight(double carID, int trafficLightID)
         {
-            new TrafficMessageService.TrafficMessageClient().SendRedLight(carID, trafficLightID, DateTime.Now);
+            if (!redlightID.Exists(x => x == carID))
+            {
+                redlightID.Add(carID);
+                new TrafficMessageService.TrafficMessageClient().SendRedLight((int)carID, trafficLightID, DateTime.Now);
+            }
         }
 
         public static void SendSpeeding(double carID, double carSpeed)

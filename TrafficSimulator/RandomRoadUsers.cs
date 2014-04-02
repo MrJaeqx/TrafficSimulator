@@ -30,19 +30,21 @@ namespace TrafficSimulator
         {
             Random carType = new Random();
             Random carSpeed = new Random();
+            Random carRedLight = new Random();
 
             double newCarSpeed = carSpeed.Next(2, 4);
+            bool newCarRedLight = (carRedLight.Next(0, 5) == 0);
 
             if (new Random().Next(0, 5) == 0) newCarSpeed = 5;
 
             switch (carType.Next(0, 3))
             {
                 case 0:
-                    return new BlueCar(new Point(spawnX, spawnY), newCarSpeed);
+                    return new BlueCar(new Point(spawnX, spawnY), newCarSpeed, newCarRedLight);
                 case 1:
-                    return new BlueSportsCar(new Point(spawnX, spawnY), newCarSpeed);
+                    return new BlueSportsCar(new Point(spawnX, spawnY), newCarSpeed, newCarRedLight);
                 case 2:
-                    return new GreenSportsCar(new Point(spawnX, spawnY), newCarSpeed);
+                    return new GreenSportsCar(new Point(spawnX, spawnY), newCarSpeed, newCarRedLight);
                 default:
                     return null;
             }

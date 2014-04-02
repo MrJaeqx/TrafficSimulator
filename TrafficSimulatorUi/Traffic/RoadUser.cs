@@ -75,10 +75,15 @@ namespace TrafficSimulatorUi
         private static double idcounter = 0;
 
         /// <summary>
+        /// Boolean if the road user will ignore the traffic lights.
+        /// </summary>
+        private bool redlight;
+
+        /// <summary>
         /// Creates a road user
         /// </summary>
         /// <param name="image">The image to use then painting the road user.</param>
-        public RoadUser(Point location, double speed, Image image)
+        public RoadUser(Point location, double speed, Image image, bool redlight)
         {
             if (image == null)
             {
@@ -90,7 +95,8 @@ namespace TrafficSimulatorUi
             Speed = speed;
             MaxSpeed = speed;
             Direction = 0D;
-            id = idcounter++;
+            ID = idcounter++;
+            RedLight = redlight;
         }
 
         /// <summary>
@@ -205,12 +211,27 @@ namespace TrafficSimulatorUi
             }
         }
 
+        /// <summary>
+        /// Unique ID of the road user.
+        /// </summary>
         public double ID
         {
             get { return id; }
             private set
             {
+                id = value;
+            }
+        }
 
+        /// <summary>
+        /// Boolean if the road user will ignore the traffic lights.
+        /// </summary>
+        public bool RedLight
+        {
+            get { return redlight; }
+            private set
+            {
+                redlight = value;
             }
         }
 

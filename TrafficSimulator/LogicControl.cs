@@ -117,17 +117,20 @@ namespace TrafficSimulator
 
         private RoadUser pickCorrectCar(RoadUser roadUser, int spawnX, int spawnY)
         {
+            double maxSpeed = roadUser.MaxSpeed;
+            bool redlight = roadUser.RedLight;
+
             if (roadUser is BlueCar)
             {
-                return new BlueCar(new Point(spawnX, spawnY), 2);
+                return new BlueCar(new Point(spawnX, spawnY), maxSpeed, redlight);
             }
             else if (roadUser is BlueSportsCar)
             {
-                return new BlueSportsCar(new Point(spawnX, spawnY), 2);
+                return new BlueSportsCar(new Point(spawnX, spawnY), maxSpeed, redlight);
             }
             else if (roadUser is GreenSportsCar)
             {
-                return new GreenSportsCar(new Point(spawnX, spawnY), 2);
+                return new GreenSportsCar(new Point(spawnX, spawnY), maxSpeed, redlight);
             }
             else
             {
@@ -228,7 +231,8 @@ namespace TrafficSimulator
         {
             if (AddToTrafficLightQueue(lane, roadUser))
             {
-                roadUser.Speed = 0;
+                if (!roadUser.RedLight) roadUser.Speed = 0;
+
                 if (!Queue.Contains(lane))
                 {
                     Queue.Add(lane);
@@ -294,6 +298,17 @@ namespace TrafficSimulator
                     if (roadUser.Speed >= 5) {
                         TrafficMessageSender.SendSpeeding(roadUser.ID, roadUser.Speed);
                     }
+                }
+            }
+        }
+
+        public void CheckRedLight()
+        {
+            if (Intersection.RoadUsers.Count > 0)
+            {
+                foreach (RoadUser roadUser in Intersection.RoadUsers)
+                {
+                    if (roadUser.RedLight) TrafficMessageSender.SendRedLight(roadUser.ID, 0);
                 }
             }
         }

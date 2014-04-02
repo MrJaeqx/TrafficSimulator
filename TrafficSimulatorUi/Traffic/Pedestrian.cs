@@ -8,7 +8,7 @@ namespace TrafficSimulatorUi
         /// Create a new pedestrian
         /// </summary>
         public Pedestrian(Point location, double speed)
-            : base(location, speed, Properties.Resources.Pedestrian)
+            : base(location, speed, Properties.Resources.Pedestrian, false)
         {
         }
     }

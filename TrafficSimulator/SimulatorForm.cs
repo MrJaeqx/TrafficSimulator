@@ -95,6 +95,7 @@ namespace TrafficSimulator
                     try
                     {
                         LC.CheckSpeed();
+                        LC.CheckRedLight();
                     }
                     catch (EndpointNotFoundException)
                     {
