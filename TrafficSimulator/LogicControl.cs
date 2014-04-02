@@ -117,17 +117,19 @@ namespace TrafficSimulator
 
         private RoadUser pickCorrectCar(RoadUser roadUser, int spawnX, int spawnY)
         {
+            double maxSpeed = roadUser.MaxSpeed;
+
             if (roadUser is BlueCar)
             {
-                return new BlueCar(new Point(spawnX, spawnY), 2);
+                return new BlueCar(new Point(spawnX, spawnY), maxSpeed);
             }
             else if (roadUser is BlueSportsCar)
             {
-                return new BlueSportsCar(new Point(spawnX, spawnY), 2);
+                return new BlueSportsCar(new Point(spawnX, spawnY), maxSpeed);
             }
             else if (roadUser is GreenSportsCar)
             {
-                return new GreenSportsCar(new Point(spawnX, spawnY), 2);
+                return new GreenSportsCar(new Point(spawnX, spawnY), maxSpeed);
             }
             else
             {
