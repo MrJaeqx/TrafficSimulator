@@ -90,6 +90,25 @@ namespace TrafficSimulator
                 }
             }
         }
+        /// <summary>
+        /// Bepalen maakt een bocht op gegeven locatie
+        /// </summary>
+        /// <param name="roadUser"></param>de roaduser waar het om gaat</param>
+        /// <param name="P"></param>het punt waar de roaduser zich bevind</param>
+        /// <param name="X1"></param>de X van het punt waar de bocht plaatsvindt</param>
+        /// <param name="Y1"></param>de Y van het punt waar de bocht plaatsvindt</param>
+        /// <param name="X2"></param>de X van het punt waar de auto naar toe moet wijzen</param>
+        /// <param name="Y2"></param>de Y van het punt waar de auto naar toe moet wijzen</param>
+
+        protected void Type4Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
+        {
+            Random random = new Random();
+
+            if (P.X == X1 && P.Y == Y1)
+            {                
+                    roadUser.FaceTo(new Point(X2, Y2));                
+            }
+        }
 
         public abstract void MakeTurn();
 
