@@ -58,14 +58,10 @@ namespace TrafficSimulator
 
             randomRoadUsers = new RandomRoadUsers(intersections);
 
-            
-
             progressTimer.Start();
 
-            //toolStripComboBoxArduinoCom.Items.Clear();
-            //toolStripComboBoxArduinoCom.Items.AddRange(SerialPort.GetPortNames());
-
-            //connectButtonClick(null, null);
+            toolStripComboBoxComPorts.Items.Clear();
+            toolStripComboBoxComPorts.Items.AddRange(SerialPort.GetPortNames());
         }
 
         private void progressTimer_Tick(object sender, EventArgs e)
@@ -99,10 +95,11 @@ namespace TrafficSimulator
                     }
                     catch (EndpointNotFoundException)
                     {
+                        messageServerButtonClick(toolStripButtonMS, null);
                         DialogResult result = MessageBox.Show("Kon geen verbinding maken met de berichten server.", "Geen verbinding", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
-                        if (result == System.Windows.Forms.DialogResult.Cancel)
+                        if (result == System.Windows.Forms.DialogResult.Retry)
                         {
-                            enableMessageServer = false;
+                            messageServerButtonClick(toolStripButtonMS, null);
                         }
                     }
                 }
@@ -138,10 +135,12 @@ namespace TrafficSimulator
 
         private void connectButtonClick(object sender, EventArgs e)
         {
+            ToolStripButton button = (ToolStripButton)sender;
             if (enableArduino)
             {
                 arduino.Close();
                 enableArduino = false;
+                button.Checked = false;
             }
             else
             {
@@ -150,6 +149,23 @@ namespace TrafficSimulator
                 arduino.trainPassedEvent += railIntersection.TrainPassedEvent;
                 arduino.Open();
                 enableArduino = true;
+                button.Checked = true;
+            }
+        }
+
+        private void messageServerButtonClick(object sender, EventArgs e)
+        {
+            ToolStripButton button = (ToolStripButton)sender;
+
+            if (enableMessageServer)
+            {
+                enableMessageServer = false;
+                button.Checked = false;
+            }
+            else
+            {
+                enableMessageServer = true;
+                button.Checked = true;
             }
         }
 
