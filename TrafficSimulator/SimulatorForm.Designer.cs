@@ -69,7 +69,9 @@
             this.labelStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
             this.statusStrip1.Size = new System.Drawing.Size(1203, 22);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -104,8 +106,8 @@
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripArduino);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripMessages);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripArduino);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripStats);
             // 
             // intersectionControl6
@@ -170,13 +172,12 @@
             // toolStripArduino
             // 
             this.toolStripArduino.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripArduino.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripArduino.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBoxComPorts,
             this.toolStripButtonArduino});
-            this.toolStripArduino.Location = new System.Drawing.Point(134, 0);
+            this.toolStripArduino.Location = new System.Drawing.Point(110, 0);
             this.toolStripArduino.Name = "toolStripArduino";
-            this.toolStripArduino.Size = new System.Drawing.Size(191, 25);
+            this.toolStripArduino.Size = new System.Drawing.Size(200, 25);
             this.toolStripArduino.TabIndex = 1;
             // 
             // toolStripComboBoxComPorts
@@ -198,12 +199,11 @@
             // toolStripMessages
             // 
             this.toolStripMessages.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripMessages.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripMessages.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonMS});
-            this.toolStripMessages.Location = new System.Drawing.Point(4, 0);
+            this.toolStripMessages.Location = new System.Drawing.Point(3, 0);
             this.toolStripMessages.Name = "toolStripMessages";
-            this.toolStripMessages.Size = new System.Drawing.Size(129, 25);
+            this.toolStripMessages.Size = new System.Drawing.Size(107, 25);
             this.toolStripMessages.TabIndex = 2;
             // 
             // toolStripButtonMS
@@ -219,12 +219,11 @@
             // toolStripStats
             // 
             this.toolStripStats.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripStats.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripStats.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonStats});
-            this.toolStripStats.Location = new System.Drawing.Point(326, 0);
+            this.toolStripStats.Location = new System.Drawing.Point(311, 0);
             this.toolStripStats.Name = "toolStripStats";
-            this.toolStripStats.Size = new System.Drawing.Size(74, 25);
+            this.toolStripStats.Size = new System.Drawing.Size(83, 25);
             this.toolStripStats.TabIndex = 3;
             // 
             // toolStripButtonStats
