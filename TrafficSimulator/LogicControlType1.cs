@@ -28,7 +28,7 @@ namespace TrafficSimulator
                     }
 
                     //toekennen van het kruispunt dat zich links van dit kruispunt bevind
-                    if (intersection.IntersectionType == IntersectionType.TYPE_2)
+                    if (intersection.IntersectionType == IntersectionType.TYPE_3)
                     {
                         base.IntersectionLeft = intersection;
                     }

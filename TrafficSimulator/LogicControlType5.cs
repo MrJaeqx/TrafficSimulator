@@ -23,10 +23,10 @@ namespace TrafficSimulator
 
 
                 //toekennen van het kruispunt dat zich rechts van dit kruispunt bevind
-                //  if (intersection.IntersectionType == IntersectionType.TYPE_6)
-                //  {
-                //      base.IntersectionRight = intersection;
-                //  }
+                if (intersection.IntersectionType == IntersectionType.TYPE_RAILWAY)
+                {
+                    base.IntersectionRight = intersection;
+                }
 
                 //toekennen van het kruispunt dat zich onder van dit kruispunt bevind
                 if (intersection.IntersectionType == IntersectionType.TYPE_1)
