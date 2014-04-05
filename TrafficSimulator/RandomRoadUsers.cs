@@ -80,7 +80,7 @@ namespace TrafficSimulator
 
             IntersectionControl intersection = Intersections[random.Next(6)];
 
-            if (intersection.RoadUsers.Count < 20)
+            if (intersection.RoadUsers.Count < 40)
             {
                 if (intersection.IntersectionType == IntersectionType.TYPE_1)
                 {
@@ -283,13 +283,13 @@ namespace TrafficSimulator
                             break;
                         case 1:
                             //right inbound left lane
-                            newRoadUser = pickRandomCar(418, 216);
-                            newRoadUser.FaceTo(new Point(0, 216));
+                            newRoadUser = pickRandomCar(418, 156);
+                            newRoadUser.FaceTo(new Point(0, 156));
                             break;
                         case 2:
                             //right inbound right lane
-                            newRoadUser = pickRandomCar(418, 244);
-                            newRoadUser.FaceTo(new Point(0, 244));
+                            newRoadUser = pickRandomCar(418, 186);
+                            newRoadUser.FaceTo(new Point(0, 186));
                             break;
                         case 3:
                             //right inbound right pedestrian
