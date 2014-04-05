@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimulatorForm));
-            this.progressTimer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabelID = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelIC = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelID = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelSp = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelRL = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
@@ -61,11 +59,6 @@
             this.toolStripMessages.SuspendLayout();
             this.toolStripArduino.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // progressTimer
-            // 
-            this.progressTimer.Interval = 40;
-            this.progressTimer.Tick += new System.EventHandler(this.progressTimer_Tick);
             // 
             // statusStrip1
             // 
@@ -94,15 +87,8 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1006, 19);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1037, 19);
             this.toolStripStatusLabel1.Spring = true;
-            // 
-            // toolStripStatusLabelID
-            // 
-            this.toolStripStatusLabelID.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.toolStripStatusLabelID.Name = "toolStripStatusLabelID";
-            this.toolStripStatusLabelID.Size = new System.Drawing.Size(22, 19);
-            this.toolStripStatusLabelID.Text = "ID";
             // 
             // toolStripStatusLabelIC
             // 
@@ -110,6 +96,13 @@
             this.toolStripStatusLabelIC.Name = "toolStripStatusLabelIC";
             this.toolStripStatusLabelIC.Size = new System.Drawing.Size(22, 19);
             this.toolStripStatusLabelIC.Text = "IC";
+            // 
+            // toolStripStatusLabelID
+            // 
+            this.toolStripStatusLabelID.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripStatusLabelID.Name = "toolStripStatusLabelID";
+            this.toolStripStatusLabelID.Size = new System.Drawing.Size(22, 19);
+            this.toolStripStatusLabelID.Text = "ID";
             // 
             // toolStripStatusLabelSp
             // 
@@ -312,7 +305,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer progressTimer;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel labelStatus;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;

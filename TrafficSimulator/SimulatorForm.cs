@@ -26,20 +26,26 @@ namespace TrafficSimulator
 
         private RandomRoadUsers randomRoadUsers;
 
+        private Timer progressTimer = new Timer();
         private Timer trafficLightTimer = new Timer();
-        private Timer statsTimer = new Timer();
+        private Timer randomSpawnTimer = new Timer();
+
+        private const int trafficLightInterval = 5000;
+        private const int statsUpdateInterval = 250;
+        private int spawnInterval = 500;
 
         public SimulatorForm()
         {
             InitializeComponent();
 
-            trafficLightTimer.Interval = 5000;
-            trafficLightTimer.Tick += trafficlightTimer_Tick;
-            trafficLightTimer.Enabled = true;
+            progressTimer.Interval = 40;
+            progressTimer.Tick += progressTimer_Tick;
 
-            statsTimer.Interval = 250;
-            statsTimer.Tick += statsTimer_Tick;
-            statsTimer.Enabled = true;
+            trafficLightTimer.Interval = trafficLightInterval;
+            trafficLightTimer.Tick += trafficlightTimer_Tick;
+
+            randomSpawnTimer.Interval = 500;
+            randomSpawnTimer.Tick += randomSpawnTimer_Tick;
 
             intersections = new List<IntersectionControl>();
 
@@ -64,13 +70,16 @@ namespace TrafficSimulator
             randomRoadUsers = new RandomRoadUsers(intersections);
 
             progressTimer.Start();
+            trafficLightTimer.Start();
+            randomSpawnTimer.Start();
 
             toolStripComboBoxComPorts.Items.Clear();
             toolStripComboBoxComPorts.Items.AddRange(SerialPort.GetPortNames());
         }
 
-        void statsTimer_Tick(object sender, EventArgs e)
+        void randomSpawnTimer_Tick(object sender, EventArgs e)
         {
+            randomRoadUsers.SpawnRoadUser();
             try
             {
                 toolStripStatusLabelID.Text = "ID: " + randomRoadUsers.StatsLastID.ToString();
@@ -78,10 +87,7 @@ namespace TrafficSimulator
                 toolStripStatusLabelSp.Text = "Sp: " + randomRoadUsers.StatsLastSpeed.ToString();
                 toolStripStatusLabelRL.Text = "RL: " + randomRoadUsers.StatsLastRedlight.ToString();
             }
-            catch (NullReferenceException)
-            {
-                Debug.WriteLine("Stats null");
-            }
+            catch (NullReferenceException) { }
         }
 
         private void progressTimer_Tick(object sender, EventArgs e)

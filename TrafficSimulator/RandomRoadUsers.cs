@@ -49,23 +49,13 @@ namespace TrafficSimulator
 
         public List<IntersectionControl> Intersections { get; private set; }
 
-        const int newRoadUserSpawnRate = 500;
-
-        Timer timer;
-
         public RandomRoadUsers(List<IntersectionControl> intersections)
         {
             StatsTotalPerIntersection = new int[7];
-
             Intersections = intersections;
-
-            timer = new Timer();
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = newRoadUserSpawnRate;
-            timer.Start();
         }
 
-        public RoadUser pickRandomCar(int spawnX, int spawnY)
+        private RoadUser pickRandomCar(int spawnX, int spawnY)
         {
             double newCarSpeed = random.Next(2, 4);
             if (random.Next(0, 5) == 0) newCarSpeed = 5;
@@ -84,7 +74,7 @@ namespace TrafficSimulator
             }
         }
 
-        private void timer_Tick(Object myObject, EventArgs myEventArgs)
+        public void SpawnRoadUser()
         {
             RoadUser newRoadUser = null;
 
