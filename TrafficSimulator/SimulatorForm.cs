@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using TrafficSimulatorUi;
 using ArduinoLib;
 using System.ServiceModel;
+using System.IO;
 
 namespace TrafficSimulator
 {
@@ -32,7 +33,6 @@ namespace TrafficSimulator
 
         private const int trafficLightInterval = 5000;
         private const int statsUpdateInterval = 250;
-        private int spawnInterval = 500;
 
         public SimulatorForm()
         {
@@ -44,7 +44,6 @@ namespace TrafficSimulator
             trafficLightTimer.Interval = trafficLightInterval;
             trafficLightTimer.Tick += trafficlightTimer_Tick;
 
-            randomSpawnTimer.Interval = 500;
             randomSpawnTimer.Tick += randomSpawnTimer_Tick;
 
             intersections = new List<IntersectionControl>();
@@ -71,13 +70,12 @@ namespace TrafficSimulator
 
             progressTimer.Start();
             trafficLightTimer.Start();
-            randomSpawnTimer.Start();
 
-            toolStripComboBoxComPorts.Items.Clear();
-            toolStripComboBoxComPorts.Items.AddRange(SerialPort.GetPortNames());
+            toolStripComboBoxCom.Items.Clear();
+            toolStripComboBoxCom.Items.AddRange(SerialPort.GetPortNames());
         }
 
-        void randomSpawnTimer_Tick(object sender, EventArgs e)
+        private void randomSpawnTimer_Tick(object sender, EventArgs e)
         {
             randomRoadUsers.SpawnRoadUser();
             try
@@ -88,6 +86,16 @@ namespace TrafficSimulator
                 toolStripStatusLabelRL.Text = "RL: " + randomRoadUsers.StatsLastRedlight.ToString();
             }
             catch (NullReferenceException) { }
+        }
+
+        private int totalRoadUsers()
+        {
+            int output = 0;
+            foreach (IntersectionControl intersection in intersections)
+            {
+                output += intersection.RoadUsers.Count;
+            }
+            return output;
         }
 
         private void progressTimer_Tick(object sender, EventArgs e)
@@ -121,16 +129,17 @@ namespace TrafficSimulator
                     }
                     catch (EndpointNotFoundException)
                     {
-                        messageServerButtonClick(toolStripButtonMS, null);
+                        messageServerToggle(null, null);
                         DialogResult result = MessageBox.Show("Kon geen verbinding maken met de berichten server.", "Geen verbinding", MessageBoxButtons.RetryCancel, MessageBoxIcon.Exclamation);
                         if (result == System.Windows.Forms.DialogResult.Retry)
                         {
-                            messageServerButtonClick(toolStripButtonMS, null);
+                            messageServerToggle(null, null);
                         }
                     }
                 }
 
                 LC.Intersection.Invalidate();
+                toolStripStatusLabelTotal.Text = "Tot: " + totalRoadUsers();
             }
         }
 
@@ -159,39 +168,79 @@ namespace TrafficSimulator
             trafficLight.SwitchTo(SignalState.CLEAR_CROSSING);
         }
 
-        private void connectButtonClick(object sender, EventArgs e)
+        private void arduinoToggle(object sender, EventArgs e)
         {
-            ToolStripButton button = (ToolStripButton)sender;
             if (enableArduino)
             {
                 arduino.Close();
+
                 enableArduino = false;
-                button.Checked = false;
+                toolStripComboBoxCom.Items.Clear();
+                toolStripComboBoxCom.Items.AddRange(SerialPort.GetPortNames());
+                toolStripButtonArduino.Checked = false;
+                toolStripComboBoxCom.Enabled = true;
+                toolStripButtonSend.Enabled = false;
             }
             else
             {
-                arduino = new Arduino("COM3", 9600);
-                arduino.trainIncomingEvent += railIntersection.TrainIncomingEvent;
-                arduino.trainPassedEvent += railIntersection.TrainPassedEvent;
-                arduino.Open();
-                enableArduino = true;
-                button.Checked = true;
+                try
+                {
+                    arduino = new Arduino(toolStripComboBoxCom.Text, 9600);
+                    arduino.trainIncomingEvent += railIntersection.TrainIncomingEvent;
+                    arduino.trainPassedEvent += railIntersection.TrainPassedEvent;
+                    arduino.Open();
+
+                    enableArduino = true;
+                    toolStripButtonArduino.Checked = true;
+                    toolStripComboBoxCom.Enabled = false;
+                    toolStripButtonSend.Enabled = true;
+                }
+                catch (ArgumentException)
+                {
+                    MessageBox.Show("Ongeldige COM poort", "Arduino", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("Verbindings fout.", "Arduino", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
-        private void messageServerButtonClick(object sender, EventArgs e)
+        private void messageServerToggle(object sender, EventArgs e)
         {
-            ToolStripButton button = (ToolStripButton)sender;
-
             if (enableMessageServer)
             {
                 enableMessageServer = false;
-                button.Checked = false;
+                toolStripButtonMS.Checked = false;
             }
             else
             {
                 enableMessageServer = true;
-                button.Checked = true;
+                toolStripButtonMS.Checked = true;
+            }
+        }
+
+        private void spawnerToggle(object sender, EventArgs e)
+        {
+            if (randomSpawnTimer.Enabled)
+            {
+                randomSpawnTimer.Stop();
+                toolStripTextBoxSpawnInterval.Enabled = true;
+                toolStripButtonSpawn.Checked = false;
+            }
+            else
+            {
+                try
+                {
+                    randomSpawnTimer.Interval = Convert.ToInt32(toolStripTextBoxSpawnInterval.Text);
+                    randomSpawnTimer.Start();
+                    toolStripTextBoxSpawnInterval.Enabled = false;
+                    toolStripButtonSpawn.Checked = true;
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Ongeldige interval.", "Spawner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -200,6 +249,14 @@ namespace TrafficSimulator
             foreach (LogicControl LC in logicControls)
             {
                 LC.HandleQueue();
+            }
+        }
+
+        private void toolStripMenuItemClearAll_Click(object sender, EventArgs e)
+        {
+            foreach (IntersectionControl intersection in intersections)
+            {
+                intersection.RoadUsers.Clear();
             }
         }
     }
