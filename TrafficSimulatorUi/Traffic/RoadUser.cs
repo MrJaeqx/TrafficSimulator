@@ -67,12 +67,12 @@ namespace TrafficSimulatorUi
         /// <summary>
         /// ID of the road user.
         /// </summary>
-        private double id;
+        private int id;
 
         /// <summary>
         /// Amount of generated road users. Used the creation of the ID.
         /// </summary>
-        private static double idcounter = 0;
+        private static int idcounter = 0;
 
         /// <summary>
         /// Boolean if the road user will ignore the traffic lights.
@@ -214,7 +214,7 @@ namespace TrafficSimulatorUi
         /// <summary>
         /// Unique ID of the road user.
         /// </summary>
-        public double ID
+        public int ID
         {
             get { return id; }
             private set

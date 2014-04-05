@@ -27,6 +27,7 @@ namespace TrafficSimulator
         private RandomRoadUsers randomRoadUsers;
 
         private Timer trafficLightTimer = new Timer();
+        private Timer statsTimer = new Timer();
 
         public SimulatorForm()
         {
@@ -35,6 +36,10 @@ namespace TrafficSimulator
             trafficLightTimer.Interval = 5000;
             trafficLightTimer.Tick += trafficlightTimer_Tick;
             trafficLightTimer.Enabled = true;
+
+            statsTimer.Interval = 250;
+            statsTimer.Tick += statsTimer_Tick;
+            statsTimer.Enabled = true;
 
             intersections = new List<IntersectionControl>();
 
@@ -62,6 +67,21 @@ namespace TrafficSimulator
 
             toolStripComboBoxComPorts.Items.Clear();
             toolStripComboBoxComPorts.Items.AddRange(SerialPort.GetPortNames());
+        }
+
+        void statsTimer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                toolStripStatusLabelID.Text = "ID: " + randomRoadUsers.StatsLastID.ToString();
+                toolStripStatusLabelIC.Text = "IC: " + randomRoadUsers.StatsLastIType.ToString();
+                toolStripStatusLabelSp.Text = "Sp: " + randomRoadUsers.StatsLastSpeed.ToString();
+                toolStripStatusLabelRL.Text = "RL: " + randomRoadUsers.StatsLastRedlight.ToString();
+            }
+            catch (NullReferenceException)
+            {
+                Debug.WriteLine("Stats null");
+            }
         }
 
         private void progressTimer_Tick(object sender, EventArgs e)

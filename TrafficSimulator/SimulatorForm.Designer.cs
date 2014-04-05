@@ -33,6 +33,11 @@
             this.progressTimer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelID = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelIC = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelSp = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelRL = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.intersectionControl6 = new TrafficSimulatorUi.IntersectionControl();
             this.intersectionControl5 = new TrafficSimulatorUi.IntersectionControl();
@@ -40,21 +45,21 @@
             this.intersectionControl3 = new TrafficSimulatorUi.IntersectionControl();
             this.intersectionControl1 = new TrafficSimulatorUi.IntersectionControl();
             this.intersectionControl2 = new TrafficSimulatorUi.IntersectionControl();
+            this.toolStripStats = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonStats = new System.Windows.Forms.ToolStripButton();
+            this.toolStripMessages = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonMS = new System.Windows.Forms.ToolStripButton();
             this.toolStripArduino = new System.Windows.Forms.ToolStrip();
             this.toolStripComboBoxComPorts = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButtonArduino = new System.Windows.Forms.ToolStripButton();
-            this.toolStripMessages = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonMS = new System.Windows.Forms.ToolStripButton();
-            this.toolStripStats = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonStats = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
-            this.toolStripArduino.SuspendLayout();
-            this.toolStripMessages.SuspendLayout();
             this.toolStripStats.SuspendLayout();
+            this.toolStripMessages.SuspendLayout();
+            this.toolStripArduino.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressTimer
@@ -66,11 +71,16 @@
             // 
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.labelStatus});
+            this.labelStatus,
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabelIC,
+            this.toolStripStatusLabelID,
+            this.toolStripStatusLabelSp,
+            this.toolStripStatusLabelRL});
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.statusStrip1.Size = new System.Drawing.Size(1203, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1203, 24);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -78,8 +88,41 @@
             // labelStatus
             // 
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(44, 17);
+            this.labelStatus.Size = new System.Drawing.Size(44, 19);
             this.labelStatus.Text = "Gereed";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1006, 19);
+            this.toolStripStatusLabel1.Spring = true;
+            // 
+            // toolStripStatusLabelID
+            // 
+            this.toolStripStatusLabelID.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripStatusLabelID.Name = "toolStripStatusLabelID";
+            this.toolStripStatusLabelID.Size = new System.Drawing.Size(22, 19);
+            this.toolStripStatusLabelID.Text = "ID";
+            // 
+            // toolStripStatusLabelIC
+            // 
+            this.toolStripStatusLabelIC.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripStatusLabelIC.Name = "toolStripStatusLabelIC";
+            this.toolStripStatusLabelIC.Size = new System.Drawing.Size(22, 19);
+            this.toolStripStatusLabelIC.Text = "IC";
+            // 
+            // toolStripStatusLabelSp
+            // 
+            this.toolStripStatusLabelSp.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripStatusLabelSp.Name = "toolStripStatusLabelSp";
+            this.toolStripStatusLabelSp.Size = new System.Drawing.Size(43, 19);
+            this.toolStripStatusLabelSp.Text = "Speed";
+            // 
+            // toolStripStatusLabelRL
+            // 
+            this.toolStripStatusLabelRL.Name = "toolStripStatusLabelRL";
+            this.toolStripStatusLabelRL.Size = new System.Drawing.Size(20, 19);
+            this.toolStripStatusLabelRL.Text = "RL";
             // 
             // toolStripContainer1
             // 
@@ -96,7 +139,7 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl3);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl2);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1203, 805);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1203, 778);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -106,9 +149,9 @@
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripStats);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripMessages);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripArduino);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripStats);
             // 
             // intersectionControl6
             // 
@@ -169,13 +212,52 @@
             this.intersectionControl2.Size = new System.Drawing.Size(400, 400);
             this.intersectionControl2.TabIndex = 6;
             // 
+            // toolStripStats
+            // 
+            this.toolStripStats.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripStats.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonStats});
+            this.toolStripStats.Location = new System.Drawing.Point(67, 0);
+            this.toolStripStats.Name = "toolStripStats";
+            this.toolStripStats.Size = new System.Drawing.Size(83, 25);
+            this.toolStripStats.TabIndex = 3;
+            // 
+            // toolStripButtonStats
+            // 
+            this.toolStripButtonStats.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonStats.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStats.Image")));
+            this.toolStripButtonStats.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonStats.Name = "toolStripButtonStats";
+            this.toolStripButtonStats.Size = new System.Drawing.Size(71, 22);
+            this.toolStripButtonStats.Text = "Statistieken";
+            // 
+            // toolStripMessages
+            // 
+            this.toolStripMessages.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripMessages.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonMS});
+            this.toolStripMessages.Location = new System.Drawing.Point(3, 25);
+            this.toolStripMessages.Name = "toolStripMessages";
+            this.toolStripMessages.Size = new System.Drawing.Size(107, 25);
+            this.toolStripMessages.TabIndex = 2;
+            // 
+            // toolStripButtonMS
+            // 
+            this.toolStripButtonMS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonMS.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMS.Image")));
+            this.toolStripButtonMS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonMS.Name = "toolStripButtonMS";
+            this.toolStripButtonMS.Size = new System.Drawing.Size(95, 22);
+            this.toolStripButtonMS.Text = "Berichten server";
+            this.toolStripButtonMS.Click += new System.EventHandler(this.messageServerButtonClick);
+            // 
             // toolStripArduino
             // 
             this.toolStripArduino.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStripArduino.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBoxComPorts,
             this.toolStripButtonArduino});
-            this.toolStripArduino.Location = new System.Drawing.Point(110, 0);
+            this.toolStripArduino.Location = new System.Drawing.Point(110, 25);
             this.toolStripArduino.Name = "toolStripArduino";
             this.toolStripArduino.Size = new System.Drawing.Size(200, 25);
             this.toolStripArduino.TabIndex = 1;
@@ -195,45 +277,6 @@
             this.toolStripButtonArduino.Size = new System.Drawing.Size(65, 22);
             this.toolStripButtonArduino.Text = "Verbinden";
             this.toolStripButtonArduino.Click += new System.EventHandler(this.connectButtonClick);
-            // 
-            // toolStripMessages
-            // 
-            this.toolStripMessages.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripMessages.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonMS});
-            this.toolStripMessages.Location = new System.Drawing.Point(3, 0);
-            this.toolStripMessages.Name = "toolStripMessages";
-            this.toolStripMessages.Size = new System.Drawing.Size(107, 25);
-            this.toolStripMessages.TabIndex = 2;
-            // 
-            // toolStripButtonMS
-            // 
-            this.toolStripButtonMS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonMS.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMS.Image")));
-            this.toolStripButtonMS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonMS.Name = "toolStripButtonMS";
-            this.toolStripButtonMS.Size = new System.Drawing.Size(95, 22);
-            this.toolStripButtonMS.Text = "Berichten server";
-            this.toolStripButtonMS.Click += new System.EventHandler(this.messageServerButtonClick);
-            // 
-            // toolStripStats
-            // 
-            this.toolStripStats.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripStats.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonStats});
-            this.toolStripStats.Location = new System.Drawing.Point(311, 0);
-            this.toolStripStats.Name = "toolStripStats";
-            this.toolStripStats.Size = new System.Drawing.Size(83, 25);
-            this.toolStripStats.TabIndex = 3;
-            // 
-            // toolStripButtonStats
-            // 
-            this.toolStripButtonStats.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonStats.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStats.Image")));
-            this.toolStripButtonStats.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonStats.Name = "toolStripButtonStats";
-            this.toolStripButtonStats.Size = new System.Drawing.Size(71, 22);
-            this.toolStripButtonStats.Text = "Statistieken";
             // 
             // SimulatorForm
             // 
@@ -257,12 +300,12 @@
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
-            this.toolStripArduino.ResumeLayout(false);
-            this.toolStripArduino.PerformLayout();
-            this.toolStripMessages.ResumeLayout(false);
-            this.toolStripMessages.PerformLayout();
             this.toolStripStats.ResumeLayout(false);
             this.toolStripStats.PerformLayout();
+            this.toolStripMessages.ResumeLayout(false);
+            this.toolStripMessages.PerformLayout();
+            this.toolStripArduino.ResumeLayout(false);
+            this.toolStripArduino.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -286,6 +329,11 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonMS;
         private System.Windows.Forms.ToolStrip toolStripStats;
         private System.Windows.Forms.ToolStripButton toolStripButtonStats;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelID;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelSp;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelRL;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelIC;
 
 
 

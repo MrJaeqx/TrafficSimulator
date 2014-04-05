@@ -10,7 +10,42 @@ namespace TrafficSimulator
 {
     public class RandomRoadUsers
     {
+        public int StatsTotal { get; private set; }
+        public int[] StatsTotalPerIntersection { get; private set; }
+        public int StatsTotalRedLight { get; private set; }
+        public int StatsTotalSpeed { get; private set; }
+        public int StatsLastID
+        {
+            get
+            {
+                return lastRoadUser.ID;
+            }
+        }
+        public double StatsLastSpeed
+        {
+            get
+            {
+                return lastRoadUser.MaxSpeed;
+            }
+        }
+        public bool StatsLastRedlight
+        {
+            get
+            {
+                return lastRoadUser.RedLight;
+            }
+        }
+        public IntersectionType StatsLastIType
+        {
+            get
+            {
+                return lastIC.IntersectionType;
+            }
+        }
+
         private Random random = new Random();
+        private RoadUser lastRoadUser;
+        private IntersectionControl lastIC;
 
         public List<IntersectionControl> Intersections { get; private set; }
 
@@ -20,6 +55,8 @@ namespace TrafficSimulator
 
         public RandomRoadUsers(List<IntersectionControl> intersections)
         {
+            StatsTotalPerIntersection = new int[7];
+
             Intersections = intersections;
 
             timer = new Timer();
@@ -272,7 +309,26 @@ namespace TrafficSimulator
                     }
                 }
                 intersection.AddRoadUser(newRoadUser);
+                UpdateStats(newRoadUser, intersection);
             }
+        }
+
+        private void UpdateStats(RoadUser roadUser, IntersectionControl intersection)
+        {
+            lastRoadUser = roadUser;
+            lastIC = intersection;
+
+            StatsTotal++;
+
+            if (roadUser.MaxSpeed >= 5) StatsTotalSpeed++;
+            if (roadUser.RedLight) StatsTotalRedLight++;
+
+            if (intersection.IntersectionType == IntersectionType.TYPE_1) StatsTotalPerIntersection[0]++;
+            else if (intersection.IntersectionType == IntersectionType.TYPE_2) StatsTotalPerIntersection[1]++;
+            else if (intersection.IntersectionType == IntersectionType.TYPE_3) StatsTotalPerIntersection[2]++;
+            else if (intersection.IntersectionType == IntersectionType.TYPE_4) StatsTotalPerIntersection[3]++;
+            else if (intersection.IntersectionType == IntersectionType.TYPE_5) StatsTotalPerIntersection[4]++;
+            else if (intersection.IntersectionType == IntersectionType.TYPE_RAILWAY) StatsTotalPerIntersection[5]++;
         }
     }
 }
