@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using TrafficSimulatorUi;
 using System.Diagnostics;
+using TrafficSimulatorUi.Traffic;
+using System.Drawing;
 
 namespace TrafficSimulator
 {
     public class LogicControlRail : LogicControl
     {
-        public bool Train
-        {
-            get;
-            set;
-        }
         public override List<LaneId> Queue { get; protected set; }
+
+        private RoadUser lastTrain;
+        private Random random = new Random();
 
         public LogicControlRail(List<TrafficSimulatorUi.IntersectionControl> intersections)
         {
@@ -74,8 +74,10 @@ namespace TrafficSimulator
             base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
             base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
 
-            Train = true;
-            Debug.WriteLine("TrainIncomingEvent");
+            lastTrain = new RedTrain(new Point(223, 418));
+            if (random.Next(10) == 0) lastTrain = new GreenTrain(new Point(223, 418));
+            lastTrain.FaceTo(new Point(223, 0));
+            Intersection.AddRoadUser(lastTrain);
         }
 
         public void TrainPassedEvent(object sender, EventArgs e)
@@ -88,8 +90,13 @@ namespace TrafficSimulator
             base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.GO);
             base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.GO);
 
-            Train = false;
-            Debug.WriteLine("TrainPassedEvent");
+            if (lastTrain != null)
+            {
+                if (Intersection.RoadUsers.Exists(x => x == lastTrain))
+                {
+                    Intersection.RemoveRoadUser(lastTrain);
+                }
+            }
         }
     }
 }
