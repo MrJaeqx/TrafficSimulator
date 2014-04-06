@@ -32,10 +32,10 @@ namespace TrafficSimulator
                 {
                     base.IntersectionRight = intersection;
                 }
-
-                base.IntersectionLeft = null;
-                base.IntersectionBottom = null;
             }
+
+            base.IntersectionLeft = null;
+            base.IntersectionBottom = null;
 
             base.Intersection.GetTrafficLight(LaneId.SOUTH_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.STOP);
             base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.STOP);

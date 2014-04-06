@@ -33,10 +33,10 @@ namespace TrafficSimulator
                 {
                     base.IntersectionBottom = intersection;
                 }
-
-                base.IntersectionLeft = null;
-                base.IntersectionTop = null;
             }
+
+            base.IntersectionLeft = null;
+            base.IntersectionTop = null;
         }
 
         public override void MakeTurn()

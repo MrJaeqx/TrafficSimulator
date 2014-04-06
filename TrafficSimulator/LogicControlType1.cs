@@ -20,28 +20,28 @@ namespace TrafficSimulator
                 if (intersection.IntersectionType == IntersectionType.TYPE_1)
                 {
                     base.Intersection = intersection;
+                }
 
-                    //toekennen van het kruispunt dat zich rechts van dit kruispunt bevind
-                    if (intersection.IntersectionType == IntersectionType.TYPE_4)
-                    {
-                        base.IntersectionRight = intersection;
-                    }
+                //toekennen van het kruispunt dat zich rechts van dit kruispunt bevind
+                if (intersection.IntersectionType == IntersectionType.TYPE_4)
+                {
+                    base.IntersectionRight = intersection;
+                }
 
-                    //toekennen van het kruispunt dat zich links van dit kruispunt bevind
-                    if (intersection.IntersectionType == IntersectionType.TYPE_3)
-                    {
-                        base.IntersectionLeft = intersection;
-                    }
+                //toekennen van het kruispunt dat zich links van dit kruispunt bevind
+                if (intersection.IntersectionType == IntersectionType.TYPE_3)
+                {
+                    base.IntersectionLeft = intersection;
+                }
 
-                    //toekennen van het kruispunt dat zich boven van dit kruispunt bevind
-                    if (intersection.IntersectionType == IntersectionType.TYPE_5)
-                    {
-                        base.IntersectionTop= intersection;
-                    }
-
-                    base.IntersectionTop = null;
+                //toekennen van het kruispunt dat zich boven van dit kruispunt bevind
+                if (intersection.IntersectionType == IntersectionType.TYPE_5)
+                {
+                    base.IntersectionTop = intersection;
                 }
             }
+
+            base.IntersectionBottom = null;
         }
 
         public override void MakeTurn()
@@ -49,7 +49,6 @@ namespace TrafficSimulator
             foreach (RoadUser roadUser in Intersection.RoadUsers)
             {
                 Point P = roadUser.Location;
-                Random random = new Random();
                 // 270 North -- 180 Oost -- 90 Zuid -- 0 West
                 // TypexTurn(roadUser, Location ,[x, y] waar die de bocht moet maken,[x,y] plek waar die heen moet)
 

@@ -21,7 +21,6 @@ namespace TrafficSimulator
                     Intersection = intersection;
                 }
 
-
                 //toekennen van het kruispunt dat zich rechts van dit kruispunt bevind
                 if (intersection.IntersectionType == IntersectionType.TYPE_RAILWAY)
                 {
@@ -39,9 +38,9 @@ namespace TrafficSimulator
                 {
                     base.IntersectionLeft = intersection;
                 }
-                base.IntersectionTop = null;
-
             }
+
+            base.IntersectionTop = null;
         }
 
         public override void MakeTurn()
@@ -49,7 +48,6 @@ namespace TrafficSimulator
             foreach (RoadUser roadUser in Intersection.RoadUsers)
             {
                 Point P = roadUser.Location;
-                Random random = new Random();
                 // 270 North -- 180 Oost -- 90 Zuid -- 0 West
                 // TypexTurn(roadUser, Location ,[x, y] waar die de bocht moet maken,[x,y] plek waar die heen moet)
 

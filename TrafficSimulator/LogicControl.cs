@@ -10,6 +10,8 @@ namespace TrafficSimulator
 {
     public abstract class LogicControl
     {
+        private Random random = new Random();
+
         public IntersectionControl Intersection { get; protected set; }
 
         public IntersectionControl IntersectionLeft { get; protected set; }
@@ -36,8 +38,6 @@ namespace TrafficSimulator
         /// <param name="Y2"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
         protected void Type1Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
         {
-            Random random = new Random();
-
             if (P.X == X1 && P.Y == Y1)
             {
                 if (random.Next(0, 1) == 1)
@@ -58,8 +58,6 @@ namespace TrafficSimulator
         /// <param name="Y2"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
         protected void Type2Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
         {
-            Random random = new Random();
-
             if (P.X == X1 && P.Y == Y1)
             {
                 if (random.Next(0, 2) == 1)
@@ -80,8 +78,6 @@ namespace TrafficSimulator
         /// <param name="Y2"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
         protected void Type3Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
         {
-            Random random = new Random();
-
             if (P.X == X1 && P.Y == Y1)
             {
                 if (random.Next(0, 3) == 1)
@@ -102,8 +98,6 @@ namespace TrafficSimulator
 
         protected void Type4Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
         {
-            Random random = new Random();
-
             if (P.X == X1 && P.Y == Y1)
             {                
                     roadUser.FaceTo(new Point(X2, Y2));                
