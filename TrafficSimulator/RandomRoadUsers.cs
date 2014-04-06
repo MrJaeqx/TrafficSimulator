@@ -77,10 +77,16 @@ namespace TrafficSimulator
         public void SpawnRoadUser()
         {
             RoadUser newRoadUser = null;
+            int totalRoadusers = 0;
+
+            foreach (IntersectionControl ic in Intersections)
+            {
+                totalRoadusers += ic.RoadUsers.Count;
+            }
 
             IntersectionControl intersection = Intersections[random.Next(6)];
 
-            if (intersection.RoadUsers.Count < 40)
+            if (totalRoadusers < 40)
             {
                 if (intersection.IntersectionType == IntersectionType.TYPE_1)
                 {
@@ -88,8 +94,8 @@ namespace TrafficSimulator
                     {
                         case 0:
                             //south inbound left pedestrian
-                            newRoadUser = new Pedestrian(new Point(136, 405), 1);
-                            newRoadUser.FaceTo(new Point(136, 0));
+                            //newRoadUser = new Pedestrian(new Point(136, 405), 1);
+                            //newRoadUser.FaceTo(new Point(136, 0));
                             break;
                         case 1:
                             //south inbound left road
@@ -103,8 +109,8 @@ namespace TrafficSimulator
                             break;
                         case 3:
                             //south inbound right pedestrian
-                            newRoadUser = new Pedestrian(new Point(268, 405), 1);
-                            newRoadUser.FaceTo(new Point(268, 0));
+                            //newRoadUser = new Pedestrian(new Point(268, 405), 1);
+                            //newRoadUser.FaceTo(new Point(268, 0));
                             break;
                     }
                 }
@@ -114,43 +120,43 @@ namespace TrafficSimulator
                     {
                         case 0:
                             //north inbound left pedestrian
-                            newRoadUser = new Pedestrian(new Point(268, -5), 1);
-                            newRoadUser.FaceTo(new Point(268, 400));
+                            //newRoadUser = new Pedestrian(new Point(268, -5), 1);
+                            //newRoadUser.FaceTo(new Point(268, 400));
                             break;
                         case 1:
-                            //north inbound left lane
+                            //north inbound right lane
                             newRoadUser = pickRandomCar(156, -18);
                             newRoadUser.FaceTo(new Point(156, 400));
                             break;
                         case 2:
-                            //north inbound right lane
+                            //north inbound left lane
                             newRoadUser = pickRandomCar(186, -18);
                             newRoadUser.FaceTo(new Point(186, 400));
                             break;
                         case 3:
                             //north inbound right pedestrian
-                            newRoadUser = new Pedestrian(new Point(131, -5), 1);
-                            newRoadUser.FaceTo(new Point(131, 400));
+                            //newRoadUser = new Pedestrian(new Point(131, -5), 1);
+                            //newRoadUser.FaceTo(new Point(131, 400));
                             break;
                         case 4:
-                            //left inbound left pedestrian
-                            newRoadUser = new Pedestrian(new Point(-5, 136), 1);
-                            newRoadUser.FaceTo(new Point(400, 136));
+                            //west inbound left pedestrian
+                            //newRoadUser = new Pedestrian(new Point(-5, 136), 1);
+                            //newRoadUser.FaceTo(new Point(400, 136));
                             break;
                         case 5:
-                            //left inbound left lane
+                            //west inbound left lane
                             newRoadUser = pickRandomCar(-18, 216);
                             newRoadUser.FaceTo(new Point(400, 216));
                             break;
                         case 6:
-                            //left inbound right lane
+                            //west inbound right lane
                             newRoadUser = pickRandomCar(-18, 244);
                             newRoadUser.FaceTo(new Point(400, 244));
                             break;
                         case 7:
-                            //left inbound right pedestrian
-                            newRoadUser = new Pedestrian(new Point(-5, 268), 1);
-                            newRoadUser.FaceTo(new Point(400, 268));
+                            //west inbound right pedestrian
+                            //newRoadUser = new Pedestrian(new Point(-5, 268), 1);
+                            //newRoadUser.FaceTo(new Point(400, 268));
                             break;
                     }
                 }
@@ -160,8 +166,8 @@ namespace TrafficSimulator
                     {
                         case 0:
                             //south inbound left pedestrian
-                            newRoadUser = new Pedestrian(new Point(136, 405), 1);
-                            newRoadUser.FaceTo(new Point(136, 0));
+                            //newRoadUser = new Pedestrian(new Point(136, 405), 1);
+                            //newRoadUser.FaceTo(new Point(136, 0));
                             break;
                         case 1:
                             //south inbound left lane
@@ -175,28 +181,28 @@ namespace TrafficSimulator
                             break;
                         case 3:
                             //south inbound right pedestrian
-                            newRoadUser = new Pedestrian(new Point(268, 405), 1);
-                            newRoadUser.FaceTo(new Point(268, 0));
+                            //newRoadUser = new Pedestrian(new Point(268, 405), 1);
+                            //newRoadUser.FaceTo(new Point(268, 0));
                             break;
                         case 4:
-                            //left inbound left pedestrian
-                            newRoadUser = new Pedestrian(new Point(-5, 136), 1);
-                            newRoadUser.FaceTo(new Point(400, 136));
+                            //west inbound left pedestrian
+                            //newRoadUser = new Pedestrian(new Point(-5, 136), 1);
+                            //newRoadUser.FaceTo(new Point(400, 136));
                             break;
                         case 5:
-                            //left inbound left lane
+                            //west inbound left lane
                             newRoadUser = pickRandomCar(-18, 216);
                             newRoadUser.FaceTo(new Point(400, 216));
                             break;
                         case 6:
-                            //left inbound right lane
+                            //west inbound right lane
                             newRoadUser = pickRandomCar(-18, 244);
                             newRoadUser.FaceTo(new Point(400, 244));
                             break;
                         case 7:
-                            //left inbound right pedestrian
-                            newRoadUser = new Pedestrian(new Point(-5, 268), 1);
-                            newRoadUser.FaceTo(new Point(400, 268));
+                            //west inbound right pedestrian
+                            //newRoadUser = new Pedestrian(new Point(-5, 268), 1);
+                            //newRoadUser.FaceTo(new Point(400, 268));
                             break;
                     }
                 }
@@ -206,8 +212,8 @@ namespace TrafficSimulator
                     {
                         case 0:
                             //south inbound left pedestrian
-                            newRoadUser = new Pedestrian(new Point(136, 405), 1);
-                            newRoadUser.FaceTo(new Point(136, 0));
+                            //newRoadUser = new Pedestrian(new Point(136, 405), 1);
+                            //newRoadUser.FaceTo(new Point(136, 0));
                             break;
                         case 1:
                             //south inbound left lane
@@ -221,28 +227,28 @@ namespace TrafficSimulator
                             break;
                         case 3:
                             //south inbound right pedestrian
-                            newRoadUser = new Pedestrian(new Point(269, 405), 1);
-                            newRoadUser.FaceTo(new Point(269, 0));
+                            //newRoadUser = new Pedestrian(new Point(269, 405), 1);
+                            //newRoadUser.FaceTo(new Point(269, 0));
                             break;
                         case 4:
-                            //right inbound left pedestrian
-                            newRoadUser = new Pedestrian(new Point(405, 136), 1);
-                            newRoadUser.FaceTo(new Point(0, 136));
+                            //east inbound left pedestrian
+                            //newRoadUser = new Pedestrian(new Point(405, 136), 1);
+                            //newRoadUser.FaceTo(new Point(0, 136));
                             break;
                         case 5:
-                            //right inbound left lane
+                            //east inbound right lane
                             newRoadUser = pickRandomCar(418, 156);
                             newRoadUser.FaceTo(new Point(0, 156));
                             break;
                         case 6:
-                            //right inbound right lane
+                            //east inbound left lane
                             newRoadUser = pickRandomCar(418, 186);
                             newRoadUser.FaceTo(new Point(0, 186));
                             break;
                         case 7:
-                            //right inbound right pedestrian
-                            newRoadUser = new Pedestrian(new Point(405, 269), 1);
-                            newRoadUser.FaceTo(new Point(0, 269));
+                            //east inbound right pedestrian
+                            //newRoadUser = new Pedestrian(new Point(405, 269), 1);
+                            //newRoadUser.FaceTo(new Point(0, 269));
                             break;
                     }
                 }
@@ -252,23 +258,23 @@ namespace TrafficSimulator
                     {
                         case 0:
                             //north inbound left pedestrian
-                            newRoadUser = new Pedestrian(new Point(136, -5), 1);
-                            newRoadUser.FaceTo(new Point(136, 400));
+                            //newRoadUser = new Pedestrian(new Point(136, -5), 1);
+                            //newRoadUser.FaceTo(new Point(136, 400));
                             break;
                         case 1:
-                            //north inbound left lane
+                            //north inbound right lane
                             newRoadUser = pickRandomCar(156, -18);
                             newRoadUser.FaceTo(new Point(156, 400));
                             break;
                         case 2:
-                            //north inbound right lane
+                            //north inbound left lane
                             newRoadUser = pickRandomCar(186, -18);
                             newRoadUser.FaceTo(new Point(186, 400));
                             break;
                         case 3:
                             //north inbound right pedestrian
-                            newRoadUser = new Pedestrian(new Point(269, -5), 1);
-                            newRoadUser.FaceTo(new Point(269, 400));
+                            //newRoadUser = new Pedestrian(new Point(269, -5), 1);
+                            //newRoadUser.FaceTo(new Point(269, 400));
                             break;
                     }
                 }
@@ -277,29 +283,33 @@ namespace TrafficSimulator
                     switch (random.Next(4))
                     {
                         case 0:
-                            //right inbound left pedestrian
-                            newRoadUser = new Pedestrian(new Point(405, 136), 1);
-                            newRoadUser.FaceTo(new Point(0, 136));
+                            //east inbound left pedestrian
+                            //newRoadUser = new Pedestrian(new Point(405, 136), 1);
+                            //newRoadUser.FaceTo(new Point(0, 136));
                             break;
                         case 1:
-                            //right inbound left lane
+                            //east inbound right lane
                             newRoadUser = pickRandomCar(418, 156);
                             newRoadUser.FaceTo(new Point(0, 156));
                             break;
                         case 2:
-                            //right inbound right lane
+                            //east inbound left lane
                             newRoadUser = pickRandomCar(418, 186);
                             newRoadUser.FaceTo(new Point(0, 186));
                             break;
                         case 3:
-                            //right inbound right pedestrian
-                            newRoadUser = new Pedestrian(new Point(405, 269), 1);
-                            newRoadUser.FaceTo(new Point(0, 269));
+                            //east inbound right pedestrian
+                            //newRoadUser = new Pedestrian(new Point(405, 269), 1);
+                            //newRoadUser.FaceTo(new Point(0, 269));
                             break;
                     }
                 }
-                intersection.AddRoadUser(newRoadUser);
-                UpdateStats(newRoadUser, intersection);
+
+                if (newRoadUser != null)
+                {
+                    intersection.AddRoadUser(newRoadUser);
+                    UpdateStats(newRoadUser, intersection);
+                }
             }
         }
 

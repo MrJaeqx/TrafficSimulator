@@ -64,10 +64,10 @@ namespace TrafficSimulator
                     //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
                     Type1Turn(roadUser, P, 156, 156, 0, 156);
                     //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type1Turn(roadUser, P, 156, 182, 0, 182);
+                    Type1Turn(roadUser, P, 156, 186, 0, 186);
 
                     //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
-                    Type2Turn(roadUser, P, 184, 244, 400, 244);
+                    Type2Turn(roadUser, P, 186, 244, 400, 244);
                 }
                     
                 //EAST_INBOUND_LANE
@@ -80,7 +80,7 @@ namespace TrafficSimulator
                     //LEFT_LANE eerste mogelijkheid om links af te slaan, met een kans van 1 op 3
 
                     //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
-                    Type2Turn(roadUser, P, 156, 184, 156, 400);
+                    Type2Turn(roadUser, P, 156, 186, 156, 400);
                 }
 
                 //SOUTH_INBOUND_LANE
@@ -101,7 +101,7 @@ namespace TrafficSimulator
                     //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
                     Type1Turn(roadUser, P, 156, 244, 156, 400);
                     //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type1Turn(roadUser, P, 182, 244, 182, 400);
+                    Type1Turn(roadUser, P, 186, 244, 186, 400);
 
                     //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
                     Type2Turn(roadUser, P, 244, 216, 244, 0);

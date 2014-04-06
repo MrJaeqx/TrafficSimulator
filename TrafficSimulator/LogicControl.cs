@@ -128,7 +128,7 @@ namespace TrafficSimulator
             }
         }
 
-        private RoadUser pickCorrectCar(RoadUser roadUser, int spawnX, int spawnY)
+        private RoadUser pickCorrectRoadUser(RoadUser roadUser, int spawnX, int spawnY)
         {
             double maxSpeed = roadUser.MaxSpeed;
             bool redlight = roadUser.RedLight;
@@ -165,9 +165,9 @@ namespace TrafficSimulator
         {
             Point P = roadUser.Location;
 
-            if (IntersectionBottom != null && P.X == leaveX && P.Y == leaveY)
+            if (IntersectionBottom != null && P.X == leaveX && P.Y == 382)
             {
-                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
+                RoadUser newRoadUser = pickCorrectRoadUser(roadUser, spawnX, spawnY);
 
                 if (newRoadUser != null)
                 {
@@ -175,9 +175,9 @@ namespace TrafficSimulator
                     IntersectionBottom.AddRoadUser(newRoadUser);
                 }
             }
-            else if (IntersectionLeft != null && P.X == leaveX && P.Y == leaveY)
+            else if (IntersectionLeft != null && P.X == 18 && P.Y == leaveY)
             {
-                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
+                RoadUser newRoadUser = pickCorrectRoadUser(roadUser, spawnX, spawnY);
 
                 if (newRoadUser != null)
                 {
@@ -185,9 +185,9 @@ namespace TrafficSimulator
                     IntersectionLeft.AddRoadUser(newRoadUser);
                 }
             }
-            else if (IntersectionRight != null && P.X == leaveX && P.Y == leaveY)
+            else if (IntersectionRight != null && P.X == 382 && P.Y == leaveY)
             {
-                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
+                RoadUser newRoadUser = pickCorrectRoadUser(roadUser, spawnX, spawnY);
 
                 if (newRoadUser != null)
                 {
@@ -195,9 +195,9 @@ namespace TrafficSimulator
                     IntersectionRight.AddRoadUser(newRoadUser);
                 }
             }
-            else if (IntersectionTop != null && P.X == leaveX && P.Y == leaveY)
+            else if (IntersectionTop != null && P.X == leaveX && P.Y == 18)
             {
-                RoadUser newRoadUser = pickCorrectCar(roadUser, spawnX, spawnY);
+                RoadUser newRoadUser = pickCorrectRoadUser(roadUser, spawnX, spawnY);
 
                 if (newRoadUser != null)
                 {
@@ -213,21 +213,32 @@ namespace TrafficSimulator
             {
                 foreach (RoadUser roadUser in Intersection.RoadUsers)
                 {
-                    //tranfser naar een kruispunt aan de onderkant
-                    TransferCarMethod(roadUser, 156, 382, 156, -18, 156, 400);
-                    TransferCarMethod(roadUser, 186, 382, 186, -18, 186, 400);
+                    Point P = roadUser.Location;
 
-                    //transfer naar een kruispunt rechts
-                    TransferCarMethod(roadUser, 382, 216, -18, 216, 400, 216);
-                    TransferCarMethod(roadUser, 382, 244, -518, 244, 400, 244);
-
-                    //transfer naar een kruipunt aan de bovenkant
-                    TransferCarMethod(roadUser, 216, 18, 216, 418, 216, 0);
-                    TransferCarMethod(roadUser, 244, 18, 244, 418, 244, 0);
-
-                    //transfer naar een kruispunt links
-                    TransferCarMethod(roadUser, 18, 156, 418, 156, 0, 156);
-                    TransferCarMethod(roadUser, 18, 186, 418, 186, 0, 186);
+                    if (P.Y == 382 && roadUser.Direction == 270)
+                    {
+                        //tranfser naar een kruispunt aan de onderkant
+                        TransferCarMethod(roadUser, 156, 382, 156, -18, 156, 400);
+                        TransferCarMethod(roadUser, 186, 382, 186, -18, 186, 400);
+                    }
+                    else if (P.X == 382 && roadUser.Direction == 0)
+                    {
+                        //transfer naar een kruispunt rechts
+                        TransferCarMethod(roadUser, 382, 216, -18, 216, 400, 216);
+                        TransferCarMethod(roadUser, 382, 244, -18, 244, 400, 244);
+                    }
+                    else if (P.Y == 18 && roadUser.Direction == 90)
+                    {
+                        //transfer naar een kruipunt aan de bovenkant
+                        TransferCarMethod(roadUser, 216, 18, 216, 418, 216, 0);
+                        TransferCarMethod(roadUser, 244, 18, 244, 418, 244, 0);
+                    }
+                    else if (P.X == 18 && roadUser.Direction == 180)
+                    {
+                        //transfer naar een kruispunt links
+                        TransferCarMethod(roadUser, 18, 156, 418, 156, 0, 156);
+                        TransferCarMethod(roadUser, 18, 186, 418, 186, 0, 186);
+                    }
                 }
             }
 

@@ -63,13 +63,11 @@ namespace TrafficSimulator
                 {
                     //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 2
                     Type1Turn(roadUser, P, 244, 244, 400, 244);
-                    //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 2
-                    Type1Turn(roadUser, P, 244, 216, 400, 216);
+                    //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, moet afslaan
+                    Type4Turn(roadUser, P, 244, 216, 400, 216);
 
                     //LEFT_LANE altijd links afslaan bij de tweede mogelijkheid
-                    if(roadUser.Location.X == 216 && roadUser.Location.Y == 156) {
-                        roadUser.FaceTo(new Point(0, 156));
-                    }
+                    Type4Turn(roadUser, P, 216, 156, 0, 156);
                 }
 
                 //WEST_INBOUND_LANE
@@ -78,7 +76,7 @@ namespace TrafficSimulator
                     //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
                     Type2Turn(roadUser, P, 156, 244, 156, 400);
                     //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type2Turn(roadUser, P, 182, 244, 182, 400);
+                    Type2Turn(roadUser, P, 186, 244, 186, 400);
                 }
             }
         }
