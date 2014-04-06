@@ -78,7 +78,7 @@ namespace TrafficSimulator
                     //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
                     Type2Turn(roadUser, P, 156, 244, 156, 400);
                     //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type2Turn(roadUser, P, 182, 244, 182, 400);
+                    Type2Turn(roadUser, P, 186, 244, 186, 400);
                 }
             }
         }

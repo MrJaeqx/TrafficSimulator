@@ -219,7 +219,7 @@ namespace TrafficSimulator
                     {
                         //tranfser naar een kruispunt aan de onderkant
                         TransferCarMethod(roadUser, 156, 382, 156, -18, 156, 400);
-                        TransferCarMethod(roadUser, 186, 382, 182, -18, 182, 400);
+                        TransferCarMethod(roadUser, 186, 382, 186, -18, 186, 400);
                     }
                     else if (P.X == 382 && roadUser.Direction == 0)
                     {
@@ -237,7 +237,7 @@ namespace TrafficSimulator
                     {
                         //transfer naar een kruispunt links
                         TransferCarMethod(roadUser, 18, 156, 418, 156, 0, 156);
-                        TransferCarMethod(roadUser, 18, 182, 418, 182, 0, 186);
+                        TransferCarMethod(roadUser, 18, 186, 418, 186, 0, 186);
                     }
                 }
             }

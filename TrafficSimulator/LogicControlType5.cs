@@ -68,11 +68,11 @@ namespace TrafficSimulator
                 {
                     // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
                     // Of 1ste bocht anders altijd tweede mogelijkheid
-                    Type1Turn(roadUser, P, 244, 156, 0244, 0);
+                    Type1Turn(roadUser, P, 244, 156, 244, 0);
                     Type4Turn(roadUser, P, 216, 156, 216, 0);
 
                     //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
-                    Type2Turn(roadUser, P, 156, 184, 156, 400);
+                    Type2Turn(roadUser, P, 156, 186, 156, 400);
                 }
 
                 //SOUTH_INBOUND_LANE
@@ -93,7 +93,7 @@ namespace TrafficSimulator
                     // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
                     // Of 1ste bocht anders altijd tweede mogelijkheid
                     Type1Turn(roadUser, P, 156, 244, 156, 400);
-                    Type4Turn(roadUser, P, 182, 244, 182, 400);
+                    Type4Turn(roadUser, P, 186, 244, 186, 400);
 
                     //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
                     Type2Turn(roadUser, P, 244, 216, 244, 0);
