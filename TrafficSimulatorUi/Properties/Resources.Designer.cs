@@ -103,6 +103,16 @@ namespace TrafficSimulatorUi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GreenTrain {
+            get {
+                object obj = ResourceManager.GetObject("GreenTrain", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IntersectionType1Image {
             get {
                 object obj = ResourceManager.GetObject("IntersectionType1Image", resourceCulture);
@@ -176,6 +186,16 @@ namespace TrafficSimulatorUi.Properties {
         internal static System.Drawing.Bitmap RedLightImage {
             get {
                 object obj = ResourceManager.GetObject("RedLightImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RedTrain {
+            get {
+                object obj = ResourceManager.GetObject("RedTrain", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
