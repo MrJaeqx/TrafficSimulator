@@ -243,14 +243,15 @@ namespace TrafficSimulator
         {
             return ((Intersection.GetTrafficLight(laneId).State == SignalState.STOP
                 || Intersection.GetTrafficLight(laneId).State == SignalState.CLEAR_CROSSING)
-                && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(laneId).BoundingBox));
+                && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(laneId).BoundingBox)
+                && !roadUser.RedLight);
         }
 
         protected void HandleTrafficLightLane(RoadUser roadUser, LaneId lane)
         {
             if (AddToTrafficLightQueue(lane, roadUser))
             {
-                if (!roadUser.RedLight) roadUser.Speed = 0;
+                roadUser.Speed = 0;
 
                 if (!Queue.Contains(lane))
                 {
@@ -301,7 +302,7 @@ namespace TrafficSimulator
                     //driving up
                     else if (roadUser1.Direction == 90)
                     {
-                        boundBox.Offset(new Point(0, 4));
+                        boundBox.Offset(new Point(0, -4));
                         CheckCollision(roadUser1, boundBox);
                     }
                 }
