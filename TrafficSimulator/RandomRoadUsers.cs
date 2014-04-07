@@ -57,8 +57,8 @@ namespace TrafficSimulator
 
         private RoadUser pickRandomCar(int spawnX, int spawnY)
         {
-            double newCarSpeed = random.Next(2, 3);
-            if (random.Next(0, 10) == 0) newCarSpeed = 4;
+            double newCarSpeed = 2;
+            if (random.Next(0, 10) == 0) newCarSpeed = 3;
             bool newCarRedLight = (random.Next(0, 10) == 0);
 
             switch (random.Next(0, 3))
