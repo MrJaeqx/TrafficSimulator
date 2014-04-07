@@ -10,10 +10,25 @@ namespace TrafficSimulator
 {
     public class RandomRoadUsers
     {
+        /// <summary>
+        /// Totaal aantal gegenereerde roadusers.
+        /// </summary>
         public int StatsTotal { get; private set; }
+        /// <summary>
+        /// Totaal aantal gegenereerde roadusers per kruispunt.
+        /// </summary>
         public int[] StatsTotalPerIntersection { get; private set; }
+        /// <summary>
+        /// Totaal aantal rood licht overtredingen.
+        /// </summary>
         public int StatsTotalRedLight { get; private set; }
+        /// <summary>
+        /// Totaal aantal snelheidsovertredingen.
+        /// </summary>
         public int StatsTotalSpeed { get; private set; }
+        /// <summary>
+        /// ID van de laatst gegenereerde roaduser.
+        /// </summary>
         public int StatsLastID
         {
             get
@@ -21,6 +36,9 @@ namespace TrafficSimulator
                 return lastRoadUser.ID;
             }
         }
+        /// <summary>
+        /// Snelheid van de laatst gegenereerde roaduser.
+        /// </summary>
         public double StatsLastSpeed
         {
             get
@@ -28,6 +46,9 @@ namespace TrafficSimulator
                 return lastRoadUser.MaxSpeed;
             }
         }
+        /// <summary>
+        /// Snelheidsovertreding van de laatst gegenereerde roaduser
+        /// </summary>
         public bool StatsLastRedlight
         {
             get
@@ -35,6 +56,9 @@ namespace TrafficSimulator
                 return lastRoadUser.RedLight;
             }
         }
+        /// <summary>
+        /// Kruispunt type van de laatst gegenereerde roaduser.
+        /// </summary>
         public IntersectionType StatsLastIType
         {
             get
@@ -43,22 +67,47 @@ namespace TrafficSimulator
             }
         }
 
+        /// <summary>
+        /// Random object om random dingen te randomen.
+        /// </summary>
         private Random random = new Random();
+        /// <summary>
+        /// Laatst gegenereerde roaduser
+        /// </summary>
         private RoadUser lastRoadUser;
+        /// <summary>
+        /// Kruispunt waar de laatste roaduser is gegenereerd.
+        /// </summary>
         private IntersectionControl lastIC;
 
+        /// <summary>
+        /// Lijst met kruispunten
+        /// </summary>
         public List<IntersectionControl> Intersections { get; private set; }
 
+        /// <summary>
+        /// Nieuwe roaduser generator aanmaken.
+        /// </summary>
+        /// <param name="intersections">Lijst met kruispunten</param>
         public RandomRoadUsers(List<IntersectionControl> intersections)
         {
             StatsTotalPerIntersection = new int[7];
             Intersections = intersections;
         }
 
+        /// <summary>
+        /// Nieuwe random roaduser maken.
+        /// </summary>
+        /// <param name="spawnX">X locatie voor de roaduser</param>
+        /// <param name="spawnY">Y locatie voor de roaduser</param>
+        /// <returns></returns>
         private RoadUser pickRandomCar(int spawnX, int spawnY)
         {
+            // Snelheid van de roaduser is 2 met een kans van 1 op 5 dat deze een snelheidsovertreding gaat maken.
             double newCarSpeed = 2;
             if (random.Next(0, 10) == 0) newCarSpeed = 3;
+
+            // Kans van 1 op 10 dat de roaduser door een rood licht gaat rijden.
             bool newCarRedLight = (random.Next(0, 10) == 0);
 
             switch (random.Next(0, 3))
@@ -74,6 +123,9 @@ namespace TrafficSimulator
             }
         }
 
+        /// <summary>
+        /// Nieuwe roaduser spawnen
+        /// </summary>
         public void SpawnRoadUser()
         {
             RoadUser newRoadUser = null;
@@ -313,6 +365,11 @@ namespace TrafficSimulator
             }
         }
 
+        /// <summary>
+        /// Statistieken bijwerken.
+        /// </summary>
+        /// <param name="roadUser"></param>
+        /// <param name="intersection"></param>
         private void UpdateStats(RoadUser roadUser, IntersectionControl intersection)
         {
             lastRoadUser = roadUser;

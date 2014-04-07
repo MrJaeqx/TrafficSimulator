@@ -9,22 +9,41 @@ using System.Drawing;
 
 namespace TrafficSimulator
 {
+    /// <summary>
+    /// Specifieke logic control voor kruispunt type 6 (rails)
+    /// </summary>
     public class LogicControlRail : LogicControl
     {
+        /// <summary>
+        /// Lijst met roadusers in de wachtrij.
+        /// </summary>
         public override List<LaneId> Queue { get; protected set; }
 
+        /// <summary>
+        /// Laatst gegenereerde trein.
+        /// </summary>
         private RoadUser lastTrain;
+
+        /// <summary>
+        /// Random voor het bepalen van het type trein.
+        /// </summary>
         private Random random = new Random();
 
+        /// <summary>
+        /// Nieuw kruispunt type 6 aanmaken.
+        /// </summary>
+        /// <param name="intersections">Lijst met andere kruispunten.</param>
         public LogicControlRail(List<TrafficSimulatorUi.IntersectionControl> intersections)
         {
             foreach (IntersectionControl intersection in intersections)
             {
+                // Eigen kruispunt instellen.
                 if (intersection.IntersectionType == IntersectionType.TYPE_RAILWAY)
                 {
                     base.Intersection = intersection;
                 }
 
+                // Kruispunt links instellen
                 if (intersection.IntersectionType == IntersectionType.TYPE_5)
                 {
                     base.IntersectionLeft = intersection;
@@ -36,11 +55,17 @@ namespace TrafficSimulator
             }
         }
 
+        /// <summary>
+        /// Omdat er bij de rails geen bochten hoeven worden gemaakt is deze methode leeg.
+        /// </summary>
         public override void MakeTurn()
         {
-            //throw new NotImplementedException();
+
         }
 
+        /// <summary>
+        /// Stoplicht wachtrij afhandelen.
+        /// </summary>
         public override void HandleTrafficLight()
         {
             foreach (RoadUser roadUser in base.Intersection.RoadUsers)
@@ -59,11 +84,19 @@ namespace TrafficSimulator
             }
         }
 
+        /// <summary>
+        /// Omdat de stoplichten door de Arduino worden beheerd is deze methode leeg.
+        /// </summary>
         public override void HandleQueue()
         {
             
         }
 
+        /// <summary>
+        /// Event dat wordt aangeroepen indien er een trein aankomt.
+        /// </summary>
+        /// <param name="sender">Niet gebruikt.</param>
+        /// <param name="e">Niet gebruikt.</param>
         public void TrainIncomingEvent(object sender, EventArgs e)
         {
             base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.STOP);
@@ -74,12 +107,18 @@ namespace TrafficSimulator
             base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
             base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
 
+            // Nieuwe trein spawnen.
             lastTrain = new RedTrain(new Point(223, 418));
             if (random.Next(5) == 0) lastTrain = new GreenTrain(new Point(223, 418));
             lastTrain.FaceTo(new Point(223, 0));
             Intersection.AddRoadUser(lastTrain);
         }
 
+        /// <summary>
+        /// Methode die wordt aangeroepen indien een trein is gepasseert.
+        /// </summary>
+        /// <param name="sender">Niet gebruikt.</param>
+        /// <param name="e">Niet gebruikt.</param>
         public void TrainPassedEvent(object sender, EventArgs e)
         {
             base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.GO);
@@ -90,6 +129,7 @@ namespace TrafficSimulator
             base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.GO);
             base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.GO);
 
+            // Indien er al eerder een trein is gespawnt en deze zich nog op de railt bevind wordt deze verwijderd.
             if (lastTrain != null)
             {
                 if (Intersection.RoadUsers.Exists(x => x == lastTrain))

@@ -8,14 +8,22 @@ using TrafficSimulatorUi;
 
 namespace TrafficSimulator
 {
-    class LogicControlType5 : LogicControl
+    /// <summary>
+    /// Specifieke logic control voor kruispunt type 5
+    /// </summary>
+    public class LogicControlType5 : LogicControl
     {
         public override List<LaneId> Queue { get; protected set; }
 
+        /// <summary>
+        /// Nieuw kruispunt type 5 aanmaken.
+        /// </summary>
+        /// <param name="intersections">Andere kruispunten.</param>
         public LogicControlType5(List<IntersectionControl> intersections)
         {
             foreach (IntersectionControl intersection in intersections)
             {
+                //toekenen van eigen kruispunt
                 if (intersection.IntersectionType == IntersectionType.TYPE_5)
                 {
                     Intersection = intersection;
@@ -43,6 +51,9 @@ namespace TrafficSimulator
             base.IntersectionTop = null;
         }
 
+        /// <summary>
+        /// Roadusers een bocht laten maken.
+        /// </summary>
         public override void MakeTurn()
         {
             foreach (RoadUser roadUser in Intersection.RoadUsers)
@@ -135,6 +146,9 @@ namespace TrafficSimulator
             }
         }
 
+        /// <summary>
+        /// Wachtrij met roadusers beheren.
+        /// </summary>
         public override void HandleTrafficLight()
         {
             foreach (RoadUser roadUser in base.Intersection.RoadUsers)
@@ -181,6 +195,9 @@ namespace TrafficSimulator
             }
         }
 
+        /// <summary>
+        /// Stoplichten schakelen.
+        /// </summary>
         public override void HandleQueue()
         {
             if (Queue.Count > 0)
