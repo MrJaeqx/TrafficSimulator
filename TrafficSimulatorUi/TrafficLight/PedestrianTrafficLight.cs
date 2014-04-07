@@ -36,7 +36,7 @@ namespace TrafficSimulatorUi
         /// <summary>
         /// Blink interval when in idle state
         /// </summary>
-        private const int blinkIntervalWhenInIdleState = 1000;
+        private const int blinkIntervalWhenInIdleState = 10000;
 
         /// <summary>
         /// Blink interval when in stop state.
@@ -70,7 +70,7 @@ namespace TrafficSimulatorUi
         /// <summary>
         /// The number of times the light will blink before going to wait state.
         /// </summary>
-        private const int timesToBlinkBetweenGoAndStopState = 5;
+        private const int timesToBlinkBetweenGoAndStopState = 6;
 
         /// <summary>
         /// Creates a new pedestrian traffic light.

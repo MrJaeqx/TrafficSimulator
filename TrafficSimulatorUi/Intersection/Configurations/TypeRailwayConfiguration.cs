@@ -26,7 +26,9 @@ namespace TrafficSimulatorUi.Intersection.Configurations
             LanesWithRoadSensors = new List<LaneId>() {
                 LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT,
                 LaneId.WEST_INBOUND_ROAD_LEFT_AND_RIGHT };
-            LanesWithPedestrianSensors = new List<LaneId>() { };
+            LanesWithPedestrianSensors = new List<LaneId>() {
+                LaneId.EAST_PAVEMENT_LEFT, LaneId.EAST_PAVEMENT_RIGHT,
+                LaneId.WEST_PAVEMENT_LEFT, LaneId.WEST_PAVEMENT_RIGHT };
             LanesWithRailwaySensors = new List<LaneId>() {
                 LaneId.NORTH_INBOUND_RAILWAY, LaneId.NORTH_OUTBOUND_RAILWAY,
                 LaneId.SOUTH_INBOUND_RAILWAY, LaneId.SOUTH_OUTBOUND_RAILWAY };
