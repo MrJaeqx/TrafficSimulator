@@ -145,11 +145,11 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl3);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl2);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1203, 803);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1203, 802);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1203, 852);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1203, 851);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -251,11 +251,13 @@
             this.toolStripComboBoxCom});
             this.toolStripMain.Location = new System.Drawing.Point(3, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(235, 25);
+            this.toolStripMain.Size = new System.Drawing.Size(266, 25);
             this.toolStripMain.TabIndex = 4;
             // 
             // toolStripButtonSpawn
             // 
+            this.toolStripButtonSpawn.Checked = true;
+            this.toolStripButtonSpawn.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripButtonSpawn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonSpawn.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSpawn.Image")));
             this.toolStripButtonSpawn.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -266,9 +268,10 @@
             // 
             // toolStripTextBoxSpawnInterval
             // 
+            this.toolStripTextBoxSpawnInterval.Enabled = false;
             this.toolStripTextBoxSpawnInterval.Name = "toolStripTextBoxSpawnInterval";
             this.toolStripTextBoxSpawnInterval.Size = new System.Drawing.Size(40, 25);
-            this.toolStripTextBoxSpawnInterval.Text = "500";
+            this.toolStripTextBoxSpawnInterval.Text = "100";
             // 
             // toolStripSeparator1
             // 
@@ -320,7 +323,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1203, 852);
+            this.ClientSize = new System.Drawing.Size(1203, 851);
             this.Controls.Add(this.toolStripContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

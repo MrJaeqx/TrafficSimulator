@@ -45,6 +45,8 @@ namespace TrafficSimulator
             trafficLightTimer.Tick += trafficlightTimer_Tick;
 
             randomSpawnTimer.Tick += randomSpawnTimer_Tick;
+            randomSpawnTimer.Interval = Convert.ToInt32(toolStripTextBoxSpawnInterval.Text);
+            randomSpawnTimer.Start();
 
             intersections = new List<IntersectionControl>();
 

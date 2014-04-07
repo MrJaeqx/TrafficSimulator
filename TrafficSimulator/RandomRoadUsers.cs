@@ -86,7 +86,7 @@ namespace TrafficSimulator
 
             IntersectionControl intersection = Intersections[random.Next(6)];
 
-            if (totalRoadusers < 40)
+            if (totalRoadusers < 200)
             {
                 if (intersection.IntersectionType == IntersectionType.TYPE_1)
                 {
