@@ -72,13 +72,17 @@ namespace TrafficSimulatorUi
         /// <summary>
         /// Amount of generated road users. Used the creation of the ID.
         /// </summary>
-        private static int idcounter = 0;
+        private static int idCounter = 0;
 
         /// <summary>
         /// Boolean if the road user will ignore the traffic lights.
         /// </summary>
-        private bool redlight;
+        private bool redLight;
 
+        /// <summary>
+        /// Bool
+        /// </summary>
+        private bool crossRedLight;
         /// <summary>
         /// Creates a road user
         /// </summary>
@@ -95,8 +99,9 @@ namespace TrafficSimulatorUi
             Speed = speed;
             MaxSpeed = speed;
             Direction = 0D;
-            ID = idcounter++;
+            ID = idCounter++;
             RedLight = redlight;
+            CrossRedLight = false;
         }
 
         /// <summary>
@@ -228,11 +233,14 @@ namespace TrafficSimulatorUi
         /// </summary>
         public bool RedLight
         {
-            get { return redlight; }
-            private set
-            {
-                redlight = value;
-            }
+            get { return redLight; }
+            private set { redLight = value; }
+        }
+
+        public bool CrossRedLight
+        {
+            get { return crossRedLight; }
+            set { crossRedLight = value; }
         }
 
         /// <summary>

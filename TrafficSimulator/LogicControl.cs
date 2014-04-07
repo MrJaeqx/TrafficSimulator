@@ -249,11 +249,15 @@ namespace TrafficSimulator
             return ((Intersection.GetTrafficLight(laneId).State == SignalState.STOP
                 || Intersection.GetTrafficLight(laneId).State == SignalState.CLEAR_CROSSING)
                 && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(laneId).BoundingBox)
-                && !roadUser.RedLight);
+                && !roadUser.RedLight
+                //&& !roadUser.CrossRedLight
+                );
         }
 
         protected void HandleTrafficLightLane(RoadUser roadUser, LaneId lane)
         {
+            if (Intersection.GetTrafficLight(lane).State == SignalState.GO) roadUser.CrossRedLight = true;
+
             if (AddToTrafficLightQueue(lane, roadUser))
             {
                 roadUser.Speed = 0;
