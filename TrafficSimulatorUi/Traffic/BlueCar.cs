@@ -7,8 +7,8 @@ namespace TrafficSimulatorUi
         /// <summary>
         /// Create a new car
         /// </summary>
-        public BlueCar(Point location, double speed)
-            : base(location, speed, Properties.Resources.BlueCarImage)
+        public BlueCar(Point location, double speed, bool redlight)
+            : base(location, speed, Properties.Resources.BlueCarImage, redlight)
         {
         }
     }

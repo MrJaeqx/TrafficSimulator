@@ -53,6 +53,8 @@
     <Compile Include="MathHelper.cs" />
     <Compile Include="Sensor\DoubleLaneDriverSensor.cs" />
     <Compile Include="Sensor\RailwaySensor.cs" />
+    <Compile Include="Traffic\GreenTrain.cs" />
+    <Compile Include="Traffic\Pedestrian.cs" />
     <Compile Include="Traffic\BlueCar.cs" />
     <Compile Include="Traffic\BlueSportsCar.cs" />
     <Compile Include="TrafficLight\DriverTrafficLight.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="TrafficLight\TrafficLight.cs" />
     <Compile Include="Intersection\TrafficLightClickEventArgs.cs" />
     <Compile Include="Traffic\RotatedImageCache.cs" />
+    <Compile Include="Traffic\RedTrain.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Intersection\IntersectionControl.resx">
@@ -131,7 +134,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Intersections\IntersectionTypeRailway.png" />
-    <Content Include="Traffic\PedestriansTODO.txt" />
+    <Content Include="Images\Pedestrian\Pedestrian.png" />
+    <None Include="Images\Trains\GreenTrain.png" />
+    <None Include="Images\Trains\RedTrain.png" />
+    <None Include="Resources\Pedestrian.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

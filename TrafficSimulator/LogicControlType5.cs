@@ -8,40 +8,39 @@ using TrafficSimulatorUi;
 
 namespace TrafficSimulator
 {
-    public class LogicControlType1 : LogicControl
+    class LogicControlType5 : LogicControl
     {
-
         public override List<LaneId> Queue { get; protected set; }
 
-        public LogicControlType1(List<IntersectionControl> intersections)
+        public LogicControlType5(List<IntersectionControl> intersections)
         {
             foreach (IntersectionControl intersection in intersections)
             {
-                if (intersection.IntersectionType == IntersectionType.TYPE_1)
+                if (intersection.IntersectionType == IntersectionType.TYPE_5)
                 {
-                    base.Intersection = intersection;
+                    Intersection = intersection;
                 }
 
                 //toekennen van het kruispunt dat zich rechts van dit kruispunt bevind
-                if (intersection.IntersectionType == IntersectionType.TYPE_4)
+                if (intersection.IntersectionType == IntersectionType.TYPE_RAILWAY)
                 {
                     base.IntersectionRight = intersection;
                 }
 
+                //toekennen van het kruispunt dat zich onder van dit kruispunt bevind
+                if (intersection.IntersectionType == IntersectionType.TYPE_1)
+                {
+                    base.IntersectionBottom = intersection;
+                }
+
                 //toekennen van het kruispunt dat zich links van dit kruispunt bevind
-                if (intersection.IntersectionType == IntersectionType.TYPE_3)
+                if (intersection.IntersectionType == IntersectionType.TYPE_2)
                 {
                     base.IntersectionLeft = intersection;
                 }
-
-                //toekennen van het kruispunt dat zich boven van dit kruispunt bevind
-                if (intersection.IntersectionType == IntersectionType.TYPE_5)
-                {
-                    base.IntersectionTop = intersection;
-                }
             }
 
-            base.IntersectionBottom = null;
+            base.IntersectionTop = null;
         }
 
         public override void MakeTurn()
@@ -58,8 +57,8 @@ namespace TrafficSimulator
                     // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
                     // Of 1ste bocht anders altijd tweede mogelijkheid
                     Type1Turn(roadUser, P, 156, 156, 0, 156);
-                    Type4Turn(roadUser, P, 156, 186, 0, 186);
-
+                    Type4Turn(roadUser, P, 156, 182, 0, 182);
+                    
                     //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
                     Type2Turn(roadUser, P, 184, 244, 400, 244);
                 }
@@ -121,10 +120,32 @@ namespace TrafficSimulator
                 //WEST inbound LEFT AND RIGHT lane
                 HandleTrafficLightLane(roadUser, LaneId.WEST_INBOUND_ROAD_LEFT);
                 HandleTrafficLightLane(roadUser, LaneId.WEST_INBOUND_ROAD_RIGHT);
+
+                //EAST inbound PAVEMENT LEFT
+                HandleTrafficLightLane(roadUser, LaneId.EAST_PAVEMENT_LEFT);
+
+                //EAST inbound PAVEMENT RIGHT
+                HandleTrafficLightLane(roadUser, LaneId.EAST_PAVEMENT_RIGHT);
+
+                //SOUTH inbound PAVEMENT LEFT
+                HandleTrafficLightLane(roadUser, LaneId.SOUTH_PAVEMENT_LEFT);
+
+                //SOUTH inbound PAVEMENT RIGHT
+                HandleTrafficLightLane(roadUser, LaneId.SOUTH_PAVEMENT_RIGHT);
+
+                //WEST inbound PAVEMENT LEFT
+                HandleTrafficLightLane(roadUser, LaneId.WEST_PAVEMENT_LEFT);
+
+                //WEST inbound PAVEMENT RIGHT
+                HandleTrafficLightLane(roadUser, LaneId.WEST_PAVEMENT_RIGHT);
+
+                //NORTH inbound PAVEMENT LEFT
+                HandleTrafficLightLane(roadUser, LaneId.NORTH_PAVEMENT_LEFT);
+
+                //NORTH inbound PAVEMENT RIGHT
+                HandleTrafficLightLane(roadUser, LaneId.NORTH_PAVEMENT_RIGHT);
             }
         }
-
-
 
         public override void HandleQueue()
         {
@@ -137,7 +158,15 @@ namespace TrafficSimulator
                     base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT).State == SignalState.GO ||
                     base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).State == SignalState.GO ||
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT).State == SignalState.GO ||
-                    base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_RIGHT).State == SignalState.GO)
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_RIGHT).State == SignalState.GO ||
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_LEFT).State == SignalState.GO ||
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_RIGHT).State == SignalState.GO ||
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_LEFT).State == SignalState.GO ||
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_RIGHT).State == SignalState.GO ||
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).State == SignalState.GO ||
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).State == SignalState.GO ||
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_LEFT).State == SignalState.GO ||
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_RIGHT).State == SignalState.GO)
                 {
                     base.Intersection.GetTrafficLight(LaneId.SOUTH_INBOUND_ROAD_LEFT).SwitchTo(SignalState.STOP);
                     base.Intersection.GetTrafficLight(LaneId.SOUTH_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.STOP);
@@ -147,6 +176,14 @@ namespace TrafficSimulator
                     base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.STOP);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.STOP);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
                 }
                 else if (Queue[0] == LaneId.NORTH_INBOUND_ROAD_LEFT)
                 {
@@ -159,6 +196,14 @@ namespace TrafficSimulator
                     base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.STOP);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT).SwitchTo(SignalState.GO);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.GO);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
                     Queue.RemoveAt(0);
                 }
                 else if (Queue[0] == LaneId.NORTH_INBOUND_ROAD_RIGHT || Queue[0] == LaneId.WEST_INBOUND_ROAD_RIGHT || Queue[0] == LaneId.SOUTH_INBOUND_ROAD_RIGHT || Queue[0] == LaneId.EAST_INBOUND_ROAD_RIGHT)
@@ -172,6 +217,14 @@ namespace TrafficSimulator
                     base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.GO);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT).SwitchTo(SignalState.STOP);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.GO);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
                     Queue.RemoveAt(0);
                 }
                 else if (Queue[0] == LaneId.WEST_INBOUND_ROAD_LEFT)
@@ -184,6 +237,14 @@ namespace TrafficSimulator
                     base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.GO);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT).SwitchTo(SignalState.STOP);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.GO);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
                     Queue.RemoveAt(0);
                 }
                 else if (Queue[0] == LaneId.SOUTH_INBOUND_ROAD_LEFT)
@@ -196,6 +257,14 @@ namespace TrafficSimulator
                     base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.GO);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT).SwitchTo(SignalState.STOP);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
                     Queue.RemoveAt(0);
                 }
                 else if (Queue[0] == LaneId.EAST_INBOUND_ROAD_LEFT)
@@ -208,6 +277,38 @@ namespace TrafficSimulator
                     base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.STOP);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT).SwitchTo(SignalState.STOP);
                     base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
+                    Queue.RemoveAt(0);
+                }
+                else if (Queue[0] == LaneId.EAST_PAVEMENT_LEFT || Queue[0] == LaneId.EAST_PAVEMENT_RIGHT ||
+                         Queue[0] == LaneId.SOUTH_PAVEMENT_LEFT || Queue[0] == LaneId.SOUTH_PAVEMENT_RIGHT ||
+                         Queue[0] == LaneId.WEST_PAVEMENT_LEFT || Queue[0] == LaneId.WEST_PAVEMENT_RIGHT ||
+                         Queue[0] == LaneId.NORTH_PAVEMENT_LEFT || Queue[0] == LaneId.NORTH_PAVEMENT_RIGHT)
+                {
+
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_INBOUND_ROAD_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_LEFT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_INBOUND_ROAD_RIGHT).SwitchTo(SignalState.STOP);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_LEFT).SwitchTo(SignalState.GO);
+                    base.Intersection.GetTrafficLight(LaneId.EAST_PAVEMENT_RIGHT).SwitchTo(SignalState.GO);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_LEFT).SwitchTo(SignalState.GO);
+                    base.Intersection.GetTrafficLight(LaneId.SOUTH_PAVEMENT_RIGHT).SwitchTo(SignalState.GO);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.GO);
+                    base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.GO);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_LEFT).SwitchTo(SignalState.GO);
+                    base.Intersection.GetTrafficLight(LaneId.NORTH_PAVEMENT_RIGHT).SwitchTo(SignalState.GO);
                     Queue.RemoveAt(0);
                 }
             }

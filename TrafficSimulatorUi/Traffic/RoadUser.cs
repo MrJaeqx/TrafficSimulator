@@ -39,6 +39,11 @@ namespace TrafficSimulatorUi
         private double speed;
 
         /// <summary>
+        /// The maximum speed of the road user (see property for description)
+        /// </summary>
+        private double maxSpeed;
+
+        /// <summary>
         /// The bounding box of the item.
         /// </summary>
         private Rectangle boundingBox;
@@ -60,10 +65,29 @@ namespace TrafficSimulatorUi
         private RotatedImageCache rotatedImageCache;
 
         /// <summary>
+        /// ID of the road user.
+        /// </summary>
+        private int id;
+
+        /// <summary>
+        /// Amount of generated road users. Used the creation of the ID.
+        /// </summary>
+        private static int idCounter = 0;
+
+        /// <summary>
+        /// Boolean if the road user will ignore the traffic lights.
+        /// </summary>
+        private bool redLight;
+
+        /// <summary>
+        /// Bool
+        /// </summary>
+        private bool crossRedLight;
+        /// <summary>
         /// Creates a road user
         /// </summary>
         /// <param name="image">The image to use then painting the road user.</param>
-        public RoadUser(Point location, double speed, Image image)
+        public RoadUser(Point location, double speed, Image image, bool redlight)
         {
             if (image == null)
             {
@@ -73,7 +97,11 @@ namespace TrafficSimulatorUi
             rotatedImageCache = new RotatedImageCache(image);
             Location = location;
             Speed = speed;
+            MaxSpeed = speed;
             Direction = 0D;
+            ID = idCounter++;
+            RedLight = redlight;
+            CrossRedLight = false;
         }
 
         /// <summary>
@@ -91,6 +119,22 @@ namespace TrafficSimulatorUi
             {
                 speed = value;
                 SetDXAndDY(Speed, Direction);
+            }
+        }
+
+        /// <summary>
+        /// The maximum speed the road user can go.
+        /// This is used to restore the speed of the road user after it has stopped.
+        /// </summary>
+        public double MaxSpeed
+        {
+            get
+            {
+                return maxSpeed;
+            }
+            set
+            {
+                maxSpeed = value;
             }
         }
 
@@ -170,6 +214,33 @@ namespace TrafficSimulatorUi
                 Image = rotatedImageCache.GetImage(Convert.ToInt32(direction));
                 SetDXAndDY(Speed, Direction);
             }
+        }
+
+        /// <summary>
+        /// Unique ID of the road user.
+        /// </summary>
+        public int ID
+        {
+            get { return id; }
+            private set
+            {
+                id = value;
+            }
+        }
+
+        /// <summary>
+        /// Boolean if the road user will ignore the traffic lights.
+        /// </summary>
+        public bool RedLight
+        {
+            get { return redLight; }
+            private set { redLight = value; }
+        }
+
+        public bool CrossRedLight
+        {
+            get { return crossRedLight; }
+            set { crossRedLight = value; }
         }
 
         /// <summary>

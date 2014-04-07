@@ -25,15 +25,15 @@ namespace Server
             speedingMessages = new List<Speeding>();
 
             // Dummy data
-            redLightMessages.Add(new RedLight(1, 404, new DateTime(2014, 5, 21)));
-            redLightMessages.Add(new RedLight(2, 200, new DateTime(2013, 5, 21)));
-            redLightMessages.Add(new RedLight(3, 503, new DateTime(2012, 5, 21)));
-            accidentMessages.Add(new Accident(1, new DateTime(2012, 5, 21)));
-            accidentMessages.Add(new Accident(2, new DateTime(2012, 5, 21)));
-            accidentMessages.Add(new Accident(3, new DateTime(2012, 5, 21)));
-            speedingMessages.Add(new Speeding(1, 500, new DateTime(2012, 5, 21)));
-            speedingMessages.Add(new Speeding(2, 800, new DateTime(2012, 5, 21)));
-            speedingMessages.Add(new Speeding(3, 200, new DateTime(2012, 5, 21)));
+            //redLightMessages.Add(new RedLight(1, 404, new DateTime(2014, 5, 21)));
+            //redLightMessages.Add(new RedLight(2, 200, new DateTime(2013, 5, 21)));
+            //redLightMessages.Add(new RedLight(3, 503, new DateTime(2012, 5, 21)));
+            //accidentMessages.Add(new Accident(1, new DateTime(2012, 5, 21)));
+            //accidentMessages.Add(new Accident(2, new DateTime(2012, 5, 21)));
+            //accidentMessages.Add(new Accident(3, new DateTime(2012, 5, 21)));
+            //speedingMessages.Add(new Speeding(1, 500, new DateTime(2012, 5, 21)));
+            //speedingMessages.Add(new Speeding(2, 800, new DateTime(2012, 5, 21)));
+            //speedingMessages.Add(new Speeding(3, 200, new DateTime(2012, 5, 21)));
         }
 
         // returnt de naam van de server

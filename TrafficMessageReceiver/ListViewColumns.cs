@@ -46,7 +46,7 @@ namespace TrafficMessageReceiver
             get
             {
                 ColumnHeader column = new ColumnHeader();
-                column.Text = "Time";
+                column.Text = "Tijd";
                 column.Width = 100;
                 return column;
             }

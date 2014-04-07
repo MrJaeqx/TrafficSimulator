@@ -51,7 +51,11 @@ namespace ArduinoLib
         /// </summary>
         public void Close()
         {
-            serialPort.Close();
+            try
+            {
+                serialPort.Close();
+            }
+            catch (Exception) { }
         }
 
         /// <summary>

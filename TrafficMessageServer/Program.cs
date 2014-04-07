@@ -65,7 +65,7 @@ namespace Server
                     Console.WriteLine("\nPress <enter> to end the service...");
                     Console.ReadLine();
                 }
-                catch (System.ServiceModel.AddressAccessDeniedException ex)
+                catch (System.ServiceModel.AddressAccessDeniedException)
                 {
                     Console.WriteLine("Service failed to launch...");
                     Console.WriteLine("Try running with admin permissions");
@@ -85,7 +85,7 @@ namespace Server
                 Type TicfMgr = Type.GetTypeFromProgID("HNetCfg.FwMgr");
                 icfMgr = (INetFwMgr)Activator.CreateInstance(TicfMgr);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Service failed to launch...");
                 Console.WriteLine("We can't add a firewall rule");
@@ -114,7 +114,7 @@ namespace Server
                 profile.GloballyOpenPorts.Add(portClass);
                 return;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Service failed to launch...");
                 Console.WriteLine("We can't add a firewall rule");

@@ -30,61 +30,105 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimulatorForm));
-            this.progressTimer = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelIC = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelID = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelSp = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelRL = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelTotal = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.intersectionControl6 = new TrafficSimulatorUi.IntersectionControl();
+            this.contextMenuStripIntersection = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemClearAll = new System.Windows.Forms.ToolStripMenuItem();
             this.intersectionControl5 = new TrafficSimulatorUi.IntersectionControl();
             this.intersectionControl4 = new TrafficSimulatorUi.IntersectionControl();
             this.intersectionControl3 = new TrafficSimulatorUi.IntersectionControl();
             this.intersectionControl1 = new TrafficSimulatorUi.IntersectionControl();
             this.intersectionControl2 = new TrafficSimulatorUi.IntersectionControl();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.bestandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.afsluitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.printToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripMain = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonSpawn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripTextBoxSpawnInterval = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.trafficlightTimer = new System.Windows.Forms.Timer(this.components);
+            this.toolStripButtonMS = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonArduino = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSend = new System.Windows.Forms.ToolStripButton();
+            this.toolStripComboBoxCom = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.contextMenuStripIntersection.SuspendLayout();
+            this.toolStripMain.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // progressTimer
-            // 
-            this.progressTimer.Interval = 40;
-            this.progressTimer.Tick += new System.EventHandler(this.progressTimer_Tick);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.labelStatus});
+            this.labelStatus,
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabelIC,
+            this.toolStripStatusLabelID,
+            this.toolStripStatusLabelSp,
+            this.toolStripStatusLabelRL,
+            this.toolStripStatusLabelTotal});
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1203, 22);
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
+            this.statusStrip1.Size = new System.Drawing.Size(1203, 24);
+            this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // labelStatus
             // 
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(44, 17);
+            this.labelStatus.Size = new System.Drawing.Size(44, 19);
             this.labelStatus.Text = "Gereed";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1008, 19);
+            this.toolStripStatusLabel1.Spring = true;
+            // 
+            // toolStripStatusLabelIC
+            // 
+            this.toolStripStatusLabelIC.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripStatusLabelIC.Name = "toolStripStatusLabelIC";
+            this.toolStripStatusLabelIC.Size = new System.Drawing.Size(22, 19);
+            this.toolStripStatusLabelIC.Text = "IC";
+            // 
+            // toolStripStatusLabelID
+            // 
+            this.toolStripStatusLabelID.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripStatusLabelID.Name = "toolStripStatusLabelID";
+            this.toolStripStatusLabelID.Size = new System.Drawing.Size(22, 19);
+            this.toolStripStatusLabelID.Text = "ID";
+            // 
+            // toolStripStatusLabelSp
+            // 
+            this.toolStripStatusLabelSp.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripStatusLabelSp.Name = "toolStripStatusLabelSp";
+            this.toolStripStatusLabelSp.Size = new System.Drawing.Size(43, 19);
+            this.toolStripStatusLabelSp.Text = "Speed";
+            // 
+            // toolStripStatusLabelRL
+            // 
+            this.toolStripStatusLabelRL.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.toolStripStatusLabelRL.Name = "toolStripStatusLabelRL";
+            this.toolStripStatusLabelRL.Size = new System.Drawing.Size(24, 19);
+            this.toolStripStatusLabelRL.Text = "RL";
+            // 
+            // toolStripStatusLabelTotal
+            // 
+            this.toolStripStatusLabelTotal.Name = "toolStripStatusLabelTotal";
+            this.toolStripStatusLabelTotal.Size = new System.Drawing.Size(25, 19);
+            this.toolStripStatusLabelTotal.Text = "Tot";
             // 
             // toolStripContainer1
             // 
@@ -101,21 +145,21 @@
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl3);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl1);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.intersectionControl2);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1203, 803);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1203, 802);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1203, 874);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1203, 851);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
             // toolStripContainer1.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStripMain);
             // 
             // intersectionControl6
             // 
+            this.intersectionControl6.ContextMenuStrip = this.contextMenuStripIntersection;
             this.intersectionControl6.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_RAILWAY;
             this.intersectionControl6.Location = new System.Drawing.Point(800, 3);
             this.intersectionControl6.MaximumSize = new System.Drawing.Size(400, 400);
@@ -124,8 +168,24 @@
             this.intersectionControl6.Size = new System.Drawing.Size(400, 400);
             this.intersectionControl6.TabIndex = 11;
             // 
+            // contextMenuStripIntersection
+            // 
+            this.contextMenuStripIntersection.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemClearAll});
+            this.contextMenuStripIntersection.Name = "contextMenuStripIntersection";
+            this.contextMenuStripIntersection.Size = new System.Drawing.Size(193, 26);
+            this.contextMenuStripIntersection.Text = "Kruispunt";
+            // 
+            // toolStripMenuItemClearAll
+            // 
+            this.toolStripMenuItemClearAll.Name = "toolStripMenuItemClearAll";
+            this.toolStripMenuItemClearAll.Size = new System.Drawing.Size(192, 22);
+            this.toolStripMenuItemClearAll.Text = "Alle kruispunten legen";
+            this.toolStripMenuItemClearAll.Click += new System.EventHandler(this.toolStripMenuItemClearAll_Click);
+            // 
             // intersectionControl5
             // 
+            this.intersectionControl5.ContextMenuStrip = this.contextMenuStripIntersection;
             this.intersectionControl5.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_4;
             this.intersectionControl5.Location = new System.Drawing.Point(800, 403);
             this.intersectionControl5.MaximumSize = new System.Drawing.Size(400, 400);
@@ -136,6 +196,7 @@
             // 
             // intersectionControl4
             // 
+            this.intersectionControl4.ContextMenuStrip = this.contextMenuStripIntersection;
             this.intersectionControl4.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_3;
             this.intersectionControl4.Location = new System.Drawing.Point(3, 403);
             this.intersectionControl4.MaximumSize = new System.Drawing.Size(400, 400);
@@ -146,6 +207,7 @@
             // 
             // intersectionControl3
             // 
+            this.intersectionControl3.ContextMenuStrip = this.contextMenuStripIntersection;
             this.intersectionControl3.Location = new System.Drawing.Point(403, 403);
             this.intersectionControl3.MaximumSize = new System.Drawing.Size(400, 400);
             this.intersectionControl3.MinimumSize = new System.Drawing.Size(400, 400);
@@ -155,6 +217,7 @@
             // 
             // intersectionControl1
             // 
+            this.intersectionControl1.ContextMenuStrip = this.contextMenuStripIntersection;
             this.intersectionControl1.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_2;
             this.intersectionControl1.Location = new System.Drawing.Point(3, 3);
             this.intersectionControl1.MaximumSize = new System.Drawing.Size(400, 400);
@@ -165,6 +228,7 @@
             // 
             // intersectionControl2
             // 
+            this.intersectionControl2.ContextMenuStrip = this.contextMenuStripIntersection;
             this.intersectionControl2.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_5;
             this.intersectionControl2.Location = new System.Drawing.Point(403, 3);
             this.intersectionControl2.MaximumSize = new System.Drawing.Size(400, 400);
@@ -173,147 +237,98 @@
             this.intersectionControl2.Size = new System.Drawing.Size(400, 400);
             this.intersectionControl2.TabIndex = 6;
             // 
-            // menuStrip1
+            // toolStripMain
             // 
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bestandToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1203, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // bestandToolStripMenuItem
-            // 
-            this.bestandToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.afsluitenToolStripMenuItem});
-            this.bestandToolStripMenuItem.Name = "bestandToolStripMenuItem";
-            this.bestandToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.bestandToolStripMenuItem.Text = "Bestand";
-            // 
-            // afsluitenToolStripMenuItem
-            // 
-            this.afsluitenToolStripMenuItem.Name = "afsluitenToolStripMenuItem";
-            this.afsluitenToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
-            this.afsluitenToolStripMenuItem.Text = "Afsluiten";
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripButton,
-            this.openToolStripButton,
-            this.saveToolStripButton,
-            this.printToolStripButton,
-            this.toolStripSeparator,
-            this.cutToolStripButton,
-            this.copyToolStripButton,
-            this.pasteToolStripButton,
+            this.toolStripMain.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonSpawn,
+            this.toolStripTextBoxSpawnInterval,
             this.toolStripSeparator1,
-            this.helpToolStripButton});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(199, 25);
-            this.toolStrip1.TabIndex = 1;
+            this.toolStripButtonMS,
+            this.toolStripSeparator2,
+            this.toolStripButtonArduino,
+            this.toolStripButtonSend,
+            this.toolStripComboBoxCom});
+            this.toolStripMain.Location = new System.Drawing.Point(3, 0);
+            this.toolStripMain.Name = "toolStripMain";
+            this.toolStripMain.Size = new System.Drawing.Size(266, 25);
+            this.toolStripMain.TabIndex = 4;
             // 
-            // newToolStripButton
+            // toolStripButtonSpawn
             // 
-            this.newToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.newToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton.Image")));
-            this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newToolStripButton.Name = "newToolStripButton";
-            this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.newToolStripButton.Text = "&New";
+            this.toolStripButtonSpawn.Checked = true;
+            this.toolStripButtonSpawn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripButtonSpawn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSpawn.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSpawn.Image")));
+            this.toolStripButtonSpawn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSpawn.Name = "toolStripButtonSpawn";
+            this.toolStripButtonSpawn.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSpawn.Text = "Spawn random";
+            this.toolStripButtonSpawn.Click += new System.EventHandler(this.spawnerToggle);
             // 
-            // openToolStripButton
+            // toolStripTextBoxSpawnInterval
             // 
-            this.openToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
-            this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripButton.Name = "openToolStripButton";
-            this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.openToolStripButton.Text = "&Open";
-            // 
-            // saveToolStripButton
-            // 
-            this.saveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
-            this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveToolStripButton.Name = "saveToolStripButton";
-            this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.saveToolStripButton.Text = "&Save";
-            // 
-            // printToolStripButton
-            // 
-            this.printToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.printToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripButton.Image")));
-            this.printToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripButton.Name = "printToolStripButton";
-            this.printToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.printToolStripButton.Text = "&Print";
-            // 
-            // toolStripSeparator
-            // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // cutToolStripButton
-            // 
-            this.cutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripButton.Image")));
-            this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cutToolStripButton.Name = "cutToolStripButton";
-            this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.cutToolStripButton.Text = "C&ut";
-            // 
-            // copyToolStripButton
-            // 
-            this.copyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.copyToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripButton.Image")));
-            this.copyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.copyToolStripButton.Name = "copyToolStripButton";
-            this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.copyToolStripButton.Text = "&Copy";
-            // 
-            // pasteToolStripButton
-            // 
-            this.pasteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pasteToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripButton.Image")));
-            this.pasteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.pasteToolStripButton.Name = "pasteToolStripButton";
-            this.pasteToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.pasteToolStripButton.Text = "&Paste";
+            this.toolStripTextBoxSpawnInterval.Enabled = false;
+            this.toolStripTextBoxSpawnInterval.Name = "toolStripTextBoxSpawnInterval";
+            this.toolStripTextBoxSpawnInterval.Size = new System.Drawing.Size(40, 25);
+            this.toolStripTextBoxSpawnInterval.Text = "100";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // helpToolStripButton
+            // toolStripButtonMS
             // 
-            this.helpToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.helpToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripButton.Image")));
-            this.helpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.helpToolStripButton.Name = "helpToolStripButton";
-            this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.helpToolStripButton.Text = "He&lp";
+            this.toolStripButtonMS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonMS.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMS.Image")));
+            this.toolStripButtonMS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonMS.Name = "toolStripButtonMS";
+            this.toolStripButtonMS.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonMS.Text = "Berichten server";
+            this.toolStripButtonMS.Click += new System.EventHandler(this.messageServerToggle);
             // 
-            // trafficlightTimer
+            // toolStripSeparator2
             // 
-            this.trafficlightTimer.Enabled = true;
-            this.trafficlightTimer.Interval = 4000;
-            this.trafficlightTimer.Tick += new System.EventHandler(this.trafficlightTimer_Tick);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonArduino
+            // 
+            this.toolStripButtonArduino.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonArduino.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonArduino.Image")));
+            this.toolStripButtonArduino.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonArduino.Name = "toolStripButtonArduino";
+            this.toolStripButtonArduino.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonArduino.Text = "Arduino";
+            this.toolStripButtonArduino.Click += new System.EventHandler(this.arduinoToggle);
+            // 
+            // toolStripButtonSend
+            // 
+            this.toolStripButtonSend.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSend.Enabled = false;
+            this.toolStripButtonSend.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSend.Image")));
+            this.toolStripButtonSend.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSend.Name = "toolStripButtonSend";
+            this.toolStripButtonSend.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSend.Text = "Schakel trein";
+            // 
+            // toolStripComboBoxCom
+            // 
+            this.toolStripComboBoxCom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxCom.Name = "toolStripComboBoxCom";
+            this.toolStripComboBoxCom.Size = new System.Drawing.Size(75, 25);
             // 
             // SimulatorForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1203, 874);
+            this.ClientSize = new System.Drawing.Size(1203, 851);
             this.Controls.Add(this.toolStripContainer1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1219, 890);
+            this.MinimumSize = new System.Drawing.Size(1211, 858);
             this.Name = "SimulatorForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Traffic Simulator";
@@ -326,17 +341,15 @@
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.contextMenuStripIntersection.ResumeLayout(false);
+            this.toolStripMain.ResumeLayout(false);
+            this.toolStripMain.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Timer progressTimer;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel labelStatus;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
@@ -346,21 +359,23 @@
         private TrafficSimulatorUi.IntersectionControl intersectionControl3;
         private TrafficSimulatorUi.IntersectionControl intersectionControl1;
         private TrafficSimulatorUi.IntersectionControl intersectionControl2;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem bestandToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem afsluitenToolStripMenuItem;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton newToolStripButton;
-        private System.Windows.Forms.ToolStripButton openToolStripButton;
-        private System.Windows.Forms.ToolStripButton saveToolStripButton;
-        private System.Windows.Forms.ToolStripButton printToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripButton cutToolStripButton;
-        private System.Windows.Forms.ToolStripButton copyToolStripButton;
-        private System.Windows.Forms.ToolStripButton pasteToolStripButton;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelID;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelSp;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelRL;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelIC;
+        private System.Windows.Forms.ToolStrip toolStripMain;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSpawn;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxSpawnInterval;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton helpToolStripButton;
-        private System.Windows.Forms.Timer trafficlightTimer;
+        private System.Windows.Forms.ToolStripButton toolStripButtonMS;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton toolStripButtonArduino;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxCom;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSend;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripIntersection;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemClearAll;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelTotal;
 
 
 
