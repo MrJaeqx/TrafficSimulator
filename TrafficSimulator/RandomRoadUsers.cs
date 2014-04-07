@@ -94,8 +94,8 @@ namespace TrafficSimulator
                     {
                         case 0:
                             //south inbound left pedestrian
-                            //newRoadUser = new Pedestrian(new Point(136, 405), 1);
-                            //newRoadUser.FaceTo(new Point(136, 0));
+                            newRoadUser = new Pedestrian(new Point(130, 405), 1);
+                            newRoadUser.FaceTo(new Point(130, 0));
                             break;
                         case 1:
                             //south inbound left road
@@ -109,8 +109,8 @@ namespace TrafficSimulator
                             break;
                         case 3:
                             //south inbound right pedestrian
-                            //newRoadUser = new Pedestrian(new Point(268, 405), 1);
-                            //newRoadUser.FaceTo(new Point(268, 0));
+                            newRoadUser = new Pedestrian(new Point(266, 405), 1);
+                            newRoadUser.FaceTo(new Point(266, 0));
                             break;
                     }
                 }
@@ -120,8 +120,8 @@ namespace TrafficSimulator
                     {
                         case 0:
                             //north inbound left pedestrian
-                            //newRoadUser = new Pedestrian(new Point(268, -5), 1);
-                            //newRoadUser.FaceTo(new Point(268, 400));
+                            newRoadUser = new Pedestrian(new Point(266, -5), 1);
+                            newRoadUser.FaceTo(new Point(266, 400));
                             break;
                         case 1:
                             //north inbound right lane
@@ -135,13 +135,13 @@ namespace TrafficSimulator
                             break;
                         case 3:
                             //north inbound right pedestrian
-                            //newRoadUser = new Pedestrian(new Point(131, -5), 1);
-                            //newRoadUser.FaceTo(new Point(131, 400));
+                            newRoadUser = new Pedestrian(new Point(130, -5), 1);
+                            newRoadUser.FaceTo(new Point(130, 400));
                             break;
                         case 4:
                             //west inbound left pedestrian
-                            //newRoadUser = new Pedestrian(new Point(-5, 136), 1);
-                            //newRoadUser.FaceTo(new Point(400, 136));
+                            newRoadUser = new Pedestrian(new Point(-5, 130), 1);
+                            newRoadUser.FaceTo(new Point(400, 130));
                             break;
                         case 5:
                             //west inbound left lane
@@ -155,8 +155,8 @@ namespace TrafficSimulator
                             break;
                         case 7:
                             //west inbound right pedestrian
-                            //newRoadUser = new Pedestrian(new Point(-5, 268), 1);
-                            //newRoadUser.FaceTo(new Point(400, 268));
+                            newRoadUser = new Pedestrian(new Point(-5, 266), 1);
+                            newRoadUser.FaceTo(new Point(400, 266));
                             break;
                     }
                 }
@@ -166,8 +166,8 @@ namespace TrafficSimulator
                     {
                         case 0:
                             //south inbound left pedestrian
-                            //newRoadUser = new Pedestrian(new Point(136, 405), 1);
-                            //newRoadUser.FaceTo(new Point(136, 0));
+                            newRoadUser = new Pedestrian(new Point(130, 405), 1);
+                            newRoadUser.FaceTo(new Point(130, 0));
                             break;
                         case 1:
                             //south inbound left lane
@@ -181,13 +181,13 @@ namespace TrafficSimulator
                             break;
                         case 3:
                             //south inbound right pedestrian
-                            //newRoadUser = new Pedestrian(new Point(268, 405), 1);
-                            //newRoadUser.FaceTo(new Point(268, 0));
+                            newRoadUser = new Pedestrian(new Point(266, 405), 1);
+                            newRoadUser.FaceTo(new Point(266, 0));
                             break;
                         case 4:
                             //west inbound left pedestrian
-                            //newRoadUser = new Pedestrian(new Point(-5, 136), 1);
-                            //newRoadUser.FaceTo(new Point(400, 136));
+                            newRoadUser = new Pedestrian(new Point(-5, 130), 1);
+                            newRoadUser.FaceTo(new Point(400, 130));
                             break;
                         case 5:
                             //west inbound left lane
@@ -201,8 +201,8 @@ namespace TrafficSimulator
                             break;
                         case 7:
                             //west inbound right pedestrian
-                            //newRoadUser = new Pedestrian(new Point(-5, 268), 1);
-                            //newRoadUser.FaceTo(new Point(400, 268));
+                            newRoadUser = new Pedestrian(new Point(-5, 266), 1);
+                            newRoadUser.FaceTo(new Point(400, 266));
                             break;
                     }
                 }
@@ -212,8 +212,8 @@ namespace TrafficSimulator
                     {
                         case 0:
                             //south inbound left pedestrian
-                            //newRoadUser = new Pedestrian(new Point(136, 405), 1);
-                            //newRoadUser.FaceTo(new Point(136, 0));
+                            newRoadUser = new Pedestrian(new Point(130, 405), 1);
+                            newRoadUser.FaceTo(new Point(130, 0));
                             break;
                         case 1:
                             //south inbound left lane
@@ -227,13 +227,13 @@ namespace TrafficSimulator
                             break;
                         case 3:
                             //south inbound right pedestrian
-                            //newRoadUser = new Pedestrian(new Point(269, 405), 1);
-                            //newRoadUser.FaceTo(new Point(269, 0));
+                            newRoadUser = new Pedestrian(new Point(267, 405), 1);
+                            newRoadUser.FaceTo(new Point(267, 0));
                             break;
                         case 4:
                             //east inbound left pedestrian
-                            //newRoadUser = new Pedestrian(new Point(405, 136), 1);
-                            //newRoadUser.FaceTo(new Point(0, 136));
+                            newRoadUser = new Pedestrian(new Point(405, 130), 1);
+                            newRoadUser.FaceTo(new Point(0, 130));
                             break;
                         case 5:
                             //east inbound right lane
@@ -247,8 +247,8 @@ namespace TrafficSimulator
                             break;
                         case 7:
                             //east inbound right pedestrian
-                            //newRoadUser = new Pedestrian(new Point(405, 269), 1);
-                            //newRoadUser.FaceTo(new Point(0, 269));
+                            newRoadUser = new Pedestrian(new Point(405, 266), 1);
+                            newRoadUser.FaceTo(new Point(0, 266));
                             break;
                     }
                 }
@@ -258,8 +258,8 @@ namespace TrafficSimulator
                     {
                         case 0:
                             //north inbound left pedestrian
-                            //newRoadUser = new Pedestrian(new Point(136, -5), 1);
-                            //newRoadUser.FaceTo(new Point(136, 400));
+                            newRoadUser = new Pedestrian(new Point(130, -5), 1);
+                            newRoadUser.FaceTo(new Point(130, 400));
                             break;
                         case 1:
                             //north inbound right lane
@@ -273,8 +273,8 @@ namespace TrafficSimulator
                             break;
                         case 3:
                             //north inbound right pedestrian
-                            //newRoadUser = new Pedestrian(new Point(269, -5), 1);
-                            //newRoadUser.FaceTo(new Point(269, 400));
+                            newRoadUser = new Pedestrian(new Point(266, -5), 1);
+                            newRoadUser.FaceTo(new Point(266, 400));
                             break;
                     }
                 }
@@ -284,8 +284,8 @@ namespace TrafficSimulator
                     {
                         case 0:
                             //east inbound left pedestrian
-                            //newRoadUser = new Pedestrian(new Point(405, 136), 1);
-                            //newRoadUser.FaceTo(new Point(0, 136));
+                            newRoadUser = new Pedestrian(new Point(405, 130), 1);
+                            newRoadUser.FaceTo(new Point(0, 130));
                             break;
                         case 1:
                             //east inbound right lane
@@ -299,8 +299,8 @@ namespace TrafficSimulator
                             break;
                         case 3:
                             //east inbound right pedestrian
-                            //newRoadUser = new Pedestrian(new Point(405, 269), 1);
-                            //newRoadUser.FaceTo(new Point(0, 269));
+                            newRoadUser = new Pedestrian(new Point(405, 266), 1);
+                            newRoadUser.FaceTo(new Point(0, 266));
                             break;
                     }
                 }
