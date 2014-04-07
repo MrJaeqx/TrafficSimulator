@@ -73,6 +73,13 @@ namespace TrafficSimulator
 
             toolStripComboBoxCom.Items.Clear();
             toolStripComboBoxCom.Items.AddRange(SerialPort.GetPortNames());
+
+            this.intersectionControl1.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl_TrafficLightClick);
+            this.intersectionControl2.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl_TrafficLightClick);
+            this.intersectionControl3.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl_TrafficLightClick);
+            this.intersectionControl4.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl_TrafficLightClick);
+            this.intersectionControl5.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl_TrafficLightClick);
+            this.intersectionControl6.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl_TrafficLightClick);
         }
 
         private void randomSpawnTimer_Tick(object sender, EventArgs e)
@@ -145,27 +152,17 @@ namespace TrafficSimulator
 
         private void intersectionControl_TrafficLightClick(object sender, TrafficLightClickEventArgs e)
         {
-            // Example code for interacting with traffic lights
-            // Note: The goal of this example is to shows some code mechanics. Nothing more.
-            //       Probably you want to remove most of it, because it does not do wat you want over here.
-            //
-            // The example code shows 
-            // - How to handle TrafficLightClick events.
-            // - How to get the state of a traffic light.
-            // - How to set thet state of a traffic light.
-
-            Debug.WriteLine("Clicked traffic light with lane id: " + e.LaneId + ", of intersection: ");
             IntersectionControl intersection = (IntersectionControl)sender;
             TrafficLight trafficLight = intersection.GetTrafficLight(e.LaneId);
-            trafficLight.SwitchTo(SignalState.CLEAR_CROSSING);
-        }
-
-        private void intersectionControl1_TrafficLightClick(object sender, TrafficLightClickEventArgs e)
-        {
-            Debug.WriteLine("Clicked traffic light with lane id: " + e.LaneId + ", of intersection: ");
-            IntersectionControl intersection = (IntersectionControl)sender;
-            TrafficLight trafficLight = intersection.GetTrafficLight(e.LaneId);
-            trafficLight.SwitchTo(SignalState.CLEAR_CROSSING);
+            if (trafficLight.State == SignalState.GO)
+            {
+                trafficLight.SwitchTo(SignalState.STOP);
+            }
+            else
+            {
+                trafficLight.SwitchTo(SignalState.GO);
+            }
+            
         }
 
         private void arduinoToggle(object sender, EventArgs e)
@@ -250,6 +247,7 @@ namespace TrafficSimulator
             {
                 LC.HandleQueue();
             }
+
         }
 
         private void toolStripMenuItemClearAll_Click(object sender, EventArgs e)
