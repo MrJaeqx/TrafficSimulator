@@ -31,7 +31,7 @@ namespace TrafficSimulator
         private Timer trafficLightTimer = new Timer();
         private Timer randomSpawnTimer = new Timer();
 
-        private const int trafficLightInterval = 5000;
+        private const int trafficLightInterval = 6000;
         private const int statsUpdateInterval = 250;
 
         public SimulatorForm()
