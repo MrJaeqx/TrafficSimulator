@@ -178,7 +178,6 @@ namespace TrafficSimulator
                 toolStripComboBoxCom.Items.AddRange(SerialPort.GetPortNames());
                 toolStripButtonArduino.Checked = false;
                 toolStripComboBoxCom.Enabled = true;
-                toolStripButtonSend.Enabled = false;
             }
             else
             {
@@ -192,7 +191,6 @@ namespace TrafficSimulator
                     enableArduino = true;
                     toolStripButtonArduino.Checked = true;
                     toolStripComboBoxCom.Enabled = false;
-                    toolStripButtonSend.Enabled = true;
                 }
                 catch (ArgumentException)
                 {
