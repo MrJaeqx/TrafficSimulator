@@ -259,5 +259,34 @@ namespace TrafficSimulator
                 intersection.RoadUsers.Clear();
             }
         }
+
+        private void clearIntersectionButtonClick(object sender, EventArgs e)
+        {
+            ToolStripButton button = (ToolStripButton)sender;
+            if (button.Name == toolStripButton1.Name)
+            {
+                intersectionControl1.RoadUsers.Clear();
+            }
+            else if (button.Name == toolStripButton2.Name)
+            {
+                intersectionControl2.RoadUsers.Clear();
+            }
+            else if (button.Name == toolStripButton3.Name)
+            {
+                intersectionControl3.RoadUsers.Clear();
+            }
+            else if (button.Name == toolStripButton4.Name)
+            {
+                intersectionControl4.RoadUsers.Clear();
+            }
+            else if (button.Name == toolStripButton5.Name)
+            {
+                intersectionControl5.RoadUsers.Clear();
+            }
+            else if (button.Name == toolStripButton6.Name)
+            {
+                intersectionControl6.RoadUsers.Clear();
+            }
+        }
     }
 }
