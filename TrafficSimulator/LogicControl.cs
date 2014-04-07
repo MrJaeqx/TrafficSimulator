@@ -36,13 +36,13 @@ namespace TrafficSimulator
         /// <param name="Y1"> de Y van het punt waar de bocht moet plaatsvinden</param>
         /// <param name="X2"> de X van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
         /// <param name="Y2"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        protected void Type1Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
+        protected void Type1Turn(RoadUser roadUser, Point P, int turnLocationX, int turnLocationY, int faceX, int faceY)
         {
-            if (P.X == X1 && P.Y == Y1)
+            if (P.X == turnLocationX && P.Y == turnLocationY)
             {
                 if (random.Next(0, 1) == 1)
                 {
-                    roadUser.FaceTo(new Point(X2, Y2));
+                    roadUser.FaceTo(new Point(faceX, faceY));
                 }
             }
         }
@@ -52,17 +52,17 @@ namespace TrafficSimulator
         /// </summary>
         /// <param name="roadUser">de roaduser waar het om gaat</param>
         /// <param name="P"> het punt waar de roaduser zich bevind</param>
-        /// <param name="X1"> de X van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="Y1"> de Y van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="X2"> de X van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        /// <param name="Y2"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        protected void Type2Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
+        /// <param name="turnLocationX"> de X van het punt waar de bocht moet plaatsvinden</param>
+        /// <param name="turnLocationY"> de Y van het punt waar de bocht moet plaatsvinden</param>
+        /// <param name="faceX"> de X van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
+        /// <param name="faceY"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
+        protected void Type2Turn(RoadUser roadUser, Point P, int turnLocationX, int turnLocationY, int faceX, int faceY)
         {
-            if (P.X == X1 && P.Y == Y1)
+            if (P.X == turnLocationX && P.Y == turnLocationY)
             {
                 if (random.Next(0, 2) == 1)
                 {
-                    roadUser.FaceTo(new Point(X2, Y2));
+                    roadUser.FaceTo(new Point(faceX, faceY));
                 }
             }
         }
@@ -72,17 +72,17 @@ namespace TrafficSimulator
         /// </summary>
         /// <param name="roadUser">de roaduser waar het om gaat</param>
         /// <param name="P"> het punt waar de roaduser zich bevind</param>
-        /// <param name="X1"> de X van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="Y1"> de Y van het punt waar de bocht moet plaatsvinden</param>
-        /// <param name="X2"> de X van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        /// <param name="Y2"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
-        protected void Type3Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
+        /// <param name="turnLocationX"> de X van het punt waar de bocht moet plaatsvinden</param>
+        /// <param name="turnLocationY"> de Y van het punt waar de bocht moet plaatsvinden</param>
+        /// <param name="faceX"> de X van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
+        /// <param name="faceY"> de Y van het punt waar de auto naar toe moet wijzen indien hij een bocht maakt</param>
+        protected void Type3Turn(RoadUser roadUser, Point P, int turnLocationX, int turnLocationY, int faceX, int faceY)
         {
-            if (P.X == X1 && P.Y == Y1)
+            if (P.X == turnLocationX && P.Y == turnLocationY)
             {
                 if (random.Next(0, 3) == 1)
                 {
-                    roadUser.FaceTo(new Point(X2, Y2));
+                    roadUser.FaceTo(new Point(faceX, faceY));
                 }
             }
         }
@@ -96,11 +96,11 @@ namespace TrafficSimulator
         /// <param name="X2"></param>de X van het punt waar de auto naar toe moet wijzen</param>
         /// <param name="Y2"></param>de Y van het punt waar de auto naar toe moet wijzen</param>
 
-        protected void Type4Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
+        protected void Type4Turn(RoadUser roadUser, Point P, int turnLocationX, int turnLocationY, int faceX, int faceY)
         {
-            if (P.X == X1 && P.Y == Y1)
+            if (P.X == turnLocationX && P.Y == turnLocationY)
             {                
-                    roadUser.FaceTo(new Point(X2, Y2));                
+                    roadUser.FaceTo(new Point(faceX, faceY));                
             }
         }
 
@@ -273,7 +273,10 @@ namespace TrafficSimulator
             {
                 if (roadUser1 != roadUser2 && boundBox.IntersectsWith(roadUser2.BoundingBox))
                 {
-                    roadUser1.Speed = 0;
+                    if (!(roadUser1 is Pedestrian && roadUser2 is Pedestrian))
+                    {
+                        roadUser1.Speed = 0;
+                    }
                 }
             }
         }

@@ -45,55 +45,89 @@ namespace TrafficSimulator
             {
                 Point P = roadUser.Location;
 
-                //NORTH_INBOUND_LANE
-                if (roadUser.Direction == 270)
+                if (roadUser is Pedestrian)
                 {
-                    //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type1Turn(roadUser, P, 156, 156, 0, 156);
-                    //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type1Turn(roadUser, P, 156, 186, 0, 186);
-                    //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
-                    Type2Turn(roadUser, P, 186, 244, 400, 244);
-                }
-
-                //EAST_INBOUND_LANE
-                else if (roadUser.Direction == 180)
-                {
-                    //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type1Turn(roadUser, P, 244, 156, 244, 0);
-                    //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type1Turn(roadUser, P, 216, 156, 216, 0);
-
-                    //LEFT_LANE links af slaan aan het eind van de lane
-                    if(P.X == 156 && P.Y == 186)
+                    if (roadUser.Direction == 270)
                     {
-                        roadUser.FaceTo(new Point(156, 400));
+                        //rechter baan bocht
+                        Type4Turn(roadUser, P, 130, 130, 130, 0);
+                        //linker baan bocht
+                        Type4Turn(roadUser, P, 266, 130, 400, 130);
+                    }
+                    else if (roadUser.Direction == 180)
+                    {
+                        //rechter baan bocht
+                        Type1Turn(roadUser, P, 266, 130, 266, 0);
+                        //linker baan bocht
+                        Type1Turn(roadUser, P, 266, 266, 266, 400);
+                    }
+                    else if (roadUser.Direction == 90)
+                    {
+                        //rechter baan bocht
+                        Type4Turn(roadUser, P, 266, 266, 400, 266);
+                        //linker baan bocht
+                        Type4Turn(roadUser, P, 130, 266, 0, 266);
+                    }
+                    else if (roadUser.Direction == 0)
+                    {
+                        //rechter baan bocht
+                        Type1Turn(roadUser, P, 130, 266, 130, 400);
+                        //linker baan bocht
+                        Type1Turn(roadUser, P, 130, 130, 130, 0);
                     }
                 }
-
-                //SOUTH_INBOUND_LANE
-                else if (roadUser.Direction == 90)
+                else
                 {
-                    //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type1Turn(roadUser, P, 244, 244, 400, 244);
-                    //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type1Turn(roadUser, P, 244, 216, 400, 216);
-                    //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
-                    Type2Turn(roadUser, P, 216, 156, 0, 156);
-                }
-
-                //WEST_INBOUND_LANE
-                else if (roadUser.Direction == 0)
-                {
-                    //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type1Turn(roadUser, P, 156, 244, 156, 400);
-                    //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type1Turn(roadUser, P, 186, 244, 186, 400);
-
-                    //LEFT_LANE links af slaan aan het eind van de lane
-                    if (P.X == 244 && P.Y == 216)
+                    //NORTH_INBOUND_LANE
+                    if (roadUser.Direction == 270)
                     {
-                        roadUser.FaceTo(new Point(244, 0));
+                        //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                        Type1Turn(roadUser, P, 156, 156, 0, 156);
+                        //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                        Type1Turn(roadUser, P, 156, 186, 0, 186);
+                        //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
+                        Type2Turn(roadUser, P, 186, 244, 400, 244);
+                    }
+
+                    //EAST_INBOUND_LANE
+                    else if (roadUser.Direction == 180)
+                    {
+                        //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                        Type1Turn(roadUser, P, 244, 156, 244, 0);
+                        //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                        Type1Turn(roadUser, P, 216, 156, 216, 0);
+
+                        //LEFT_LANE links af slaan aan het eind van de lane
+                        if (P.X == 156 && P.Y == 186)
+                        {
+                            roadUser.FaceTo(new Point(156, 400));
+                        }
+                    }
+
+                    //SOUTH_INBOUND_LANE
+                    else if (roadUser.Direction == 90)
+                    {
+                        //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                        Type1Turn(roadUser, P, 244, 244, 400, 244);
+                        //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                        Type1Turn(roadUser, P, 244, 216, 400, 216);
+                        //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
+                        Type2Turn(roadUser, P, 216, 156, 0, 156);
+                    }
+
+                    //WEST_INBOUND_LANE
+                    else if (roadUser.Direction == 0)
+                    {
+                        //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                        Type1Turn(roadUser, P, 156, 244, 156, 400);
+                        //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                        Type1Turn(roadUser, P, 186, 244, 186, 400);
+
+                        //LEFT_LANE links af slaan aan het eind van de lane
+                        if (P.X == 244 && P.Y == 216)
+                        {
+                            roadUser.FaceTo(new Point(244, 0));
+                        }
                     }
                 }
             }
