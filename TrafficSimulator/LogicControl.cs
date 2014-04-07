@@ -145,6 +145,10 @@ namespace TrafficSimulator
             {
                 return new GreenSportsCar(new Point(spawnX, spawnY), maxSpeed, redlight);
             }
+            else if (roadUser is Pedestrian)
+            {
+                return new Pedestrian(new Point(spawnX, spawnY), maxSpeed);
+            }
             else
             {
                 return null;
@@ -220,24 +224,32 @@ namespace TrafficSimulator
                         //tranfser naar een kruispunt aan de onderkant
                         TransferCarMethod(roadUser, 156, 382, 156, -18, 156, 400);
                         TransferCarMethod(roadUser, 186, 382, 186, -18, 186, 400);
+                        TransferCarMethod(roadUser, 130, 382, 130, -18, 130, 400);
+                        TransferCarMethod(roadUser, 266, 382, 266, -18, 266, 400);
                     }
                     else if (P.X == 382 && roadUser.Direction == 0)
                     {
                         //transfer naar een kruispunt rechts
                         TransferCarMethod(roadUser, 382, 216, -18, 216, 400, 216);
                         TransferCarMethod(roadUser, 382, 244, -18, 244, 400, 244);
+                        TransferCarMethod(roadUser, 382, 130, -18, 130, 400, 130);
+                        TransferCarMethod(roadUser, 382, 266, -18, 266, 400, 266);
                     }
                     else if (P.Y == 18 && roadUser.Direction == 90)
                     {
                         //transfer naar een kruipunt aan de bovenkant
                         TransferCarMethod(roadUser, 216, 18, 216, 418, 216, 0);
                         TransferCarMethod(roadUser, 244, 18, 244, 418, 244, 0);
+                        TransferCarMethod(roadUser, 130, 18, 130, 418, 130, 0);
+                        TransferCarMethod(roadUser, 266, 18, 266, 418, 266, 0);
                     }
                     else if (P.X == 18 && roadUser.Direction == 180)
                     {
                         //transfer naar een kruispunt links
                         TransferCarMethod(roadUser, 18, 156, 418, 156, 0, 156);
                         TransferCarMethod(roadUser, 18, 186, 418, 186, 0, 186);
+                        TransferCarMethod(roadUser, 18, 130, 418, 130, 0, 130);
+                        TransferCarMethod(roadUser, 18, 266, 418, 266, 0, 266);
                     }
                 }
             }
