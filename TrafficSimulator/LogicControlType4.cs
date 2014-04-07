@@ -48,35 +48,64 @@ namespace TrafficSimulator
             {
                 Point P = roadUser.Location;
 
-                //EAST_INBOUND_LANE
-                if (roadUser.Direction == 180)
+                if (roadUser is Pedestrian)
                 {
-                    //LEFT_LANE eerste mogelijkheid om links af te slaan, met een kans van 1 op 3
-                    Type2Turn(roadUser, P, 186, 186, 186, 400);
-                    //LEFT_LANE tweede mogelijkheid om links af te slaan, met een kans van 1 op 3
-                    Type2Turn(roadUser, P, 156, 186, 156, 400);
+                    if (roadUser.Direction == 180)
+                    {
+                        //rechter baan bocht
+                        Type1Turn(roadUser, P, 266, 130, 266, 400);
+                        //linker baan loop rechtdoor
+                    }
+                    else if (roadUser.Direction == 90)
+                    {
+                        //rechter baan bocht
+                        Type1Turn(roadUser, P, 266, 266, 400, 266);
+                        //linker baan bocht
+                        Type1Turn(roadUser, P, 130, 266, 0, 266);
 
+                        //boven aan een bocht maken
+                        Type4Turn(roadUser, P, 266, 130, 0, 130);
+                        Type4Turn(roadUser, P, 130, 130, 0, 130);
+                    }
+                    else if (roadUser.Direction == 0)
+                    {
+                        //rechter baan bocht
+                        Type1Turn(roadUser, P, 130, 266, 130, 400);
+                        //linker baan bocht
+                        Type1Turn(roadUser, P, 130, 130, 130, 400);   
+                    }
                 }
-
-                //SOUTH_INBOUND_LANE
-                else if (roadUser.Direction == 90)
+                else
                 {
-                    //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 2
-                    Type1Turn(roadUser, P, 244, 244, 400, 244);
-                    //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, moet afslaan
-                    Type4Turn(roadUser, P, 244, 216, 400, 216);
+                    //EAST_INBOUND_LANE
+                    if (roadUser.Direction == 180)
+                    {
+                        //LEFT_LANE eerste mogelijkheid om links af te slaan, met een kans van 1 op 3
+                        Type2Turn(roadUser, P, 186, 186, 186, 400);
+                        //LEFT_LANE tweede mogelijkheid om links af te slaan, met een kans van 1 op 3
+                        Type2Turn(roadUser, P, 156, 186, 156, 400);
+                    }
 
-                    //LEFT_LANE altijd links afslaan bij de tweede mogelijkheid
-                    Type4Turn(roadUser, P, 216, 156, 0, 156);
-                }
+                    //SOUTH_INBOUND_LANE
+                    else if (roadUser.Direction == 90)
+                    {
+                        //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 2
+                        Type1Turn(roadUser, P, 244, 244, 400, 244);
+                        //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, moet afslaan
+                        Type4Turn(roadUser, P, 244, 216, 400, 216);
 
-                //WEST_INBOUND_LANE
-                else if (roadUser.Direction == 0)
-                {
-                    //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type2Turn(roadUser, P, 156, 244, 156, 400);
-                    //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
-                    Type2Turn(roadUser, P, 186, 244, 186, 400);
+                        //LEFT_LANE altijd links afslaan bij de tweede mogelijkheid
+                        Type4Turn(roadUser, P, 216, 156, 0, 156);
+                    }
+
+                    //WEST_INBOUND_LANE
+                    else if (roadUser.Direction == 0)
+                    {
+                        //RIGHT_LANE eerste mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                        Type2Turn(roadUser, P, 156, 244, 156, 400);
+                        //RIGHT_LANE tweede mogelijkheid om rechts af te slaan, met een kans van 1 op 3
+                        Type2Turn(roadUser, P, 186, 244, 186, 400);
+                    }
                 }
             }
         }

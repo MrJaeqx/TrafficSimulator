@@ -227,8 +227,8 @@ namespace TrafficSimulator
                             break;
                         case 3:
                             //south inbound right pedestrian
-                            newRoadUser = new Pedestrian(new Point(267, 405), 1);
-                            newRoadUser.FaceTo(new Point(267, 0));
+                            newRoadUser = new Pedestrian(new Point(266, 405), 1);
+                            newRoadUser.FaceTo(new Point(266, 0));
                             break;
                         case 4:
                             //east inbound left pedestrian

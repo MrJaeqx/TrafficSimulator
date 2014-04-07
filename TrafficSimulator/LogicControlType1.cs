@@ -49,57 +49,94 @@ namespace TrafficSimulator
             foreach (RoadUser roadUser in Intersection.RoadUsers)
             {
                 Point P = roadUser.Location;
-                // 270 North -- 180 Oost -- 90 Zuid -- 0 West
+                // 270 zuid -- 180 west -- 90 noord -- 0 oost
                 // TypexTurn(roadUser, Location ,[x, y] waar die de bocht moet maken,[x,y] plek waar die heen moet)
+                // De x bepaald hoe groot de kans is dat de bocht gemaakt moet worden
 
-                //NORTH_INBOUND_LANE
-                if (roadUser.Direction == 270)
+                if (roadUser is Pedestrian)
                 {
-                    // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
-                    // Of 1ste bocht anders altijd tweede mogelijkheid
-                    Type1Turn(roadUser, P, 156, 156, 0, 156);
-                    Type4Turn(roadUser, P, 156, 186, 0, 186);
+                    if (roadUser.Direction == 270)
+                    {
+                        //rechter baan bocht
+                        Type4Turn(roadUser, P, 130, 130, 130, 0);
+                        //linker baan bocht
+                        Type4Turn(roadUser, P, 266, 130, 400, 130);
+                    }
+                    else if (roadUser.Direction == 180)
+                    {
+                        //rechter baan bocht
+                        Type4Turn(roadUser, P, 266, 130, 266, 0);
+                        //linker baan bocht
+                        Type4Turn(roadUser, P, 266, 266, 266, 400);
+                    }
+                    else if (roadUser.Direction == 90)
+                    {
+                        //rechter baan bocht
+                        Type4Turn(roadUser, P, 266, 266, 400, 266);
+                        //linker baan bocht
+                        Type4Turn(roadUser, P, 130, 266, 0, 266);
+                    }
+                    else if (roadUser.Direction == 0)
+                    {
+                        //rechter baan bocht
+                        Type4Turn(roadUser, P, 130, 266, 130, 400);
+                        //linker baan bocht
+                        Type4Turn(roadUser, P, 130, 130, 130, 0);
+                    }
+                }
+                else
+                {
+                    //NORTH_INBOUND_LANE
+                    if (roadUser.Direction == 270)
+                    {
+                        // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
+                        // Of 1ste bocht anders altijd tweede mogelijkheid
+                        Type1Turn(roadUser, P, 156, 156, 0, 156);
+                        Type4Turn(roadUser, P, 156, 186, 0, 186);
 
-                    //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
-                    Type2Turn(roadUser, P, 184, 244, 400, 244);
+                        //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
+                        Type2Turn(roadUser, P, 184, 244, 400, 244);
+                    }
+
+                    //EAST_INBOUND_LANE
+                    else if (roadUser.Direction == 180)
+                    {
+                        // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
+                        // Of 1ste bocht anders altijd tweede mogelijkheid
+                        Type1Turn(roadUser, P, 244, 156, 244, 0);
+                        Type4Turn(roadUser, P, 216, 156, 216, 0);
+
+                        //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
+                        Type2Turn(roadUser, P, 156, 186, 156, 400);
+                    }
+
+                    //SOUTH_INBOUND_LANE
+                    else if (roadUser.Direction == 90)
+                    {
+                        // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
+                        // Of 1ste bocht anders altijd tweede mogelijkheid
+                        Type1Turn(roadUser, P, 244, 244, 400, 244);
+                        Type4Turn(roadUser, P, 244, 216, 400, 216);
+
+                        //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
+                        Type2Turn(roadUser, P, 216, 156, 0, 156);
+                    }
+
+                    //WEST_INBOUND_LANE
+                    else if (roadUser.Direction == 0)
+                    {
+                        // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
+                        // Of 1ste bocht anders altijd tweede mogelijkheid
+                        Type1Turn(roadUser, P, 156, 244, 156, 400);
+                        Type4Turn(roadUser, P, 186, 244, 186, 400);
+
+                        //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
+                        Type2Turn(roadUser, P, 244, 216, 244, 0);
+                    }
+                }
                 }
 
-                //EAST_INBOUND_LANE
-                else if (roadUser.Direction == 180)
-                {
-                    // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
-                    // Of 1ste bocht anders altijd tweede mogelijkheid
-                    Type1Turn(roadUser, P, 244, 156, 244, 0);
-                    Type4Turn(roadUser, P, 216, 156, 216, 0);
-
-                    //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
-                    Type2Turn(roadUser, P, 156, 186, 156, 400);
-                }
-
-                //SOUTH_INBOUND_LANE
-                else if (roadUser.Direction == 90)
-                {
-                    // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
-                    // Of 1ste bocht anders altijd tweede mogelijkheid
-                    Type1Turn(roadUser, P, 244, 244, 400, 244);
-                    Type4Turn(roadUser, P, 244, 216, 400, 216);
-
-                    //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
-                    Type2Turn(roadUser, P, 216, 156, 0, 156);
-                }
-
-                //WEST_INBOUND_LANE
-                else if (roadUser.Direction == 0)
-                {
-                    // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
-                    // Of 1ste bocht anders altijd tweede mogelijkheid
-                    Type1Turn(roadUser, P, 156, 244, 156, 400);
-                    Type4Turn(roadUser, P, 186, 244, 186, 400);
-
-                    //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
-                    Type2Turn(roadUser, P, 244, 216, 244, 0);
-                }
-            }
+               
         }
 
         public override void HandleTrafficLight()

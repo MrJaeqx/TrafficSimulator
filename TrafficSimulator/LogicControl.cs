@@ -95,7 +95,6 @@ namespace TrafficSimulator
         /// <param name="Y1"></param>de Y van het punt waar de bocht plaatsvindt</param>
         /// <param name="X2"></param>de X van het punt waar de auto naar toe moet wijzen</param>
         /// <param name="Y2"></param>de Y van het punt waar de auto naar toe moet wijzen</param>
-
         protected virtual void Type4Turn(RoadUser roadUser, Point P, int turnLocationX, int turnLocationY, int faceX, int faceY)
         {
             if (P.X == turnLocationX && P.Y == turnLocationY)
