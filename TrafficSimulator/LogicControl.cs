@@ -261,18 +261,18 @@ namespace TrafficSimulator
                 || Intersection.GetTrafficLight(laneId).State == SignalState.CLEAR_CROSSING)
                 && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(laneId).BoundingBox)
                 && !roadUser.RedLight
-                //&& !roadUser.CrossRedLight
+                && !roadUser.CrossRedLight
                 );
         }
 
         protected void HandleTrafficLightLane(RoadUser roadUser, LaneId lane)
         {
-            if (Intersection.GetTrafficLight(lane).State == SignalState.GO) roadUser.CrossRedLight = true;
+            if (Intersection.GetTrafficLight(lane).State == SignalState.GO
+                && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(lane).BoundingBox)) roadUser.CrossRedLight = true;
 
             if (AddToTrafficLightQueue(lane, roadUser))
             {
                 roadUser.Speed = 0;
-
                 if (!Queue.Contains(lane))
                 {
                     Queue.Add(lane);
