@@ -274,6 +274,13 @@ namespace TrafficSimulatorUi
         public void DrawTo(Graphics drawingSurface)
         {
             drawingSurface.DrawImageUnscaled(Image, BoundingBox);
+            if (RedLight)
+            {
+                Rectangle box = BoundingBox;
+                box.Height = (BoundingBox.Height) / 4;
+                box.Y = BoundingBox.Y + (BoundingBox.Height / 4);
+                drawingSurface.FillRectangle(Brushes.Red, box);
+            }
         }
     }
 }
