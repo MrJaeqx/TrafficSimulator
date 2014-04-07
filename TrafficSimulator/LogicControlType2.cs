@@ -152,6 +152,16 @@ namespace TrafficSimulator
                HandleTrafficLightLane(roadUser, LaneId.WEST_INBOUND_ROAD_RIGHT);
                //WEST inbound LEFT lane
                HandleTrafficLightLane(roadUser, LaneId.WEST_INBOUND_ROAD_LEFT);
+
+               //WEST inbound PAVEMENT RIGHT
+               HandleTrafficLightLane(roadUser, LaneId.WEST_PAVEMENT_RIGHT);
+               //WEST inbound PAVEMENT LEFT
+               HandleTrafficLightLane(roadUser, LaneId.WEST_PAVEMENT_LEFT);
+
+               //EAST inbound PAVEMENT RIGHT
+               HandleTrafficLightLane(roadUser, LaneId.EAST_PAVEMENT_RIGHT);
+               //EAST inbound PAVEMENT LEFT
+               HandleTrafficLightLane(roadUser, LaneId.EAST_PAVEMENT_LEFT);
            }
         }
 
