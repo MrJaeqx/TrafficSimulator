@@ -199,5 +199,13 @@ namespace TrafficSimulator
                 }
             }
         }
+
+        protected override void Type4Turn(RoadUser roadUser, Point P, int X1, int Y1, int X2, int Y2)
+        {
+            if (P.X == X1 && P.Y <= Y1)
+            {
+                roadUser.FaceTo(new Point(X2, Y2));
+            }
+        }
     }
 }
