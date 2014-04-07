@@ -75,7 +75,7 @@ namespace TrafficSimulator
             base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
 
             lastTrain = new RedTrain(new Point(223, 418));
-            if (random.Next(10) == 0) lastTrain = new GreenTrain(new Point(223, 418));
+            if (random.Next(5) == 0) lastTrain = new GreenTrain(new Point(223, 418));
             lastTrain.FaceTo(new Point(223, 0));
             Intersection.AddRoadUser(lastTrain);
         }
