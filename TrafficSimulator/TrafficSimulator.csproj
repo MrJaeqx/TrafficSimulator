@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Car.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -131,7 +134,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\Car.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Car-Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Connect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Transmit-Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Car.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
