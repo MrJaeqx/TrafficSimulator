@@ -183,6 +183,16 @@ namespace TrafficSimulatorUi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PinkSportsCarImage {
+            get {
+                object obj = ResourceManager.GetObject("PinkSportsCarImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap RedLightImage {
             get {
                 object obj = ResourceManager.GetObject("RedLightImage", resourceCulture);
@@ -206,6 +216,16 @@ namespace TrafficSimulatorUi.Properties {
         internal static System.Drawing.Bitmap YellowLightImage {
             get {
                 object obj = ResourceManager.GetObject("YellowLightImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap YellowSportsCarImage {
+            get {
+                object obj = ResourceManager.GetObject("YellowSportsCarImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
