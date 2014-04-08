@@ -286,5 +286,15 @@ namespace TrafficSimulator
                 intersectionControl6.RoadUsers.Clear();
             }
         }
+
+        private void toolStripButtonTrainOpen_Click(object sender, EventArgs e)
+        {
+            railIntersection.TrainIncomingEvent(null, null);
+        }
+
+        private void toolStripButtonTrainClose_Click(object sender, EventArgs e)
+        {
+            railIntersection.TrainPassedEvent(null, null);
+        }
     }
 }

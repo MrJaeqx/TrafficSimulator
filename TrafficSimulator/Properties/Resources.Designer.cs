@@ -61,6 +61,16 @@ namespace TrafficSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Bullet_Delete {
+            get {
+                object obj = ResourceManager.GetObject("Bullet_Delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon Car {
@@ -86,6 +96,26 @@ namespace TrafficSimulator.Properties {
         internal static System.Drawing.Bitmap Connect {
             get {
                 object obj = ResourceManager.GetObject("Connect", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Traffic_Lights_Green {
+            get {
+                object obj = ResourceManager.GetObject("Traffic_Lights_Green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Traffic_Lights_Red {
+            get {
+                object obj = ResourceManager.GetObject("Traffic_Lights_Red", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
