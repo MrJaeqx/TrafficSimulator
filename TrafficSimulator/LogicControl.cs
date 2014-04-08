@@ -12,6 +12,8 @@ namespace TrafficSimulator
     {
         private Random random = new Random();
 
+        private List<RoadUser> redLightList = new List<RoadUser>();
+
         public IntersectionControl Intersection { get; protected set; }
 
         public IntersectionControl IntersectionLeft { get; protected set; }
@@ -270,6 +272,10 @@ namespace TrafficSimulator
             if (Intersection.GetTrafficLight(lane).State == SignalState.GO
                 && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(lane).BoundingBox)) roadUser.CrossRedLight = true;
 
+            if (Intersection.GetTrafficLight(lane).State == SignalState.STOP
+                && roadUser.RedLight
+                && roadUser.BoundingBox.IntersectsWith(Intersection.GetSensor(lane).BoundingBox)) redLightList.Add(roadUser);
+
             if (AddToTrafficLightQueue(lane, roadUser))
             {
                 roadUser.Speed = 0;
@@ -350,9 +356,9 @@ namespace TrafficSimulator
         {
             if (Intersection.RoadUsers.Count > 0)
             {
-                foreach (RoadUser roadUser in Intersection.RoadUsers)
+                foreach (RoadUser roadUser in redLightList)
                 {
-                    if (roadUser.RedLight) TrafficMessageSender.SendRedLight(roadUser.ID, 0);
+                    TrafficMessageSender.SendRedLight(roadUser.ID, 0);
                 }
             }
         }

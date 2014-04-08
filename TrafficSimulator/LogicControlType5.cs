@@ -101,7 +101,7 @@ namespace TrafficSimulator
                         // RIGHT_LANE Alleen naar rechts 2 mogenlijkheden
                         // Of 1ste bocht anders altijd tweede mogelijkheid
                         Type1Turn(roadUser, P, 156, 156, 0, 156);
-                        Type4Turn(roadUser, P, 156, 182, 0, 182);
+                        Type4Turn(roadUser, P, 156, 186, 0, 186);
 
                         //LEFT_LANE allen eventueel links afslaan bij de tweede mogelijkheid, met een kans van 1 op 2
                         Type2Turn(roadUser, P, 184, 244, 400, 244);

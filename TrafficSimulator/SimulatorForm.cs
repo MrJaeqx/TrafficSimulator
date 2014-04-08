@@ -189,8 +189,8 @@ namespace TrafficSimulator
                 try
                 {
                     arduino = new Arduino(toolStripComboBoxCom.Text, 9600);
-                    arduino.trainIncomingEvent += railIntersection.TrainIncomingEvent;
-                    arduino.trainPassedEvent += railIntersection.TrainPassedEvent;
+                    arduino.trainIncomingEvent += arduino_trainIncomingEvent;
+                    arduino.trainPassedEvent += arduino_trainPassedEvent;
                     arduino.Open();
 
                     enableArduino = true;
@@ -206,6 +206,16 @@ namespace TrafficSimulator
                     MessageBox.Show("Verbindings fout.", "Arduino", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        void arduino_trainPassedEvent(object sender, EventArgs e)
+        {
+            railIntersection.TrainPassedEvent();
+        }
+
+        void arduino_trainIncomingEvent(object sender, EventArgs e)
+        {
+            railIntersection.TrainIncomingEvent();
         }
 
         private void messageServerToggle(object sender, EventArgs e)
@@ -294,12 +304,12 @@ namespace TrafficSimulator
 
         private void toolStripButtonTrainOpen_Click(object sender, EventArgs e)
         {
-            railIntersection.TrainIncomingEvent(null, null);
+            railIntersection.TrainIncomingEvent();
         }
 
         private void toolStripButtonTrainClose_Click(object sender, EventArgs e)
         {
-            railIntersection.TrainPassedEvent(null, null);
+            railIntersection.TrainPassedEvent();
         }
 
         private void toolStripComboBoxCom_MouseDown(object sender, MouseEventArgs e)

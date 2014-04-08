@@ -123,7 +123,7 @@ namespace TrafficSimulator
         /// </summary>
         /// <param name="sender">Niet gebruikt.</param>
         /// <param name="e">Niet gebruikt.</param>
-        public void TrainIncomingEvent(object sender, EventArgs e)
+        public void TrainIncomingEvent()
         {
             base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.STOP);
             base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.STOP);
@@ -141,7 +141,7 @@ namespace TrafficSimulator
         /// </summary>
         /// <param name="sender">Niet gebruikt.</param>
         /// <param name="e">Niet gebruikt.</param>
-        public void TrainPassedEvent(object sender, EventArgs e)
+        public void TrainPassedEvent()
         {
             base.Intersection.GetTrafficLight(LaneId.EAST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.GO);
             base.Intersection.GetTrafficLight(LaneId.WEST_INBOUND_ROAD_LEFT_AND_RIGHT).SwitchTo(SignalState.GO);
