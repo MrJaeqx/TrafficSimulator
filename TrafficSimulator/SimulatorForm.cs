@@ -73,8 +73,7 @@ namespace TrafficSimulator
             progressTimer.Start();
             trafficLightTimer.Start();
 
-            toolStripComboBoxCom.Items.Clear();
-            toolStripComboBoxCom.Items.AddRange(SerialPort.GetPortNames());
+            updateComList();
 
             this.intersectionControl1.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl_TrafficLightClick);
             this.intersectionControl2.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl_TrafficLightClick);
@@ -82,6 +81,12 @@ namespace TrafficSimulator
             this.intersectionControl4.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl_TrafficLightClick);
             this.intersectionControl5.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl_TrafficLightClick);
             this.intersectionControl6.TrafficLightClick += new System.EventHandler<TrafficSimulatorUi.TrafficLightClickEventArgs>(this.intersectionControl_TrafficLightClick);
+        }
+
+        private void updateComList()
+        {
+            toolStripComboBoxCom.Items.Clear();
+            toolStripComboBoxCom.Items.AddRange(SerialPort.GetPortNames());
         }
 
         private void randomSpawnTimer_Tick(object sender, EventArgs e)
@@ -295,6 +300,14 @@ namespace TrafficSimulator
         private void toolStripButtonTrainClose_Click(object sender, EventArgs e)
         {
             railIntersection.TrainPassedEvent(null, null);
+        }
+
+        private void toolStripComboBoxCom_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                updateComList();
+            }
         }
     }
 }

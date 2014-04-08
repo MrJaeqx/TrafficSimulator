@@ -258,6 +258,7 @@
             this.toolStripComboBoxCom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolStripComboBoxCom.Name = "toolStripComboBoxCom";
             this.toolStripComboBoxCom.Size = new System.Drawing.Size(121, 25);
+            this.toolStripComboBoxCom.MouseDown += new System.Windows.Forms.MouseEventHandler(this.toolStripComboBoxCom_MouseDown);
             // 
             // toolStripButtonTrainOpen
             // 
