@@ -133,6 +133,8 @@
     <None Include="Images\TrafficLights\YellowLightImage.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Images\Cars\PinkSportsCarImage.png" />
+    <None Include="Images\Cars\YellowSportsCarImage.png" />
     <Content Include="Images\Intersections\IntersectionTypeRailway.png" />
     <Content Include="Images\Pedestrian\Pedestrian.png" />
     <None Include="Images\Trains\GreenTrain.png" />
