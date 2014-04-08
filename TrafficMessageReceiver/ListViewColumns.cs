@@ -57,22 +57,6 @@ namespace TrafficMessageReceiver
             }
         }
 
-        public static ColumnHeader HeaderType
-        {
-            get
-            {
-                ColumnHeader column = new ColumnHeader();
-                column.Text = "Type";
-                column.Width = 100;
-                return column;
-            }
-
-            private set
-            {
-                
-            }
-        }
-        
         public static ColumnHeader HeaderCarID
         {
             get
@@ -121,7 +105,7 @@ namespace TrafficMessageReceiver
         {
             get
             {
-                return new[] { HeaderID, HeaderType, HeaderDate, HeaderTime, HeaderJunctionID, HeaderLightID };
+                return new[] { HeaderDate, HeaderTime, HeaderJunctionID, HeaderLightID };
             }
         }
 
@@ -129,7 +113,7 @@ namespace TrafficMessageReceiver
         {
             get
             {
-                return new[] { HeaderID, HeaderDate, HeaderTime, HeaderCarID, HeaderCarSpeed };
+                return new[] { HeaderDate, HeaderTime, HeaderCarID, HeaderCarSpeed };
             }
         }
 
@@ -137,7 +121,7 @@ namespace TrafficMessageReceiver
         {
             get
             {
-                return new[] { HeaderID, HeaderDate, HeaderTime, HeaderCarID, HeaderLightID };
+                return new[] { HeaderDate, HeaderTime, HeaderCarID, HeaderLightID };
             }
         }
 
@@ -145,7 +129,31 @@ namespace TrafficMessageReceiver
         {
             get
             {
-                return new[] { HeaderID, HeaderDate, HeaderTime, HeaderJunctionID };
+                return new[] { HeaderDate, HeaderTime, HeaderJunctionID };
+            }
+        }
+
+        public static ListViewGroup SpeedingGroup
+        {
+            get
+            {
+                return new ListViewGroup("Snelheidsovertredingen");
+            }
+        }
+
+        public static ListViewGroup RedLightGroup
+        {
+            get
+            {
+                return new ListViewGroup("Rood licht overtredingen");
+            }
+        }
+
+        public static ListViewGroup AccidentGroup
+        {
+            get
+            {
+                return new ListViewGroup("Ongelukken");
             }
         }
     }

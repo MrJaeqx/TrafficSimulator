@@ -338,7 +338,7 @@ namespace TrafficSimulator
             {
                 foreach (RoadUser roadUser in Intersection.RoadUsers)
                 {
-                    if (roadUser.Speed >= 4)
+                    if (roadUser.Speed >= 3)
                     {
                         TrafficMessageSender.SendSpeeding(roadUser.ID, roadUser.Speed);
                     }
