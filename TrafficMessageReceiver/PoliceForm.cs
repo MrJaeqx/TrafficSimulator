@@ -138,13 +138,17 @@ namespace TrafficMessageReceiver
             // Items en kolommen in de lijst wissen.
             listView1.Columns.Clear();
             listView1.Items.Clear();
+            listView1.Groups.Clear();
 
             // Lijst vullen met kolommen en controleren op nieuwe items.
             switch (currentMode)
             {
                 case 0:
                     listView1.Columns.AddRange(ListViewColumns.Overview);
-                    //startBackgroundServerConenction();
+                    listView1.Groups.Add(ListViewColumns.SpeedingGroup);
+                    listView1.Groups.Add(ListViewColumns.RedLightGroup);
+                    listView1.Groups.Add(ListViewColumns.AccidentGroup);
+                    startBackgroundServerConenction();
                     break;
                 case 1:
                     listView1.Columns.AddRange(ListViewColumns.Speedings);
@@ -312,12 +316,42 @@ namespace TrafficMessageReceiver
             switch (currentMode)
             {
                 case 0:
+                    List<Speeding> oSpeedings = data.GetSpeedings();
+                    List<RedLight> oRedlights = data.GetRedLights();
+                    List<Accident> oAccidents = data.GetAccidents();
+
+                    int counter = 0;
+                    foreach (Speeding speeding in oSpeedings)
+                    {
+                        ListViewItem item = new ListViewItem(new[] { speeding.time.ToShortDateString(), speeding.time.ToShortTimeString(), "0", "0" });
+                        item.Group = ListViewColumns.SpeedingGroup;
+                        listItems.Add(item);
+                        if ((counter++) > 5) break;
+                    }
+
+                    counter = 0;
+                    foreach (RedLight redlight in oRedlights)
+                    {
+                        ListViewItem item = new ListViewItem(new[] { redlight.time.ToShortDateString(), redlight.time.ToShortTimeString(), "0", "0" });
+                        item.Group = ListViewColumns.RedLightGroup;
+                        listItems.Add(item);
+                        if ((counter++) > 5) break;
+                    }
+
+                    counter = 0;
+                    foreach (Accident accident in oAccidents)
+                    {
+                        ListViewItem item = new ListViewItem(new[] { accident.time.ToShortDateString(), accident.time.ToShortTimeString(), "0", "0" });
+                        item.Group = ListViewColumns.AccidentGroup;
+                        listItems.Add(item);
+                        if ((counter++) > 5) break;
+                    }
                     break;
                 case 1:
                     List<Speeding> speedings = data.GetSpeedings();
                     foreach (Speeding speeding in speedings)
                     {
-                        ListViewItem item = new ListViewItem(new[] { "0", speeding.time.ToShortDateString(), speeding.time.ToShortTimeString(), speeding.carID.ToString(), speeding.carSpeed.ToString() });
+                        ListViewItem item = new ListViewItem(new[] { speeding.time.ToShortDateString(), speeding.time.ToShortTimeString(), speeding.carID.ToString(), speeding.carSpeed.ToString() });
                         listItems.Add(item);
                     }
                     break;
@@ -325,7 +359,7 @@ namespace TrafficMessageReceiver
                     List<RedLight> redlights = data.GetRedLights();
                     foreach (RedLight redlight in redlights)
                     {
-                        ListViewItem item = new ListViewItem(new[] { "0", redlight.time.ToShortDateString(), redlight.time.ToShortTimeString(), redlight.carID.ToString(), redlight.trafficLightID.ToString() });
+                        ListViewItem item = new ListViewItem(new[] { redlight.time.ToShortDateString(), redlight.time.ToShortTimeString(), redlight.carID.ToString(), redlight.trafficLightID.ToString() });
                         listItems.Add(item);
                     }
                     break;
@@ -333,7 +367,7 @@ namespace TrafficMessageReceiver
                     List<Accident> accidents = data.GetAccidents();
                     foreach (Accident accident in accidents)
                     {
-                        ListViewItem item = new ListViewItem(new[] { "0", accident.time.ToShortDateString(), accident.time.ToShortTimeString(), accident.junctionID.ToString() });
+                        ListViewItem item = new ListViewItem(new[] { accident.time.ToShortDateString(), accident.time.ToShortTimeString(), accident.junctionID.ToString() });
                         listItems.Add(item);
                     }
                     break;
