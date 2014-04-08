@@ -50,6 +50,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonArduino = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBoxCom = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButtonTrainOpen = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonTrainClose = new System.Windows.Forms.ToolStripButton();
             this.intersectionControl6 = new TrafficSimulatorUi.IntersectionControl();
             this.intersectionControl5 = new TrafficSimulatorUi.IntersectionControl();
             this.intersectionControl4 = new TrafficSimulatorUi.IntersectionControl();
@@ -133,7 +135,9 @@
             this.toolStripButtonMS,
             this.toolStripSeparator2,
             this.toolStripButtonArduino,
-            this.toolStripComboBoxCom});
+            this.toolStripComboBoxCom,
+            this.toolStripButtonTrainOpen,
+            this.toolStripButtonTrainClose});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(1200, 25);
@@ -255,6 +259,26 @@
             this.toolStripComboBoxCom.Name = "toolStripComboBoxCom";
             this.toolStripComboBoxCom.Size = new System.Drawing.Size(121, 25);
             // 
+            // toolStripButtonTrainOpen
+            // 
+            this.toolStripButtonTrainOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonTrainOpen.Image = global::TrafficSimulator.Properties.Resources.Traffic_Lights_Red;
+            this.toolStripButtonTrainOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonTrainOpen.Name = "toolStripButtonTrainOpen";
+            this.toolStripButtonTrainOpen.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonTrainOpen.Text = "toolStripButton7";
+            this.toolStripButtonTrainOpen.Click += new System.EventHandler(this.toolStripButtonTrainOpen_Click);
+            // 
+            // toolStripButtonTrainClose
+            // 
+            this.toolStripButtonTrainClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonTrainClose.Image = global::TrafficSimulator.Properties.Resources.Traffic_Lights_Green;
+            this.toolStripButtonTrainClose.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonTrainClose.Name = "toolStripButtonTrainClose";
+            this.toolStripButtonTrainClose.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonTrainClose.Text = "toolStripButton8";
+            this.toolStripButtonTrainClose.Click += new System.EventHandler(this.toolStripButtonTrainClose_Click);
+            // 
             // intersectionControl6
             // 
             this.intersectionControl6.IntersectionType = TrafficSimulatorUi.IntersectionType.TYPE_RAILWAY;
@@ -374,6 +398,8 @@
         private TrafficSimulatorUi.IntersectionControl intersectionControl4;
         private TrafficSimulatorUi.IntersectionControl intersectionControl5;
         private TrafficSimulatorUi.IntersectionControl intersectionControl6;
+        private System.Windows.Forms.ToolStripButton toolStripButtonTrainOpen;
+        private System.Windows.Forms.ToolStripButton toolStripButtonTrainClose;
 
 
 

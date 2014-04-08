@@ -6,6 +6,7 @@ using TrafficSimulatorUi;
 using System.Diagnostics;
 using TrafficSimulatorUi.Traffic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace TrafficSimulator
 {
@@ -28,6 +29,8 @@ namespace TrafficSimulator
         /// Random voor het bepalen van het type trein.
         /// </summary>
         private Random random = new Random();
+        private Timer trainSpawnTimer = new Timer();
+        private const int trainSpawnInterval = 6000;
 
         /// <summary>
         /// Nieuw kruispunt type 6 aanmaken.
@@ -53,6 +56,29 @@ namespace TrafficSimulator
                 base.IntersectionTop = null;
                 base.IntersectionBottom = null;
             }
+
+            trainSpawnTimer.Interval = trainSpawnInterval;
+            trainSpawnTimer.Tick += trainSpawnTimer_Tick;
+        }
+
+        private void trainSpawnTimer_Tick(object sender, EventArgs e)
+        {
+            if (random.Next(0, 2) == 0)
+            {
+                lastTrain = new RedTrain(new Point(223, 418));
+                if (random.Next(5) == 0) lastTrain = new GreenTrain(new Point(223, 418));
+                lastTrain.FaceTo(new Point(223, 0));
+            }
+            else
+            {
+                lastTrain = new RedTrain(new Point(174, 0));
+                if (random.Next(5) == 0) lastTrain = new GreenTrain(new Point(174, 0));
+                lastTrain.FaceTo(new Point(174, 418));
+            }
+
+            Intersection.AddRoadUser(lastTrain);
+
+            trainSpawnTimer.Stop();
         }
 
         /// <summary>
@@ -107,11 +133,7 @@ namespace TrafficSimulator
             base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_LEFT).SwitchTo(SignalState.STOP);
             base.Intersection.GetTrafficLight(LaneId.WEST_PAVEMENT_RIGHT).SwitchTo(SignalState.STOP);
 
-            // Nieuwe trein spawnen.
-            lastTrain = new RedTrain(new Point(223, 418));
-            if (random.Next(5) == 0) lastTrain = new GreenTrain(new Point(223, 418));
-            lastTrain.FaceTo(new Point(223, 0));
-            Intersection.AddRoadUser(lastTrain);
+            trainSpawnTimer.Start();
         }
 
         /// <summary>
@@ -137,6 +159,8 @@ namespace TrafficSimulator
                     Intersection.RemoveRoadUser(lastTrain);
                 }
             }
+
+            trainSpawnTimer.Stop();
         }
     }
 }
